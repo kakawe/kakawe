@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Buscar" />
+
+        <Button
+            android:id="@+id/bt_anadir_crear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Crear" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_nomcom"
+            style="@style/camposTexto"
+            android:hint="Nombre comunidad" />
+
+        <TextView
+            style="@style/textosLogin"
+            android:text="O" />
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_localidad"
+            style="@style/camposTexto"
+            android:hint="Localidad" />
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_direccion"
+            style="@style/camposTexto"
+            android:hint="Direccion"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="40dp">
+
+        <Button
+            android:id="@+id/bt_anadirBuscar_continuar"
+            style="@style/BotonLogin"
+            android:text="Continuar" />
+    </LinearLayout>
+
+</LinearLayout>

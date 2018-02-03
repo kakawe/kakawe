@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
+
+
+    <TextView
+        android:id="@+id/tv_anadirDomicilio_crear"
+        style="@style/textosLogin"
+        android:layout_width="wrap_content"
+        android:text="Atras"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="120dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_anadirDomicilio_piso"
+            style="@style/camposTexto"
+            android:hint="Piso" />
+
+        <EditText
+            android:id="@+id/et_anadirDomicilio_puerta"
+            style="@style/camposTexto"
+            android:hint="Puerta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="40dp">
+
+        <Button
+            android:id="@+id/bt_anadirDomicilio_continuar"
+            style="@style/BotonLogin"
+            android:text="Entrar" />
+    </LinearLayout>
+
+</LinearLayout>
