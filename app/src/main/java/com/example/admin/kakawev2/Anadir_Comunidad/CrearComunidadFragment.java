@@ -1,10 +1,12 @@
 package com.example.admin.kakawev2.Anadir_Comunidad;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CrearComunidadFragment extends Fragment {
+
+    private static DatabaseReference referencia;
+    private ProgressDialog progreso;
 
     Button bt_anadir_buscar,bt_anadirCrear_continuar;
     EditText et_anadirCrear_nomcom,et_anadirCrear_localidad,et_anadirCrear_direccion;
@@ -28,6 +42,8 @@ public class CrearComunidadFragment extends Fragment {
     }
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        progreso = new ProgressDialog(getContext());
 
         et_anadirCrear_nomcom = (EditText) getView().findViewById(R.id.et_anadirCrear_nomcom);
         et_anadirCrear_localidad = (EditText) getView().findViewById(R.id.et_anadirCrear_localidad);
@@ -54,9 +70,11 @@ public class CrearComunidadFragment extends Fragment {
     }
 
     private void crearContinuarDomicilio() {
-        String nombreCom = et_anadirCrear_nomcom.getText().toString();
-        String localidad = et_anadirCrear_localidad.getText().toString();
-        String direccion = et_anadirCrear_direccion.getText().toString();
+        String nombreCom = et_anadirCrear_nomcom.getText().toString().trim();
+        String localidad = et_anadirCrear_localidad.getText().toString().trim();
+        String direccion = et_anadirCrear_direccion.getText().toString().trim();
+        String direc = direccion.trim();
+        String local = localidad.trim();
         if (localidad.isEmpty()){
             Toast.makeText(getContext(),"Localidad requerida", Toast.LENGTH_LONG).show();
             et_anadirCrear_localidad.requestFocus();
@@ -66,28 +84,53 @@ public class CrearComunidadFragment extends Fragment {
             et_anadirCrear_direccion.requestFocus();
             return;
         }if (nombreCom.isEmpty()){
-            Toast.makeText(getContext(),"Nombre de comunidad requerida", Toast.LENGTH_LONG).show();
-            et_anadirCrear_nomcom.requestFocus();
-            return;
+            nombreCom = direc+local;
+            comprobarSiExiste(nombreCom,localidad,direccion);
         }
-        anadirCrearMiDomicilio();
+        comprobarSiExiste(nombreCom,localidad,direccion);
+
+
 
     }
-    //Si la comunidad no existe, pasamos a añadir el domicilio
-    private void anadirCrearMiDomicilio(){
-        String nombreCom = et_anadirCrear_nomcom.getText().toString();
-        String localidad = et_anadirCrear_localidad.getText().toString().trim();
-        String direccion = et_anadirCrear_direccion.getText().toString();
+    //comprobamos si la comunidad existe o no
+    private void comprobarSiExiste(final String nombreCom, final String localidad, final String direccion) {
+        progreso.show();
+        progreso.setMessage("Comprobando disponibilidad");
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.child(nombreCom).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Comunidad c=dataSnapshot.getValue(Comunidad.class);
+                if (c!=null){
+                    Log.v("datosc",c.getNombre());
+                    Toast.makeText(getContext(), "La comunidad ya existe", Toast.LENGTH_LONG).show();
+                    progreso.cancel();
+                    return;
+                }else{
+                    Log.v("datosc","no existe");
+                    progreso.cancel();
+                    anadirCrearMiDomicilio(nombreCom,localidad,direccion);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    //Si la comunidad no existe, pasamos a añadir el domicilio
+    private void anadirCrearMiDomicilio(String n,String l,String d){
         Fragment crear = new AnadirDomicilioFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.contenedor_anadirComunidad,crear);
         ft.addToBackStack(null);
         ft.commit();
         Bundle datos = new Bundle();
-        datos.putString("nombreCom",nombreCom);
-        datos.putString("localidad",localidad);
-        datos.putString("direccion",direccion);
+        datos.putString("nombreCom",n);
+        datos.putString("localidad",l);
+        datos.putString("direccion",d);
+        datos.putString("ventana","crear");
         crear.setArguments(datos);
     }
     @Override

@@ -9,6 +9,7 @@ public class Comunidad {
     String localidad;
     String direccion;
 
+    public Comunidad(){}
     public Comunidad(String nombre, String localidad, String direccion) {
         this.nombre = nombre;
         this.localidad = localidad;

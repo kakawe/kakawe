@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class AnadirDomicilioFragment extends Fragment {
     private static DatabaseReference referencia;
-    private static DatabaseReference referencia2;
 
     public interface OyenteInsercion{
         public void anadirComunidad(Comunidad comunidad, Usuario usuario);
@@ -38,7 +37,7 @@ public class AnadirDomicilioFragment extends Fragment {
     EditText et_anadirDomicilio_piso,et_anadirDomicilio_puerta;
     Button bt_anadirDomicilio_continuar;
 
-    private String nombreCom,localidad,direccion;
+    private String nombreCom,localidad,direccion,ventana;
 
     public AnadirDomicilioFragment() {
         // Required empty public constructor
@@ -55,11 +54,21 @@ public class AnadirDomicilioFragment extends Fragment {
         tv_anadirDomicilio_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment crear = new CrearComunidadFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedor_anadirComunidad,crear);
-                ft.addToBackStack(null);
-                ft.commit();
+                if (ventana.equals("buscar")){
+                    Fragment crear = new BuscarComunidadFragment();
+
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedor_anadirComunidad,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }else{
+                    Fragment crear = new CrearComunidadFragment();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedor_anadirComunidad,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+
             }
         });
         bt_anadirDomicilio_continuar.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +80,8 @@ public class AnadirDomicilioFragment extends Fragment {
     }
 
     private void comprobar() {
-        String piso = et_anadirDomicilio_piso.getText().toString();
-        String puerta = et_anadirDomicilio_puerta.getText().toString();
+        String piso = et_anadirDomicilio_piso.getText().toString().trim();
+        String puerta = et_anadirDomicilio_puerta.getText().toString().trim();
 
         if (piso.isEmpty()){
             Toast.makeText(getContext(),"Añada su piso", Toast.LENGTH_LONG).show();
@@ -83,26 +92,33 @@ public class AnadirDomicilioFragment extends Fragment {
             et_anadirDomicilio_puerta.requestFocus();
             return;
         }
-        FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
-        String correoUsuario = usuarioActual.getEmail();
-        Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
-        Usuario usuario = new Usuario(correoUsuario,piso,puerta);
-
-        Log.v("datos1",correoUsuario);
-        Log.v("datos1",nombreCom);
-        Log.v("datos1",localidad);
-        Log.v("datos1",direccion);
-        Log.v("datos1",piso);
-        Log.v("datos1",puerta);
+        //si viene de crear, hay que añadir la comunidad,por lo que es un metodo diferente
+        if (ventana.equals("crear")){
+            FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
+            String correoUsuario = usuarioActual.getEmail();
+            Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
+            Usuario usuario = new Usuario(correoUsuario,piso,puerta);
         /*OyenteInsercion oyente=(OyenteInsercion) getTargetFragment();
         oyente.anadirComunidad(comunidad,usuario);
         //BBDD.anadirComunidad();*/
-        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-        String nomcom = comunidad.getNombre();
-        String key = referencia.push().getKey();
-        referencia.child(comunidad.getNombre()).setValue(comunidad);
-        referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(usuario);
-        //referencia.child("comunidades").child(comunidad.getNombre()).child("usuarios").setValue(usuario);
+
+            referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+            String key = referencia.push().getKey();
+            referencia.child(comunidad.getNombre()).setValue(comunidad);
+            referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(usuario);
+            //mandamos/volvemos a tablon
+
+            //si viene de buscar, lo que hay que hacer es agregar el usuario a esa comunidad.
+        }else{
+            FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
+            String correoUsuario = usuarioActual.getEmail();
+            Usuario usuario = new Usuario(correoUsuario,piso,puerta);
+            referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+            String key = referencia.push().getKey();
+            referencia.child(nombreCom).child("usuarios").child(key).setValue(usuario);
+            //mandamos/volvemos a tablon
+        }
+
     }
 
     @Override
@@ -111,6 +127,8 @@ public class AnadirDomicilioFragment extends Fragment {
         nombreCom = getArguments().getString("nombreCom");
         localidad = getArguments().getString("localidad");
         direccion = getArguments().getString("direccion");
+        ventana = getArguments().getString("ventana");
+        Log.v("datosA",ventana);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_anadir_domicilio, container, false);
     }

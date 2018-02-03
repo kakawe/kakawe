@@ -50,12 +50,14 @@
 
         <TextView
             android:id="@+id/tv_login_recordarcontra"
-            android:text="¿Olvidaste tu contraseña?"
-            style="@style/textosLogin" />
+            style="@style/textosLogin"
+            android:layout_width="wrap_content"
+            android:text="¿Olvidaste tu contraseña?" />
 
         <TextView
             android:id="@+id/tv_login_registro"
             style="@style/textosLogin"
-            android:text="¿No tienes cuenta? Registrate"/>
+            android:layout_width="wrap_content"
+            android:text="¿No tienes cuenta? Registrate" />
     </LinearLayout>
 </LinearLayout>

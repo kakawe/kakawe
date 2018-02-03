@@ -53,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         bt_registro_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //registroAnadirComunidad();
-                registrarUsuario();
+                registroAnadirComunidad();
+                //registrarUsuario();
             }
         });
     }
@@ -86,8 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
         instancia.createUserWithEmailAndPassword(correo,contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progreso.setMessage("Registrando usuario...");
                 progreso.show();
+                progreso.setMessage("Registrando usuario...");
+
                 if (task.isSuccessful()){
                     UserProfileChangeRequest cambio_usuario = new UserProfileChangeRequest.Builder()
                             .setDisplayName(nombre).build();
@@ -102,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException){
                         progreso.cancel();
                         Toast.makeText(RegisterActivity.this, "Correo ya registrado", Toast.LENGTH_LONG).show();
+                        et_registro_correo.requestFocus();
                     }else{
                         progreso.cancel();
                         Toast.makeText(RegisterActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_LONG).show();

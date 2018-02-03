@@ -42,7 +42,7 @@
             android:id="@+id/et_anadirCrear_direccion"
             style="@style/camposTexto"
             android:layout_marginBottom="60dp"
-            android:hint="Direccion"
+            android:hint="Direccion. Ej: calle 10"
             android:inputType="textPersonName" />
 
         <EditText

@@ -67,19 +67,19 @@ public class LoginActivity extends AppCompatActivity {
             et_login_correo.requestFocus();
             return;
         }
-        progreso.setMessage("Enviando correo de reseteo de contraseña");
         progreso.show();
+        progreso.setMessage("Enviando correo de reseteo de contraseña");
+
         instancia.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                progreso.setMessage("Enviando correo de reseteo de contraseña");
-                progreso.show();
                 if (task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this,"Correo enviado", Toast.LENGTH_LONG).cancel();
                     progreso.cancel();
+                    Toast.makeText(LoginActivity.this,"Correo enviado", Toast.LENGTH_LONG).show();
+
                 }else{
                     progreso.cancel();
-                    Toast.makeText(LoginActivity.this,"Error con el correo electrónico", Toast.LENGTH_LONG).cancel();
+                    Toast.makeText(LoginActivity.this,"Error con el correo electrónico", Toast.LENGTH_LONG).show();
 
                 }
             }
