@@ -118,7 +118,6 @@ public class AnadirDomicilioFragment extends Fragment {
             referencia.child(nombreCom).child("usuarios").child(key).setValue(usuario);
             //mandamos/volvemos a tablon
         }
-
     }
 
     @Override

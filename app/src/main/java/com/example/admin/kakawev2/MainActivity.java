@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //insertar anuncio
-        /*String titulo = "Comparto internet";
-        String mensaje = "Comparto la linea de internet";
-        int foto = 3;
-        String tipo = "oferta";
+        /*String titulo = "Taladro";
+        String mensaje = "a ver si alguien puede prestarme un taladro por favor!!!";
+        int foto = 1;
+        String tipo = "demanda";
 
 
         FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         String key = referencia.push().getKey();
-        referencia.child("NogalGuadalix").child("Anuncios").child(tipo).child(key).setValue(anuncio);*/
+        referencia.child("NogalGuadalix").child("Anuncios").child(tipo).child(key).setValue(anuncio);
 
         //Recuperar anuncios
         /*String nombreCom="NogalGuadalix";
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(this,RegisterActivity.class);
+        Intent intent = new Intent(this,TablonActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

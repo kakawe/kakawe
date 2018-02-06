@@ -21,19 +21,19 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_vista_anuncio_titulo;
         private TextView tv_vista_anuncio_descripcion;
-        private ImageView iv_vista_anuncio_foto;
+        //private ImageView iv_vista_anuncio_foto;
 
         public ViewHolder(View v){
             super(v);
             tv_vista_anuncio_titulo = (TextView)v.findViewById(R.id.tv_vista_anuncio_titulo);
             tv_vista_anuncio_descripcion = (TextView)v.findViewById(R.id.tv_vista_anuncio_descripcion);
-            iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
+            //iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
         }
     }
-    public List<Anuncio> anuncioLista;
+    public List<Anuncio> anuncioTablon;
 
-    public RVAdapter(List<Anuncio> anuncioLista) {
-        this.anuncioLista = anuncioLista;
+    public RVAdapter(List<Anuncio> anuncioTablon) {
+        this.anuncioTablon = anuncioTablon;
     }
 
     @Override
@@ -45,13 +45,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(RVAdapter.ViewHolder holder, int position) {
-        holder.tv_vista_anuncio_titulo.setText(anuncioLista.get(position).getTitulo());
-        holder.tv_vista_anuncio_descripcion.setText(anuncioLista.get(position).getMensaje());
-        holder.iv_vista_anuncio_foto.setImageResource(anuncioLista.get(position).getFoto());
+        holder.tv_vista_anuncio_titulo.setText(anuncioTablon.get(position).getTitulo());
+        holder.tv_vista_anuncio_descripcion.setText(anuncioTablon.get(position).getMensaje());
+        //holder.iv_vista_anuncio_foto.setImageResource(anuncioLista.get(position).getFoto());
     }
 
     @Override
     public int getItemCount() {
-        return anuncioLista.size();
+        return anuncioTablon.size();
     }
 }
