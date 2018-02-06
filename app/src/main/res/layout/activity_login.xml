@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     tools:context="com.example.admin.kakawev2.LoginActivity">
 
     <LinearLayout
@@ -15,18 +17,30 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <EditText
-            android:id="@+id/et_login_correo"
-            android:hint="Correo"
-            style="@style/camposTexto" />
-        <!--android:drawableLeft="@drawable/ic_correo"-->
-        <EditText
-            android:id="@+id/et_login_contrasena"
-            style="@style/camposTexto"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-             />
-        <!--android:drawableLeft="@drawable/ic_contrasena"-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_login_correo"
+                style="@style/camposTexto"
+                android:hint="Correo" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_contrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_login_contrasena"
+                style="@style/camposTexto"
+                android:hint="Contraseña"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -48,12 +62,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/tv_login_recordarcontra"
             style="@style/textosLogin"
             android:layout_width="wrap_content"
             android:text="¿Olvidaste tu contraseña?" />
-
         <TextView
             android:id="@+id/tv_login_registro"
             style="@style/textosLogin"

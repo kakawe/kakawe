@@ -9,6 +9,9 @@ public class Usuario {
     String piso;
     String puerta;
 
+    public Usuario() {
+    }
+
     public Usuario(String correo, String piso, String puerta) {
         this.correo = correo;
         this.piso = piso;
