@@ -119,7 +119,6 @@ public class AnadirDomicilioFragment extends Fragment {
             //mandamos/volvemos a tablon
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
