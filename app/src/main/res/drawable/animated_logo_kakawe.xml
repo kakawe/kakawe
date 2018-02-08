@@ -1,0 +1,17 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/vector_logo_kakawe">
+    <target android:name="cascara2" android:animation="@anim/anim_cascara2"/>
+    <target android:name="cascara1" android:animation="@anim/anim_cascara1"/>
+    <target android:name="borde" android:animation="@anim/anim_borde"/>
+    <target android:name="fruto_1" android:animation="@anim/anim_fruto_1"/>
+    <target android:name="fruto_2" android:animation="@anim/anim_fruto_2"/>
+    <target android:name="cascara" android:animation="@anim/anim_cascara"/>
+    <target android:name="relieve" android:animation="@anim/anim_relieve"/>
+    <target android:name="k_1" android:animation="@anim/anim_k_1"/>
+    <target android:name="a_1" android:animation="@anim/anim_a_1"/>
+    <target android:name="k_2" android:animation="@anim/anim_k_2"/>
+    <target android:name="a_2" android:animation="@anim/anim_a_2"/>
+    <target android:name="w" android:animation="@anim/anim_w"/>
+    <target android:name="e" android:animation="@anim/anim_e"/>
+</animated-vector>
