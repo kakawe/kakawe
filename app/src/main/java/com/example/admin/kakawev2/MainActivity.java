@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         animatable.start();
         //insertar anuncio
-        /*String titulo = "Taladro";
+        String titulo = "Taladro";
         String mensaje = "a ver si alguien puede prestarme un taladro por favor!!!";
         int foto = 1;
         String tipo = "demanda";

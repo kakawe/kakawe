@@ -59,7 +59,6 @@ public class AnadirDomicilioFragment extends Fragment {
             public void onClick(View v) {
                 if (ventana.equals("buscar")){
                     Fragment crear = new BuscarComunidadFragment();
-
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.contenedor_anadirComunidad,crear);
                     ft.addToBackStack(null);
@@ -71,7 +70,6 @@ public class AnadirDomicilioFragment extends Fragment {
                     ft.addToBackStack(null);
                     ft.commit();
                 }
-
             }
         });
         bt_anadirDomicilio_continuar.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +93,7 @@ public class AnadirDomicilioFragment extends Fragment {
             et_anadirDomicilio_puerta.requestFocus();
             return;
         }
+
         //si viene de crear, hay que añadir la comunidad,por lo que es un metodo diferente
         if (ventana.equals("crear")){
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
