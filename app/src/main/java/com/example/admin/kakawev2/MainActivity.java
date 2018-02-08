@@ -33,19 +33,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
+        /*AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
-
-
         AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(),R.drawable.animated_logo_kakawe);
         //AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(), R.drawable.logo_kakawe);
-
         imageView.setImageDrawable(splash);
-
         final Animatable animatable = (Animatable) imageView.getDrawable();
-
         animatable.start();
+
         //insertar anuncio
         /*String titulo = "Taladro";
         String mensaje = "a ver si alguien puede prestarme un taladro por favor!!!";
