@@ -64,6 +64,7 @@
         <Button
             android:id="@+id/bt_anadirCrear_continuar"
             style="@style/BotonLogin"
+            android:padding="0dp"
             android:text="Continuar" />
     </LinearLayout>
 

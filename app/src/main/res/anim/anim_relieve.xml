@@ -1,0 +1,9 @@
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+android:name="relieve"
+android:propertyName="fillAlpha"
+android:startOffset="2360"
+android:duration="500"
+android:valueFrom="0"
+android:valueTo="1"
+android:valueType="floatType"
+android:interpolator="@android:interpolator/fast_out_slow_in"/>

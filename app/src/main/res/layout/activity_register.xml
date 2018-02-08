@@ -26,6 +26,7 @@
             <EditText
                 android:id="@+id/et_registro_nombre"
                 style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_person"
                 android:hint="Nombre" />
         </android.support.design.widget.TextInputLayout>
 
@@ -38,6 +39,7 @@
             <EditText
                 android:id="@+id/et_registro_correo"
                 style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_correo"
                 android:hint="Correo" />
         </android.support.design.widget.TextInputLayout>
 
@@ -51,6 +53,7 @@
                 android:id="@+id/et_registro_contrasena"
                 style="@style/camposTexto"
                 android:hint="Contraseña"
+                android:drawableLeft="@drawable/ic_action_candado"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>

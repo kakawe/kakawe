@@ -53,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         bt_registro_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registroAnadirComunidad();
-                //registrarUsuario();
+                //registroAnadirComunidad();
+                registrarUsuario();
             }
         });
     }

@@ -26,6 +26,7 @@
             <EditText
                 android:id="@+id/et_login_correo"
                 style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_correo"
                 android:hint="Correo" />
         </android.support.design.widget.TextInputLayout>
 
@@ -39,6 +40,7 @@
                 android:id="@+id/et_login_contrasena"
                 style="@style/camposTexto"
                 android:hint="Contraseña"
+                android:drawableLeft="@drawable/ic_action_candado"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>

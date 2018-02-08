@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Anadir_Comunidad;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Usuario;
 import com.example.admin.kakawev2.R;
+import com.example.admin.kakawev2.RegisterActivity;
+import com.example.admin.kakawev2.TablonActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -108,6 +111,11 @@ public class AnadirDomicilioFragment extends Fragment {
             referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(usuario);
             //mandamos/volvemos a tablon
 
+            Intent intent = new Intent(getContext(), TablonActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
             //si viene de buscar, lo que hay que hacer es agregar el usuario a esa comunidad.
         }else{
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
@@ -117,6 +125,11 @@ public class AnadirDomicilioFragment extends Fragment {
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(usuario);
             //mandamos/volvemos a tablon
+            Intent intent = new Intent(getContext(), TablonActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
         }
     }
     @Override
