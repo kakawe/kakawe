@@ -27,7 +27,6 @@ public class PerfilUsuarioFragment extends Fragment {
     public PerfilUsuarioFragment() {
         // Required empty public constructor
     }
-
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -44,7 +43,6 @@ public class PerfilUsuarioFragment extends Fragment {
                 pu.show(getActivity().getFragmentManager(), "Dialog boton Añadir");
             }
         });
-
 
 }
 
