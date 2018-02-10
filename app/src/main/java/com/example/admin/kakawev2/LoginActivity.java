@@ -7,12 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loguearUsuario() {
+
         String correo = et_login_correo.getText().toString().trim();
         String contrasena = et_login_contrasena.getText().toString();
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
@@ -135,6 +136,4 @@ public class LoginActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
-
 }
