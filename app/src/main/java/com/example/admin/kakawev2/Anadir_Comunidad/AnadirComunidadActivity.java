@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.admin.kakawev2.BBDD;
+import com.example.admin.kakawev2.PerfilUsuarioFragment;
 import com.example.admin.kakawev2.R;
 
 public class AnadirComunidadActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class AnadirComunidadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_comunidad);
 
-        Fragment fragmentoSeleccionado2 = new BuscarComunidadFragment();
+        Fragment fragmentoSeleccionado2 = new PerfilUsuarioFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedor_anadirComunidad, fragmentoSeleccionado2);

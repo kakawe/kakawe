@@ -7,22 +7,14 @@ import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.example.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity;
 import com.example.admin.kakawev2.Entidades.Anuncio;
-import com.example.admin.kakawev2.Entidades.Comunidad;
-import com.example.admin.kakawev2.Entidades.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         animatable.start();
         //insertar anuncio
-        String titulo = "Taladro";
+        /*String titulo = "Taladro";
         String mensaje = "a ver si alguien puede prestarme un taladro por favor!!!";
         int foto = 1;
         String tipo = "demanda";
@@ -94,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(MainActivity.this, AnadirComunidadActivity.class);
                 startActivity(intent);
                 finish();
             };

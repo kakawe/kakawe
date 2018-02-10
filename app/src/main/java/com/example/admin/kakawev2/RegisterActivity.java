@@ -43,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
         bt_registro_registrar=(Button) findViewById(R.id.bt_registro_registrar);
         tv_registro_login=(TextView) findViewById(R.id.tv_registro_login);
 
+
+
+
         tv_registro_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
