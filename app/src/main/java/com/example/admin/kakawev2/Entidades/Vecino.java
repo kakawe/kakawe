@@ -4,15 +4,15 @@ package com.example.admin.kakawev2.Entidades;
  * Created by admin on 02/02/2018.
  */
 
-public class Usuario {
+public class Vecino {
     String correo;
     String piso;
     String puerta;
 
-    public Usuario() {
+    public Vecino() {
     }
 
-    public Usuario(String correo, String piso, String puerta) {
+    public Vecino(String correo, String piso, String puerta) {
         this.correo = correo;
         this.piso = piso;
         this.puerta = puerta;

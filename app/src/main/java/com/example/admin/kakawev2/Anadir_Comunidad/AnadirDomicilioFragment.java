@@ -16,10 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.kakawev2.Entidades.Comunidad;
-import com.example.admin.kakawev2.Entidades.Usuario;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
-import com.example.admin.kakawev2.RegisterActivity;
-import com.example.admin.kakawev2.TablonActivity;
+import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +32,7 @@ public class AnadirDomicilioFragment extends Fragment {
     private static DatabaseReference referencia;
 
     public interface OyenteInsercion{
-        public void anadirComunidad(Comunidad comunidad, Usuario usuario);
+        public void anadirComunidad(Comunidad comunidad, Vecino vecino);
     }
 
     TextView tv_anadirDomicilio_crear;
@@ -99,15 +98,15 @@ public class AnadirDomicilioFragment extends Fragment {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
             Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
-            Usuario usuario = new Usuario(correoUsuario,piso,puerta);
+            Vecino vecino = new Vecino(correoUsuario,piso,puerta);
         /*OyenteInsercion oyente=(OyenteInsercion) getTargetFragment();
-        oyente.anadirComunidad(comunidad,usuario);
+        oyente.anadirComunidad(comunidad,vecino);
         //BBDD.anadirComunidad();*/
 
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(comunidad.getNombre()).setValue(comunidad);
-            referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(usuario);
+            referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(vecino);
             //mandamos/volvemos a tablon
 
             Intent intent = new Intent(getContext(), TablonActivity.class);
@@ -115,14 +114,14 @@ public class AnadirDomicilioFragment extends Fragment {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
-            //si viene de buscar, lo que hay que hacer es agregar el usuario a esa comunidad.
+            //si viene de buscar, lo que hay que hacer es agregar el vecino a esa comunidad.
         }else{
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
-            Usuario usuario = new Usuario(correoUsuario,piso,puerta);
+            Vecino vecino = new Vecino(correoUsuario,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
-            referencia.child(nombreCom).child("usuarios").child(key).setValue(usuario);
+            referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
             //mandamos/volvemos a tablon
             Intent intent = new Intent(getContext(), TablonActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

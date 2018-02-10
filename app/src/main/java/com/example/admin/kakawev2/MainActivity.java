@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.Entidades.Comunidad;
-import com.example.admin.kakawev2.Entidades.Usuario;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -87,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-        new Handler().postDelayed(new Runnable(){
+        /*new Handler().postDelayed(new Runnable(){
             public void run(){
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
             };
-        }, DURACION_SPLASH);
+        }, DURACION_SPLASH);*/
 
-        /*Intent intent = new Intent(this,RegisterActivity.class);
+        Intent intent = new Intent(this,RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 }

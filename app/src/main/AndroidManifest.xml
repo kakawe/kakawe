@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".TablonActivity" />
+        <activity android:name=".Tablon.TablonActivity" />
         <activity android:name=".Anadir_Comunidad.AnadirComunidadActivity"></activity>
     </application>
 
