@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.Entidades.Anuncio;
@@ -37,9 +40,7 @@ public class TablonActivity extends AppCompatActivity {
         bt__tablon_izquierdo = (Button)findViewById(R.id.bt__tablon_izquierdo);
         bt_tablon_derecho = (Button)findViewById(R.id.bt_tablon_derecho);
 
-        rvAdapter = new RVAdapter(pruebaVision());
-        rv_tablon_listatablon.setAdapter(rvAdapter);
-
+        obtenerOfertas();
         bt__tablon_izquierdo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,17 +53,53 @@ public class TablonActivity extends AppCompatActivity {
                 obtenerDemandas();
             }
         });
+        //poder seleccionar las card dentro del recyclerView
+        final GestureDetector mGestureDetector = new GestureDetector(TablonActivity.this, new GestureDetector.SimpleOnGestureListener() {
+            @Override public boolean onSingleTapUp(MotionEvent e) {
+                return true;
+            }
+        });
+        rv_tablon_listatablon.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                try{
+                    View child = rv.findChildViewUnder(e.getX(),e.getY());
+                    if (child != null && mGestureDetector.onTouchEvent(e)){
+                        int posicion = rv.getChildAdapterPosition(child);
+
+                        DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
+                        Bundle b = new Bundle();
+                        //b.putString("ImagenAnuncio","imangen_anuncio");
+                        b.putString("TipoAnuncio","tipo_anuncio");
+                        b.putString("TituloAnuncio","titulo_anuncio");
+                        b.putString("MensajeAnuncio","mensaje_anuncio");
+                        detallesAnuncio.setArguments(b);
+                        detallesAnuncio.show(getFragmentManager(),"Dialog");
+                        //mensaje numero card selecciona
+                        Toast.makeText(TablonActivity.this, "Clicado " + posicion, Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
     }
 
-    public List<Anuncio> pruebaVision() {
-        List<Anuncio> anuncios = new ArrayList<>();
-        anuncios.add(new Anuncio("Necesito taladro", "Necesito urgentemente un taladro para colocar varios cuadros", 1, "hola"));
-        anuncios.add(new Anuncio("Cocino", "asdfibc jfbasfb asfdboasnodf asf a", 1, "hola"));
-        anuncios.add(new Anuncio("paseo ancianos", "dsfgjbsadasd asdasfasfasf asdf asd", 1, "hola"));
-        anuncios.add(new Anuncio("compro pan", "aobdgjdsbjfbsadbj ksadblfnasfljasbf", 1, "hola"));
-        anuncios.add(new Anuncio("Paseo perro", "aikjdfgoa sgngipgpasdg asdgas dga gdas d", 1, "hola"));
-        return anuncios;
-    }
+
     public void obtenerOfertas(){
         String nombreCom="NogalGuadalix";
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");

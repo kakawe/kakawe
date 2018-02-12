@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+       /* AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -84,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-        new Handler().postDelayed(new Runnable(){
+        /*new Handler().postDelayed(new Runnable(){
             public void run(){
                 Intent intent = new Intent(MainActivity.this, AnadirComunidadActivity.class);
                 startActivity(intent);
                 finish();
             };
-        }, DURACION_SPLASH);
+        }, DURACION_SPLASH);*/
 
-        /*Intent intent = new Intent(this,RegisterActivity.class);
+        Intent intent = new Intent(this,TablonActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 }
