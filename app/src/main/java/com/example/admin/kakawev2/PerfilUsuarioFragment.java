@@ -19,10 +19,10 @@ import android.widget.TextView;
  */
 public class PerfilUsuarioFragment extends Fragment {
 
-    ImageView ep_img_perfil;
-    TextView ep_tv_nombre;
-    EditText ep_ed_correo,ep_ed_contrasena;
-    Button ep_btn_editar;
+    ImageView iv_perfilUs_fotoUs;
+    TextView tv_perfilUs_NomUsuario;
+    TextView tv_perfilUs_correoUsuario,tv_perfilUs_contraUsuario;
+    Button bt_perfilUs_editarUsuario;
 
     public PerfilUsuarioFragment() {
         // Required empty public constructor
@@ -30,13 +30,13 @@ public class PerfilUsuarioFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ep_img_perfil = (ImageView)getView().findViewById(R.id.ep_img_perfil);
-        ep_tv_nombre = (TextView)getView().findViewById(R.id.ep_tv_nombre);
-        ep_ed_correo = (EditText)getView().findViewById(R.id.ep_ed_correo);
-        ep_ed_contrasena = (EditText)getView().findViewById(R.id.ep_ed_contrasena);
-        ep_btn_editar = (Button)getView().findViewById(R.id.ep_btn_editar);
+        iv_perfilUs_fotoUs = (ImageView)getView().findViewById(R.id.iv_perfilUs_fotoUs);
+        tv_perfilUs_NomUsuario = (TextView)getView().findViewById(R.id.tv_perfilUs_NomUsuario);
+        tv_perfilUs_correoUsuario = (TextView)getView().findViewById(R.id.tv_perfilUs_correoUsuario);
+        tv_perfilUs_contraUsuario = (TextView)getView().findViewById(R.id.tv_perfilUs_contraUsuario);
+        bt_perfilUs_editarUsuario = (Button)getView().findViewById(R.id.bt_perfilUs_editarUsuario);
 
-        ep_btn_editar.setOnClickListener(new View.OnClickListener() {
+        bt_perfilUs_editarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PerfilUsuarioDialog pu = new PerfilUsuarioDialog();
