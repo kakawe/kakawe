@@ -18,7 +18,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ep_img_perfil"
+            android:id="@+id/iv_perfilUs_fotoUs"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/googleg_standard_color_18" />
@@ -32,7 +32,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/ep_tv_nombre"
+            android:id="@+id/tv_perfilUs_NomUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre Vecino"
@@ -46,25 +46,28 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/ep_ed_correo"
+        <TextView
+            android:id="@+id/tv_perfilUs_correoUsuario"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/ep_ed_contrasena"
+        <TextView
+            android:id="@+id/tv_perfilUs_contraUsuario"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/ep_btn_editar"
+        android:id="@+id/bt_perfilUs_editarUsuario"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
