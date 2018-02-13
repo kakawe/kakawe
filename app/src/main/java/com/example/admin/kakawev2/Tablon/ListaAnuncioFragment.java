@@ -1,18 +1,24 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Tablon;
 
-import android.support.v7.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
+import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Entidades.Anuncio;
+import com.example.admin.kakawev2.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,27 +26,34 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class TablonActivity extends AppCompatActivity {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ListaAnuncioFragment extends Fragment {
 
     private static DatabaseReference referencia;
 
     private RecyclerView rv_tablon_listatablon;
     private Button bt__tablon_izquierdo,bt_tablon_derecho;
     private RVAdapter rvAdapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tablon);
 
-        rv_tablon_listatablon = (RecyclerView)findViewById(R.id.rv_tablon_listatablon);
-        rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(this));
+    public ListaAnuncioFragment() {
+        // Required empty public constructor
+    }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        bt__tablon_izquierdo = (Button)findViewById(R.id.bt__tablon_izquierdo);
-        bt_tablon_derecho = (Button)findViewById(R.id.bt_tablon_derecho);
+
+        rv_tablon_listatablon = (RecyclerView)getView().findViewById(R.id.rv_tablon_listatablon);
+        rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
+        bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
 
         obtenerOfertas();
+
         bt__tablon_izquierdo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,53 +66,8 @@ public class TablonActivity extends AppCompatActivity {
                 obtenerDemandas();
             }
         });
-        //poder seleccionar las card dentro del recyclerView
-        final GestureDetector mGestureDetector = new GestureDetector(TablonActivity.this, new GestureDetector.SimpleOnGestureListener() {
-            @Override public boolean onSingleTapUp(MotionEvent e) {
-                return true;
-            }
-        });
-        rv_tablon_listatablon.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                try{
-                    View child = rv.findChildViewUnder(e.getX(),e.getY());
-                    if (child != null && mGestureDetector.onTouchEvent(e)){
-                        int posicion = rv.getChildAdapterPosition(child);
-
-                        DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
-                        Bundle b = new Bundle();
-                        //b.putString("ImagenAnuncio","imangen_anuncio");
-                        b.putString("TipoAnuncio","tipo_anuncio");
-                        b.putString("TituloAnuncio","titulo_anuncio");
-                        b.putString("MensajeAnuncio","mensaje_anuncio");
-                        detallesAnuncio.setArguments(b);
-                        detallesAnuncio.show(getFragmentManager(),"Dialog");
-                        //mensaje numero card selecciona
-                        Toast.makeText(TablonActivity.this, "Clicado " + posicion, Toast.LENGTH_LONG).show();
-                        return true;
-                    }
-
-                }catch (Exception e1){
-                    e1.printStackTrace();
-                }
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
 
     }
-
-
     public void obtenerOfertas(){
         String nombreCom="NogalGuadalix";
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
@@ -173,4 +141,12 @@ public class TablonActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
+    }
+
 }

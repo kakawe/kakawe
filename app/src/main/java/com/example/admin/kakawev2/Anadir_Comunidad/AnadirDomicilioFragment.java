@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
-import com.example.admin.kakawev2.TablonActivity;
+import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
