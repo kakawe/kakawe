@@ -32,7 +32,7 @@ public class PerfilUsuarioDialog extends DialogFragment implements View.OnClickL
 
 
     public interface OyenteDialog {
-        public void editarperfil(Usuario usuario);
+            public void editarperfil(Usuario usuario);
 
     }
 
