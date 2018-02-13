@@ -14,7 +14,6 @@ public class PerfilComunidadFragment extends Fragment {
 
     public PerfilComunidadFragment() {
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
