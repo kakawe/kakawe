@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     android:weightSum="10"
-    tools:context="com.example.admin.kakawev2.PerfilUsuarioFragment">
+    tools:context="com.example.admin.kakawev2.Tablon.PerfilUsuarioFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,52 +27,50 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_perfilUs_NomUsuario"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_nomuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_perfilUs_nombreUsuario"
+                style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_person"
+                android:hint="Nombre Usuario" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_correouser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_perfilUs_correoUsuario"
+                style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_correo"
+                android:hint="Correo Usuario" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/bt_perfilUs_modContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre Vecino"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_perfilUs_correoUsuario"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textPersonName"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_perfilUs_contraUsuario"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:text="Modificar Contraseña" />
 
-    <Button
-        android:id="@+id/bt_perfilUs_editarUsuario"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="EDITAR" />
+        <Button
+            android:id="@+id/bt_perfilUs_actualiarDatos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+    </LinearLayout>
 
 </LinearLayout>

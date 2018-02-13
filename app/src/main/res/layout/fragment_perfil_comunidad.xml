@@ -3,28 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:layout_marginTop="40dp"
-    tools:context="com.example.admin.kakawev2.PerfilComunidadFragment">
+    tools:context="com.example.admin.kakawev2.Tablon.PerfilComunidadFragment">
 
-    <ImageView
-        android:id="@+id/im_perfilCom_imagenComunidad"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/common_google_signin_btn_icon_dark_normal" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
 
-    <TextView
-        style="@style/textosLogin"
-        android:text="Mi Domicilio" />
+        <ImageView
+            android:id="@+id/iv_perfilCom_fotoCom"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/googleg_standard_color_18" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/textosLogin"
-        android:text="Piso" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/textosLogin"
-        android:text="Puerta" />
+        <TextView
+            android:id="@+id/tv_perfilCom_nombreCom"
+            style="@style/textosLogin"
+            android:layout_width="wrap_content"
+            android:text="Nombre Comunidad" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_nomuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_perfilCom_piso"
+                style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_piso1"
+                android:hint="Piso" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_correouser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/et_perfilCom_puerta"
+                style="@style/camposTexto"
+                android:drawableLeft="@drawable/ic_action_puerta1"
+                android:hint="Puerta" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/bt_perfilCom_actualiarDatos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Actualizar" />
+    </LinearLayout>
 </LinearLayout>
