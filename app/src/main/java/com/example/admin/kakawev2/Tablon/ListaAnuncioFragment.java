@@ -36,6 +36,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class ListaAnuncioFragment extends Fragment {
+
     private static DatabaseReference referencia;
 
     private RecyclerView rv_tablon_listatablon;
@@ -44,6 +45,7 @@ public class ListaAnuncioFragment extends Fragment {
 
     private String nombreCom="NogalGuadalix";
     private String pestana;
+
 
 
     public ListaAnuncioFragment() {

@@ -71,7 +71,6 @@ public class PerfilUsuarioDialog extends DialogFragment implements View.OnClickL
         et_editarPerfil_contraseñaNueva = (EditText) vista.findViewById(R.id.et_editarPerfil_contraseñaNueva);
 
         correo = getArguments().getString("correo");
-        Log.v("correo",correo);
         builder.setPositiveButton("Guardar datos", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

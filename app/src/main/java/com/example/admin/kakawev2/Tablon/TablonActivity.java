@@ -16,11 +16,13 @@ public class TablonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tablon);
 
         String nombrecom = getIntent().getStringExtra("comunidad");
-        Fragment fragmentoSeleccionado2 = new PerfilUsuarioFragment();
+
+        Fragment fragmentoSeleccionado2 = new PerfilComunidadFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
         t2.commit();
+
         Bundle datos = new Bundle();
         datos.putString("nombreCom",nombrecom);
         fragmentoSeleccionado2.setArguments(datos);

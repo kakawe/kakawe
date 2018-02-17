@@ -112,8 +112,6 @@ public class PerfilUsuarioFragment extends Fragment{
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             actualizaNombreYFoto();
-
-
                         }else{
                             Toast.makeText(getContext(),"Correo en uso", Toast.LENGTH_LONG).show();
                         }

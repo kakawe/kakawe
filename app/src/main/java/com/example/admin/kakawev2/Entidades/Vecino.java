@@ -6,16 +6,22 @@ package com.example.admin.kakawev2.Entidades;
 
 public class Vecino {
     String correo;
+    String mail;
     String piso;
     String puerta;
 
     public Vecino() {
     }
 
-    public Vecino(String correo, String piso, String puerta) {
+    public Vecino(String correo,String mail, String piso, String puerta) {
         this.correo = correo;
+        this.mail = mail;
         this.piso = piso;
         this.puerta = puerta;
+    }
+
+    public String getMail() {
+        return mail;
     }
 
     public String getCorreo() {
@@ -40,5 +46,15 @@ public class Vecino {
 
     public void setPuerta(String puerta) {
         this.puerta = puerta;
+    }
+
+    @Override
+    public String toString() {
+        return "Vecino{" +
+                "correo='" + correo + '\'' +
+                ", mail='" + mail + '\'' +
+                ", piso='" + piso + '\'' +
+                ", puerta='" + puerta + '\'' +
+                '}';
     }
 }
