@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Tablón">
+        <menu>
+            <item
+                android:id="@+id/nav_camera"
+                android:title="Ofrecen" />
+            <item
+                android:id="@+id/nav_gallery"
+                android:title="Necesitan" />
+        </menu>
+    </item>
+
+    <item android:title="Mis anuncios">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Actuales" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="Historial" />
+        </menu>
+    </item>
+</menu>
