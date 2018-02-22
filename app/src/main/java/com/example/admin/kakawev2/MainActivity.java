@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -88,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+        Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
+        bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
+                ad1.show(getFragmentManager(),"ad1");
+            }
+        });
+
+
 
         /*new Handler().postDelayed(new Runnable(){
             public void run(){
@@ -97,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
             };
         }, DURACION_SPLASH);*/
 
-        Intent intent = new Intent(this,TablonActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+      //  Intent intent = new Intent(this,TablonActivity.class);
+      //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //startActivity(intent);
     }
 }
