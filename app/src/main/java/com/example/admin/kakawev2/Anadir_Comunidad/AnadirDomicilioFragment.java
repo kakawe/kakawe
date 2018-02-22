@@ -136,7 +136,6 @@ public class AnadirDomicilioFragment extends Fragment {
         localidad = getArguments().getString("localidad");
         direccion = getArguments().getString("direccion");
         ventana = getArguments().getString("ventana");
-        Log.v("datosA",ventana);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_anadir_domicilio, container, false);
     }

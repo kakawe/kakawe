@@ -234,7 +234,6 @@ public class ListaAnuncioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         nombreCom = getArguments().getString("nombreCom");
-        Log.v("listanombre",nombreCom);
         return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
 
     }
