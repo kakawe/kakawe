@@ -2,15 +2,21 @@ package com.example.admin.kakawev2.Tablon;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
+import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuComunidadesFragment extends Fragment {
+public class MenuComunidadesFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView tv_menuComunidades_nombre;
@@ -74,5 +80,21 @@ public class MenuComunidadesFragment extends Fragment {
         return vista;
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Log.v("numeroqueviene",String.valueOf(id));
+        FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
+        if (id == R.id.m_menuCom_crear) {
+            String uno = "1";
+            fragmentManager.replace(R.id.contenedorTablon,new CrearComunidadFragment()).commit();
 
+        } else if (id == R.id.m_menuCom_buscar) {
+            String uno = "2";
+            fragmentManager.replace(R.id.contenedorTablon,new BuscarComunidadFragment()).commit();
+
+
+        }
+        return true;
+    }
 }
