@@ -31,7 +31,7 @@
             <EditText
                 android:id="@+id/et_anadirDomicilio_piso"
                 style="@style/camposTexto"
-
+                android:drawableLeft="@drawable/ic_action_piso1"
                 android:hint="Piso" />
         </android.support.design.widget.TextInputLayout>
 
@@ -43,7 +43,7 @@
         <EditText
             android:id="@+id/et_anadirDomicilio_puerta"
             style="@style/camposTexto"
-
+            android:drawableLeft="@drawable/ic_action_puerta1"
             android:hint="Puerta" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>

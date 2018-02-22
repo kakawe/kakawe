@@ -38,11 +38,13 @@ import java.util.ArrayList;
 public class ListaAnuncioFragment extends Fragment {
 
     private static DatabaseReference referencia;
-    private String pestana;
+
     private RecyclerView rv_tablon_listatablon;
     private Button bt__tablon_izquierdo,bt_tablon_derecho;
     private RVAdapter rvAdapter;
 
+    private String nombreCom="NogalGuadalix";
+    private String pestana;
 
 
 
@@ -117,7 +119,6 @@ public class ListaAnuncioFragment extends Fragment {
 
     private void selectorAnuncio(String pestana, final int position) {
         if (pestana.equals("oferta")) {
-            String nombreCom = "NogalGuadalix";
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             referencia.child(nombreCom).child("Anuncios").child("oferta").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -151,7 +152,6 @@ public class ListaAnuncioFragment extends Fragment {
                 }
             });
         }else{
-            String nombreCom="NogalGuadalix";
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             referencia.child(nombreCom).child("Anuncios").child("demanda").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -188,7 +188,6 @@ public class ListaAnuncioFragment extends Fragment {
 
 
     public void obtenerOfertas(){
-        String nombreCom="NogalGuadalix";
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(nombreCom).child("Anuncios").child("oferta").addValueEventListener(new ValueEventListener() {
             @Override
@@ -197,22 +196,7 @@ public class ListaAnuncioFragment extends Fragment {
                 for (DataSnapshot dato : dataSnapshot.getChildren()){
                     Anuncio aO = dato.getValue(Anuncio.class);
                     anuncio_oferta.add(aO);
-
-                    String titulo = aO.getTitulo();
-                    String mensaje = aO.getMensaje();
-                    int foto = aO.getFoto();
-                    String tipo = aO.getTipo();
-                    Log.v("datosta",titulo);
-                    Log.v("datosta",mensaje);
-                    Log.v("datosta",Integer.toString(foto));
-                    Log.v("datosta",tipo);
-
                 }
-                Log.v("datosBD",Integer.toString(anuncio_oferta.size()));
-                String uno = anuncio_oferta.get(0).getTitulo();
-                String dos = anuncio_oferta.get(1).getTitulo();
-                Log.v("datosta",uno);
-                Log.v("datosta",dos);
                 rvAdapter = new RVAdapter(anuncio_oferta);
                 rv_tablon_listatablon.setAdapter(rvAdapter);
             }
@@ -225,7 +209,6 @@ public class ListaAnuncioFragment extends Fragment {
     }
 
     public void obtenerDemandas(){
-        String nombreCom="NogalGuadalix";
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(nombreCom).child("Anuncios").child("demanda").addValueEventListener(new ValueEventListener() {
             @Override
@@ -234,22 +217,7 @@ public class ListaAnuncioFragment extends Fragment {
                 for (DataSnapshot dato : dataSnapshot.getChildren()){
                     Anuncio aO = dato.getValue(Anuncio.class);
                     anuncio_demanda.add(aO);
-
-                    String titulo = aO.getTitulo();
-                    String mensaje = aO.getMensaje();
-                    int foto = aO.getFoto();
-                    String tipo = aO.getTipo();
-                    Log.v("datosta",titulo);
-                    Log.v("datosta",mensaje);
-                    Log.v("datosta",Integer.toString(foto));
-                    Log.v("datosta",tipo);
-
                 }
-                Log.v("datosBD",Integer.toString(anuncio_demanda.size()));
-                String uno = anuncio_demanda.get(0).getTitulo();
-                String dos = anuncio_demanda.get(1).getTitulo();
-                Log.v("datosta",uno);
-                Log.v("datosta",dos);
                 rvAdapter = new RVAdapter(anuncio_demanda);
                 rv_tablon_listatablon.setAdapter(rvAdapter);
             }
@@ -265,7 +233,10 @@ public class ListaAnuncioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        nombreCom = getArguments().getString("nombreCom");
+        Log.v("listanombre",nombreCom);
         return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
+
     }
 
 }

@@ -104,12 +104,10 @@ public class BuscarComunidadFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Comunidad c=dataSnapshot.getValue(Comunidad.class);
                 if (c!=null){
-                    Log.v("datosb",c.getNombre());
                     progreso.cancel();
                     anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
                     progreso.cancel();
                 }else{
-                    Log.v("datosb","no existe");
                     Toast.makeText(getContext(), "No existe una comunidad con el nombre "+nombreCom, Toast.LENGTH_LONG).show();
                     progreso.cancel();
                     return;

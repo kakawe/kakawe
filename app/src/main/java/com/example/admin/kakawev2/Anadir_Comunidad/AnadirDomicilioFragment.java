@@ -30,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class AnadirDomicilioFragment extends Fragment {
     private static DatabaseReference referencia;
+    private Intent intent;
+
 
     public interface OyenteInsercion{
         public void anadirComunidad(Comunidad comunidad, Vecino vecino);
@@ -98,7 +100,8 @@ public class AnadirDomicilioFragment extends Fragment {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
             Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
-            Vecino vecino = new Vecino(correoUsuario,piso,puerta);
+            String mail = correoUsuario;
+            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
         /*OyenteInsercion oyente=(OyenteInsercion) getTargetFragment();
         oyente.anadirComunidad(comunidad,vecino);
         //BBDD.anadirComunidad();*/
@@ -107,28 +110,24 @@ public class AnadirDomicilioFragment extends Fragment {
             String key = referencia.push().getKey();
             referencia.child(comunidad.getNombre()).setValue(comunidad);
             referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(vecino);
-            //mandamos/volvemos a tablon
-
-            Intent intent = new Intent(getContext(), TablonActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
 
             //si viene de buscar, lo que hay que hacer es agregar el vecino a esa comunidad.
         }else{
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
-            Vecino vecino = new Vecino(correoUsuario,piso,puerta);
+            String mail = correoUsuario;
+            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
-            //mandamos/volvemos a tablon
-            Intent intent = new Intent(getContext(), TablonActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
 
         }
+        Bundle datos = new Bundle();
+        intent = new Intent(getContext(), TablonActivity.class);
+        intent.putExtra("comunidad",nombreCom);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
