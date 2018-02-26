@@ -23,6 +23,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
     public Dialog onCreateDialog(Bundle saveIntanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio1,null);
         bt_anadir_anuncio1_necesito = (Button)vista.findViewById(R.id.bt_anadir_anuncio1_necesito);
         bt_anadir_necesito1_ofrezco = (Button)vista.findViewById(R.id.bt_anadir_necesito1_ofrezco);
