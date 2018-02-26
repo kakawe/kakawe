@@ -1,5 +1,6 @@
 package com.example.admin.kakawev2.Tablon;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -19,7 +20,6 @@ public class PaginadorMenu extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Log.v("posicion", "posicion:"+position);
         if (position==0)
         {
             return new MenuComunidadesFragment();

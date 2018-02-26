@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 import android.graphics.Rect;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,14 +16,16 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 public class TablonActivity extends AppCompatActivity {
 
     DrawerLayout menu;
-
+    String nombrecom;
     private boolean isOutSideClicked;
 
     @Override
@@ -30,7 +33,7 @@ public class TablonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_menu);
 
-        String nombrecom = getIntent().getStringExtra("comunidad");
+        nombrecom = getIntent().getStringExtra("comunidad");
 
         Fragment fragmentoSeleccionado2 = new ListaAnuncioFragment();
         FragmentManager fm2 = getSupportFragmentManager();
@@ -39,6 +42,8 @@ public class TablonActivity extends AppCompatActivity {
         t2.commit();
 
         Bundle datos = new Bundle();
+        //el nombre que se envia, será la comunidad a la que se registre nada mas entrar, o si hace login, habrá que buscar en que comunidad está metido y
+        // mostrar los anuncios de esa como predeterminados
         datos.putString("nombreCom","NogalGuadalix");
         fragmentoSeleccionado2.setArguments(datos);
 
@@ -55,9 +60,7 @@ public class TablonActivity extends AppCompatActivity {
         InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(vp_menu);
 
-
-
-
+        Fragment crear = new MenuComunidadesFragment();
 
         menu = (DrawerLayout) findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
