@@ -20,7 +20,6 @@
             android:drawableLeft="@drawable/ic_action_candado"
             android:hint="Contraseña actual"
             android:inputType="textPassword"
-            
             />
     </android.support.design.widget.TextInputLayout>
 
