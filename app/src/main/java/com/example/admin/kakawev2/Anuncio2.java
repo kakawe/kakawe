@@ -6,6 +6,10 @@ package com.example.admin.kakawev2;
 
 public class Anuncio2 {
 
+    /*
+    String key;
+
+     */
     String correoAnunciante;
     String titulo;
     String tipo;
@@ -14,9 +18,12 @@ public class Anuncio2 {
     String descripcion;
     String fechaPublicacion;
     String fechaCaducidad;
+    String horaCaducidad;
+    String horaPublicacion;
 
     public Anuncio2() {
     }
+
 
     public Anuncio2(String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion, String fechaPublicacion, String fechaCaducidad) {
         this.correoAnunciante = correoAnunciante;
@@ -29,12 +36,29 @@ public class Anuncio2 {
         this.fechaCaducidad = fechaCaducidad;
     }
 
+
     public String getCorreoAnunciante() {
         return correoAnunciante;
     }
 
     public void setCorreoAnunciante(String correoAnunciante) {
         this.correoAnunciante = correoAnunciante;
+    }
+
+    public String getHoraCaducidad() {
+        return horaCaducidad;
+    }
+
+    public void setHoraCaducidad(String horaCaducidad) {
+        this.horaCaducidad = horaCaducidad;
+    }
+
+    public String getHoraPublicacion() {
+        return horaPublicacion;
+    }
+
+    public void setHoraPublicacion(String horaPublicacion) {
+        this.horaPublicacion = horaPublicacion;
     }
 
     public String getTitulo() {

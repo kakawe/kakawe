@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,7 +31,7 @@ import java.util.Calendar;
 public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClickListener {
     View vista;
     private String tipo, titulo, ruta_imagen, descripcion, categoria;
-    TextView tv_anadir_anuncio3_etiquetaFC, tv_anadir_anuncio3_etiquetaFP, tv_anadir_anuncio3_etiquetaHC, tv_anadir_anuncio3_etiquetaHP;
+    TextView tv_anadir_anuncio3_etiquetaFC, tv_anadir_anuncio3_etiquetaFP, tv_anadir_anuncio3_etiquetaHC, tv_anadir_anuncio3_etiquetaHP,tv_anadir_anuncio3_cerrar;
     Button bt_anadir_anuncio3_publicar;
     Switch sw_anadir_anuncio3_desabilitar;
     EditText et_anadir_anuncio3_fecha_caducidad, et_anadir_anuncio3_fecha_publicacion, et_anadir_anuncio3_hora_caducidad, et_anadir_anuncio3_hora_publicacion;
@@ -52,6 +53,9 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
         //declaramos los componentes de la vista
 
+        //imagen X para cerrar
+        tv_anadir_anuncio3_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_cerrar);
+
         //etiqueta fecha
         tv_anadir_anuncio3_etiquetaFC = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaFC);
         tv_anadir_anuncio3_etiquetaFP = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaFP);
@@ -68,6 +72,9 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         et_anadir_anuncio3_hora_caducidad = (EditText) vista.findViewById(R.id.et_anadir_anuncio3_hora_caducidad);
         et_anadir_anuncio3_hora_publicacion = (EditText) vista.findViewById(R.id.et_anadir_anuncio3_hora_publicacion);
 
+        //metodo para cerrar el Dialog3
+        tv_anadir_anuncio3_cerrar.setOnClickListener(this);
+
         //boton desabilitar
         bt_anadir_anuncio3_publicar = (Button) vista.findViewById(R.id.bt_anadir_anuncio3_publicar);
         sw_anadir_anuncio3_desabilitar = (Switch) vista.findViewById(R.id.sw_anadir_anuncio3_desabilitar);
@@ -76,7 +83,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         bt_anadir_anuncio3_publicar.setOnClickListener(this);
 
         //metodo para desabilitar componetes
-        sw_anadir_anuncio3_desabilitar.setChecked(true);
+        sw_anadir_anuncio3_desabilitar.setChecked(false);
         desabilitar(sw_anadir_anuncio3_desabilitar);
 
         //eventos onclick hora
@@ -130,13 +137,15 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
             obtenerHoraPublicacion();
         } else if (v.getId() == R.id.bt_anadir_anuncio3_publicar) {
             publicarAnuncio();
+        } else if (v.getId() == R.id.tv_anadir_anuncio3_cerrar) {
+            cerrarAnuncio();
         }
 
     }
 
     //eventos añadir anuncio 3
 
-    //evento que recoge los datos de los 3 dialog
+    //evento que recoge los datos de los 3 dialog para la creación del anuncio
     private void publicarAnuncio() {
 
         String fechaCaducidad = et_anadir_anuncio3_fecha_caducidad.getText().toString();
@@ -149,20 +158,26 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         String ruta_imagenA = ruta_imagen;
         String descripcionA = descripcion;
         String categoriaA = categoria;
+        String correo = "josele@mail.com";
 
-        Log.v("dialog3", fechaCaducidad);
-        Log.v("dialog3", fechaPublicacion);
-        Log.v("dialog3", horaCaducidad);
-        Log.v("dialog3", horaPublicacion);
+        Anuncio2 anuncio2 = new Anuncio2(correo, tituloA, tipoA, categoriaA, ruta_imagenA, descripcionA, fechaPublicacion, fechaCaducidad);
 
-        Log.v("dialog3", tipo);
-        Log.v("dialog3", titulo);
+        creacionAnuncioFirebase(anuncio2);
+        //Log.v("dialog3", fechaCaducidad);
+        //Log.v("dialog3", fechaPublicacion);
+        //Log.v("dialog3", horaCaducidad);
+        //Log.v("dialog3", horaPublicacion);
+        //Log.v("dialog3", tipo);
+        //Log.v("dialog3", titulo);
         //Log.v("dialog3", ruta_imagen);
         //Log.v("dialog3", categoria);
-        Log.v("dialog3", descripcion);
+        //Log.v("dialog3", descripcion);
 
+        Log.v("anuncio2", anuncio2.toString());
+    }
 
-
+    //metodo para subir los datos a firebase para posterior creacón de anuncio
+    private void creacionAnuncioFirebase(Anuncio2 anuncio2) {
     }
 
 
@@ -232,7 +247,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (!isChecked) {
+                if (isChecked) {
                     tv_anadir_anuncio3_etiquetaFC.setEnabled(true);
                     tv_anadir_anuncio3_etiquetaFP.setEnabled(true);
                     tv_anadir_anuncio3_etiquetaHC.setEnabled(true);
@@ -254,6 +269,16 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
                 }
             }
         });
+    }
+
+    //metodo para cerrar el dialog3
+    private void cerrarAnuncio() {
+        DialogFragment ad1=(DialogFragment)getFragmentManager().findFragmentByTag("ad1");
+        DialogFragment ad2=(DialogFragment)getFragmentManager().findFragmentByTag("ad2");
+        this.dismiss();
+        ad1.dismiss();
+        ad2.dismiss();
+
     }
 
 }

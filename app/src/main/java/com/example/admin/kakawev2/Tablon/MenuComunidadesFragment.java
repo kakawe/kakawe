@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuComunidadesFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
+public class MenuComunidadesFragment extends Fragment {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView tv_menuComunidades_nombre;
@@ -79,7 +79,7 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         // Retornamos la vista nueva creada
         return vista;
     }
-
+    /*
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -97,4 +97,5 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         }
         return true;
     }
+    */
 }
