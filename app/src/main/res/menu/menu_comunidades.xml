@@ -5,12 +5,9 @@
 
     <item android:title="Comunidades">
         <menu>
-    <item
-        android:id="@+id/nav_camera"
-        android:title="Crear" />
-    <item
-        android:id="@+id/nav_gallery"
-        android:title="Buscar" />
+            <item
+                android:id="@+id/m_menuCom_anadir"
+                android:title="Crear" />
         </menu>
     </item>
 </menu>

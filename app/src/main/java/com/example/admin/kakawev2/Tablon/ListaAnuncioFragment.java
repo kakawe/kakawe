@@ -44,8 +44,8 @@ public class ListaAnuncioFragment extends Fragment {
     private RVAdapter rvAdapter;
 
     private String nombreCom="NogalGuadalix";
-    private String pestana;
-
+    private String pestana,tipo;
+    private int contador=0;
 
 
     public ListaAnuncioFragment() {
@@ -60,9 +60,23 @@ public class ListaAnuncioFragment extends Fragment {
 
         bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
         bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
+        if (contador==0){
+            tipo="ofrecen";
+            contador++;
+        }else{
+            tipo =getArguments().getString("tipo");
+        }
+        Log.v("tipo",tipo);
+        Log.v("tipo",String.valueOf(contador));
 
-        obtenerOfertas();
-        pestana="oferta";
+        nombreCom="NogalGuadalix";
+
+        if (tipo.equals("ofrecen")){
+            obtenerOfertas();
+            pestana="oferta";
+        }else{
+            obtenerDemandas();
+        }
 
         bt__tablon_izquierdo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,8 +248,8 @@ public class ListaAnuncioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         nombreCom = getArguments().getString("nombreCom");
-        return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
 
+        return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
     }
 
 }

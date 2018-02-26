@@ -38,7 +38,7 @@ public class PerfilComunidadFragment extends Fragment {
 
     private String correo;
     //Habrá que traer de la ventana anterior la comunidad actual en la que se encuentra, para poder cargar los datos en esa comunidad
-    private String comActual="UnoDos";
+    private String comActual;
     private String piso,puerta,ruta;
 
     private Button bt_perfilCom_actualiarDatos;
@@ -84,14 +84,9 @@ public class PerfilComunidadFragment extends Fragment {
                     String mail= vc.getMail();
                     String key=dato.getKey();
                     if (mail.equals(correo)){
-
                         piso = vc.getPiso();
                         puerta = vc.getPuerta();
                         ruta = key;
-                        Log.v("datos2",piso);
-                        Log.v("datos2",puerta);
-                        Log.v("datos2",mail);
-                        Log.v("datos2",ruta);
                         et_perfilCom_piso.setText(piso);
                         et_perfilCom_puerta.setText(puerta);
                     }

@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/tv_perfilCom_nombreCom"
-            style="@style/textosLogin"
+            style="@style/et_login"
             android:layout_width="wrap_content"
             android:text="Nombre Comunidad" />
 
@@ -43,7 +43,7 @@
 
             <EditText
                 android:id="@+id/et_perfilCom_piso"
-                style="@style/camposTexto"
+                style="@style/et_registro"
                 android:drawableLeft="@drawable/ic_action_piso1"
                 android:hint="Piso" />
         </android.support.design.widget.TextInputLayout>
@@ -56,7 +56,7 @@
 
             <EditText
                 android:id="@+id/et_perfilCom_puerta"
-                style="@style/camposTexto"
+                style="@style/et_registro"
                 android:drawableLeft="@drawable/ic_action_puerta1"
                 android:hint="Puerta" />
         </android.support.design.widget.TextInputLayout>

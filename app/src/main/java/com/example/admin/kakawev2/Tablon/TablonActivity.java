@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,15 +15,17 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class TablonActivity extends AppCompatActivity {
+public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer{
 
     DrawerLayout menu;
     String nombrecom;
@@ -77,7 +80,7 @@ public class TablonActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 //Cuando se abra, quiero que se bloquee abierto hasta que se perciba que se quiere cerrar
                 //Si no lo bloqueara, el que escucharía el deslizamiento no sería el Pager sino el Drawer, así
-                // que no podría deslizarme entra págiunas
+                // que no podría deslizarme entra páginas
                 menu.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 Log.v("Drawer", "Abierto");
             }
@@ -92,8 +95,6 @@ public class TablonActivity extends AppCompatActivity {
 
             }
         });
-
-
         toggle.syncState();
 
     }
@@ -131,6 +132,13 @@ public class TablonActivity extends AppCompatActivity {
         if (isOutSideClicked) {
             menu.closeDrawer(GravityCompat.START, true);
         }
+
+
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public void cerrarDrawer() {
+        menu.closeDrawer(GravityCompat.START, true);
     }
 }

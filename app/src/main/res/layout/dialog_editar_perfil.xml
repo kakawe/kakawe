@@ -16,7 +16,7 @@
 
         <EditText
             android:id="@+id/et_editarPerfil_contraseñaActual"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:drawableLeft="@drawable/ic_action_candado"
             android:hint="Contraseña actual"
             android:inputType="textPassword"
@@ -31,7 +31,7 @@
 
         <EditText
             android:id="@+id/et_editarPerfil_contraseñaNueva"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:drawableLeft="@drawable/ic_action_candado"
             android:hint="Contraseña nueva"
             android:inputType="textPassword"

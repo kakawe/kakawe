@@ -90,14 +90,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
+        /*Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
         bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
                 ad1.show(getFragmentManager(),"ad1");
             }
-        });
+        });*/
 
 
 
@@ -108,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             };
         }, DURACION_SPLASH);*/
-
-      //  Intent intent = new Intent(this,TablonActivity.class);
-      //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //startActivity(intent);
+        Intent intent = new Intent(this,RegisterActivity.class);
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      startActivity(intent);
     }
 }

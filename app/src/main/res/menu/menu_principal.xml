@@ -6,10 +6,10 @@
     <item android:title="Tablón">
         <menu>
             <item
-                android:id="@+id/nav_camera"
+                android:id="@+id/m_menuP_ofrecen"
                 android:title="Ofrecen" />
             <item
-                android:id="@+id/nav_gallery"
+                android:id="@+id/m_menuP_necesitan"
                 android:title="Necesitan" />
         </menu>
     </item>
@@ -17,10 +17,10 @@
     <item android:title="Mis anuncios">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/m_menuP_actuales"
                 android:title="Actuales" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/m_menuP_historial"
                 android:title="Historial" />
         </menu>
     </item>

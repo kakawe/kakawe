@@ -35,7 +35,7 @@ public class BuscarComunidadFragment extends Fragment {
 
     Button bt_anadir_crear,bt_anadirBuscar_continuar;
     EditText et_anadirBuscar_nomcom,et_anadirBuscar_localidad,et_anadirBuscar_direccion;
-
+    String contenedor;
 
     public BuscarComunidadFragment() {
         // Required empty public constructor
@@ -53,11 +53,21 @@ public class BuscarComunidadFragment extends Fragment {
         bt_anadir_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment crear = new CrearComunidadFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedor_anadirComunidad,crear);
-                ft.addToBackStack(null);
-                ft.commit();
+                if (contenedor.equals("contenedorTablon")){
+
+                    Fragment crear = new CrearComunidadFragment();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedorTablon,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }else{
+                    Fragment crear = new CrearComunidadFragment();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedor_anadirComunidad,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+
             }
         });
         bt_anadirBuscar_continuar.setOnClickListener(new View.OnClickListener() {
@@ -122,22 +132,40 @@ public class BuscarComunidadFragment extends Fragment {
 
     //Cuando se compruebe si esa comunidad realmente existe, pasamos a añadir el domicilio
     private void anadirBuscarMiDomicilio(String n,String l,String d){
-        Fragment crear = new AnadirDomicilioFragment();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.contenedor_anadirComunidad,crear);
-        ft.addToBackStack(null);
-        ft.commit();
-        Bundle datos = new Bundle();
-        datos.putString("nombreCom",n);
-        datos.putString("localidad",l);
-        datos.putString("direccion",d);
-        datos.putString("ventana","buscar");
-        crear.setArguments(datos);
+        if (contenedor.equals("contenedorTablon")){
+            Fragment crear = new AnadirDomicilioFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.contenedorTablon,crear);
+            ft.addToBackStack(null);
+            ft.commit();
+            Bundle datos = new Bundle();
+            datos.putString("nombreCom",n);
+            datos.putString("localidad",l);
+            datos.putString("direccion",d);
+            datos.putString("ventana","buscar");
+            datos.putString("contenedor","contenedorTablon");
+            crear.setArguments(datos);
+        }else{
+            Fragment crear = new AnadirDomicilioFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.contenedor_anadirComunidad,crear);
+            ft.addToBackStack(null);
+            ft.commit();
+            Bundle datos = new Bundle();
+            datos.putString("nombreCom",n);
+            datos.putString("localidad",l);
+            datos.putString("direccion",d);
+            datos.putString("ventana","buscar");
+            datos.putString("contenedor","contenedorTablon");
+            crear.setArguments(datos);
+        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        contenedor = getArguments().getString("contenedor");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buscar_comunidad, container, false);
     }

@@ -41,7 +41,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirCrear_localidad"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:hint="Localidad" />
         </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirCrear_direccion"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:layout_marginBottom="30dp"
             android:hint="Direccion. Ej: calle 10"
             android:inputType="textPersonName" />
@@ -65,7 +65,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirCrear_nomcom"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:hint="Nombre comunidad" />
         </android.support.design.widget.TextInputLayout>
 
@@ -81,7 +81,8 @@
 
         <Button
             android:id="@+id/bt_anadirCrear_continuar"
-            style="@style/BotonLogin"
+            style="@style/bt_main"
+            android:backgroundTint="@color/rojo"
             android:text="Continuar" />
     </LinearLayout>
 
