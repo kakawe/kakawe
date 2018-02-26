@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             };
         }, DURACION_SPLASH);*/
-        Intent intent = new Intent(this,RegisterActivity.class);
+        Intent intent = new Intent(this,TablonActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
       startActivity(intent);

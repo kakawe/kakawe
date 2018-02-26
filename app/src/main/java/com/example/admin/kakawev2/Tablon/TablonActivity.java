@@ -25,7 +25,7 @@ import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.R;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer{
+public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer,MenuPrincipalFragment.CierraDrawer{
 
     DrawerLayout menu;
     String nombrecom;

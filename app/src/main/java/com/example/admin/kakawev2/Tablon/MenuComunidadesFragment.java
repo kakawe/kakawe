@@ -30,12 +30,11 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuComunidadesFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
+public class MenuComunidadesFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView tv_menuComunidades_nombre;
     View vista,vistaComunidad;
-    //DrawerLayout menu;
     CierraDrawer c;
     public interface CierraDrawer
     {
@@ -53,9 +52,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
                              Bundle savedInstanceState) {
 
         vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
-
-        View hamburger= inflater.inflate(R.layout.drawer_menu,null);
-        //menu = (DrawerLayout) hamburger.findViewById(R.id.menu);
 
 
         NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
