@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/tv_anadirDomicilio_crear"
-        style="@style/textosLogin"
+        style="@style/et_registro"
         android:layout_width="wrap_content"
         android:drawableLeft="@drawable/ic_action_atras"
         android:textSize="50sp" />
@@ -30,7 +30,7 @@
 
             <EditText
                 android:id="@+id/et_anadirDomicilio_piso"
-                style="@style/camposTexto"
+                style="@style/et_registro"
                 android:drawableLeft="@drawable/ic_action_piso1"
                 android:hint="Piso" />
         </android.support.design.widget.TextInputLayout>
@@ -42,7 +42,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirDomicilio_puerta"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:drawableLeft="@drawable/ic_action_puerta1"
             android:hint="Puerta" />
         </android.support.design.widget.TextInputLayout>
@@ -57,7 +57,8 @@
 
         <Button
             android:id="@+id/bt_anadirDomicilio_continuar"
-            style="@style/BotonLogin"
+            style="@style/bt_main"
+            android:backgroundTint="@color/rojo"
             android:text="Entrar" />
     </LinearLayout>
 

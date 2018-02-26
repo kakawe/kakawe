@@ -5,4 +5,16 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+
+    <style name="bt_main">
+        <item name="android:layout_width">265dp</item>
+        <item name="android:layout_height">57dp</item>
+        <item name="android:background">@drawable/bg_border_btn</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

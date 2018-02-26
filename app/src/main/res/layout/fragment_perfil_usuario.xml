@@ -41,7 +41,7 @@
 
             <EditText
                 android:id="@+id/et_perfilUs_nombreUsuario"
-                style="@style/camposTexto"
+                style="@style/et_registro"
                 android:drawableLeft="@drawable/ic_action_person"
                 android:hint="Nombre Usuario" />
         </android.support.design.widget.TextInputLayout>
@@ -54,7 +54,7 @@
 
             <EditText
                 android:id="@+id/et_perfilUs_correoUsuario"
-                style="@style/camposTexto"
+                style="@style/et_registro"
                 android:drawableLeft="@drawable/ic_action_correo"
                 android:hint="Correo Usuario" />
         </android.support.design.widget.TextInputLayout>
