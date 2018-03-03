@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText et_login_correo,et_login_contrasena;
     private Button bt_login_entrar;
-    private TextView tv_login_recordarcontra,tv_login_registro;
+    private TextView tv_login_recordarcontra;
+    private ImageView iv_login_registro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         et_login_contrasena=(EditText)findViewById(R.id.et_login_contrasena);
         bt_login_entrar=(Button) findViewById(R.id.bt_login_entrar);
         tv_login_recordarcontra=(TextView) findViewById(R.id.tv_login_recordarcontra);
-        tv_login_registro=(TextView) findViewById(R.id.tv_login_registro);
+        iv_login_registro=(ImageView) findViewById(R.id.iv_login_registro);
 
-        tv_login_registro.setOnClickListener(new View.OnClickListener() {
+        iv_login_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);

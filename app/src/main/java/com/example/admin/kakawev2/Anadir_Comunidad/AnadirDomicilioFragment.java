@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
+import com.example.admin.kakawev2.Tablon.ListaAnuncioFragment;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +42,7 @@ public class AnadirDomicilioFragment extends Fragment {
     EditText et_anadirDomicilio_piso,et_anadirDomicilio_puerta;
     Button bt_anadirDomicilio_continuar;
 
-    private String nombreCom,localidad,direccion,ventana;
+    private String nombreCom,localidad,direccion,ventana,contenedor;
 
     public AnadirDomicilioFragment() {
         // Required empty public constructor
@@ -58,18 +59,47 @@ public class AnadirDomicilioFragment extends Fragment {
         tv_anadirDomicilio_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ventana.equals("buscar")){
-                    Fragment crear = new BuscarComunidadFragment();
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.contenedor_anadirComunidad,crear);
-                    ft.addToBackStack(null);
-                    ft.commit();
+                if (contenedor.equals("contenedorTablon")){
+                    if (ventana.equals("buscar")){
+                        Fragment crear = new BuscarComunidadFragment();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.contenedorTablon,crear);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedorTablon");
+                        crear.setArguments(datos);
+                    }else {
+                        Fragment crear = new CrearComunidadFragment();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.contenedorTablon, crear);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedorTablon");
+                        crear.setArguments(datos);
+                    }
                 }else{
-                    Fragment crear = new CrearComunidadFragment();
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.contenedor_anadirComunidad,crear);
-                    ft.addToBackStack(null);
-                    ft.commit();
+                    if (ventana.equals("buscar")){
+                        Fragment crear = new BuscarComunidadFragment();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.contenedor_anadirComunidad,crear);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        crear.setArguments(datos);
+                    }else{
+                        Fragment crear = new CrearComunidadFragment();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.contenedor_anadirComunidad,crear);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        crear.setArguments(datos);
+                }
+
                 }
             }
         });
@@ -100,12 +130,9 @@ public class AnadirDomicilioFragment extends Fragment {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
             Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
-            String mail = correoUsuario;
-            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
-        /*OyenteInsercion oyente=(OyenteInsercion) getTargetFragment();
-        oyente.anadirComunidad(comunidad,vecino);
-        //BBDD.anadirComunidad();*/
-
+            String correo = correoUsuario;
+            String mail = correo;
+            Vecino vecino = new Vecino(correo,mail,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(comunidad.getNombre()).setValue(comunidad);
@@ -115,19 +142,37 @@ public class AnadirDomicilioFragment extends Fragment {
         }else{
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
-            String mail = correoUsuario;
-            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
+            String correo = correoUsuario;
+            String mail = correo;
+            Vecino vecino = new Vecino(correo,mail,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
 
         }
-        Bundle datos = new Bundle();
-        intent = new Intent(getContext(), TablonActivity.class);
-        intent.putExtra("comunidad",nombreCom);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        if (contenedor.equals("contenedorTablon")){
+            Bundle datos = new Bundle();
+            Fragment crear = new ListaAnuncioFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            datos.putString("comunidad",nombreCom);
+            datos.putString("tipo","ofrecen");
+            ft.replace(R.id.contenedorTablon,crear);
+            ft.addToBackStack(null);
+            ft.commit();
+            crear.setArguments(datos);
+        }else{
+
+            intent = new Intent(getContext(), TablonActivity.class);
+            intent.putExtra("comunidad",nombreCom);
+            intent.putExtra("tipo","ofrecen");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+
+
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -136,6 +181,7 @@ public class AnadirDomicilioFragment extends Fragment {
         localidad = getArguments().getString("localidad");
         direccion = getArguments().getString("direccion");
         ventana = getArguments().getString("ventana");
+        contenedor = getArguments().getString("contenedor");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_anadir_domicilio, container, false);
     }

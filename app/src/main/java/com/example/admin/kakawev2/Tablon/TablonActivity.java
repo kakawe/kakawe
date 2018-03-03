@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,53 +15,75 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
+import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class TablonActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer,MenuPrincipalFragment.CierraDrawer{
 
     DrawerLayout menu;
     String nombrecom;
     private boolean isOutSideClicked;
+    Fragment crear;
+    PaginadorMenu paginadorMenu;
+    ViewPager vp_menu;
+    final ArrayList<String> comus_usuario=new ArrayList<>();
+    private static DatabaseReference referencia;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_menu);
+        cargaComunidadesMenuLateral();
 
         nombrecom = getIntent().getStringExtra("comunidad");
-
         Fragment fragmentoSeleccionado2 = new ListaAnuncioFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
         t2.commit();
 
-        Bundle datos = new Bundle();
         //el nombre que se envia, será la comunidad a la que se registre nada mas entrar, o si hace login, habrá que buscar en que comunidad está metido y
         // mostrar los anuncios de esa como predeterminados
+        Bundle datos = new Bundle();
         datos.putString("nombreCom","NogalGuadalix");
+        datos.putString("tipo","ofrecen");
         fragmentoSeleccionado2.setArguments(datos);
+        crear = new MenuComunidadesFragment();
+        vp_menu = (ViewPager) findViewById(R.id.vp_menu);
+        paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
+        vp_menu.setAdapter(paginadorMenu);
+        //1 es el último fragment. Con esto fuerzo que al salir, la paginación sea RTL (de derecha a izquierda)
+        vp_menu.setCurrentItem(1);
+        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(vp_menu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager vp_menu = (ViewPager) findViewById(R.id.vp_menu);
-        PaginadorMenu paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
-        vp_menu.setAdapter(paginadorMenu);
-        //1 es el último fragment. Con esto fuerzo que al salir, la paginación sea RTL (de derecha a izquierda)
-        vp_menu.setCurrentItem(1);
 
 
-        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
-        inkPageIndicator.setViewPager(vp_menu);
 
-        Fragment crear = new MenuComunidadesFragment();
+
+
 
         menu = (DrawerLayout) findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,7 +100,7 @@ public class TablonActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 //Cuando se abra, quiero que se bloquee abierto hasta que se perciba que se quiere cerrar
                 //Si no lo bloqueara, el que escucharía el deslizamiento no sería el Pager sino el Drawer, así
-                // que no podría deslizarme entra págiunas
+                // que no podría deslizarme entra páginas
                 menu.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
                 Log.v("Drawer", "Abierto");
             }
@@ -92,9 +115,62 @@ public class TablonActivity extends AppCompatActivity {
 
             }
         });
-
-
         toggle.syncState();
+
+    }
+
+    private void cargaComunidadesMenuLateral() {
+        Log.v("orden","tablon1");
+        final String correo= user.getEmail();
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dato : dataSnapshot.getChildren()){
+                    Comunidad com= dato.getValue(Comunidad.class);
+                    final String nombreComunidad= com.getNombre();
+                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
+                    referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot1) {
+                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
+                                Vecino vD = dato2.getValue(Vecino.class);
+                                Log.v("nombreApuntado2",vD.toString());
+                                String corre=vD.getMail();
+                                String corr=corre;
+                                if (corr.equals(correo)){
+                                    Log.v("nombreApuntado3",nombreComunidad);
+                                    comus_usuario.add(nombreComunidad);
+                                    Log.v("nombreApuntado4",String.valueOf(comus_usuario.size()));
+                                    //enviar cada nombre de comunidad al fragmentMenuComunidadesFragment
+                                    Bundle datos=new Bundle();
+
+                                    datos.putStringArrayList("comus",comus_usuario);
+                                    crear.setArguments(datos);
+
+
+                                }
+
+                            }}
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
 
     }
 
@@ -131,6 +207,14 @@ public class TablonActivity extends AppCompatActivity {
         if (isOutSideClicked) {
             menu.closeDrawer(GravityCompat.START, true);
         }
+
+
         return super.dispatchTouchEvent(event);
+    }
+
+
+    @Override
+    public void cerrarDrawer() {
+        menu.closeDrawer(GravityCompat.START, true);
     }
 }

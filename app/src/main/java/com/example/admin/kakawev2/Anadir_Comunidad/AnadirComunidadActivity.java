@@ -17,11 +17,14 @@ public class AnadirComunidadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_comunidad);
 
+        Bundle datos = new Bundle();
+        datos.putString("contenedor","contenedor_anadirComunidad");
         Fragment fragmentoSeleccionado2 = new BuscarComunidadFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedor_anadirComunidad, fragmentoSeleccionado2);
         t2.commit();
+        fragmentoSeleccionado2.setArguments(datos);
 
     }
 }

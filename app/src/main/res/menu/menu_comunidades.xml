@@ -3,14 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Comunidades">
-        <menu>
-    <item
-        android:id="@+id/nav_camera"
-        android:title="Crear" />
-    <item
-        android:id="@+id/nav_gallery"
-        android:title="Buscar" />
-        </menu>
-    </item>
+
+            <item
+                android:id="@+id/m_menuCom_anadir"
+                android:title="Añadir comunidad"
+                />
 </menu>

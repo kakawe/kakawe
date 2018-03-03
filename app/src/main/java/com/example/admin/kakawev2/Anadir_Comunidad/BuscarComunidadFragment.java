@@ -16,13 +16,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -31,11 +36,12 @@ import com.google.firebase.database.ValueEventListener;
 public class BuscarComunidadFragment extends Fragment {
 
     private static DatabaseReference referencia;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private ProgressDialog progreso;
 
     Button bt_anadir_crear,bt_anadirBuscar_continuar;
     EditText et_anadirBuscar_nomcom,et_anadirBuscar_localidad,et_anadirBuscar_direccion;
-
+    String contenedor;
 
     public BuscarComunidadFragment() {
         // Required empty public constructor
@@ -53,11 +59,26 @@ public class BuscarComunidadFragment extends Fragment {
         bt_anadir_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment crear = new CrearComunidadFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedor_anadirComunidad,crear);
-                ft.addToBackStack(null);
-                ft.commit();
+                if (contenedor.equals("contenedorTablon")){
+                    Fragment crear = new CrearComunidadFragment();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedorTablon,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    Bundle datos=new Bundle();
+                    datos.putString("contenedor","contenedorTablon");
+                    crear.setArguments(datos);
+                }else{
+                    Fragment crear = new CrearComunidadFragment();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.contenedor_anadirComunidad,crear);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                    Bundle datos=new Bundle();
+                    datos.putString("contenedor","contenedor_anadirComunidad");
+                    crear.setArguments(datos);
+                }
+
             }
         });
         bt_anadirBuscar_continuar.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +126,8 @@ public class BuscarComunidadFragment extends Fragment {
                 Comunidad c=dataSnapshot.getValue(Comunidad.class);
                 if (c!=null){
                     progreso.cancel();
-                    anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
+                    //Primero hay que mirar si ese usuario ya está en la comunidad antes de poder unirse a ella
+                    mirarSiPertenece(nombreCom,localidad,direccion);
                     progreso.cancel();
                 }else{
                     Toast.makeText(getContext(), "No existe una comunidad con el nombre "+nombreCom, Toast.LENGTH_LONG).show();
@@ -120,24 +142,71 @@ public class BuscarComunidadFragment extends Fragment {
         });
     }
 
+    private void mirarSiPertenece(final String nombreCom, final String localidad, final String direccion) {
+        final String correo=user.getEmail();
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.child(nombreCom).child("usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Vecino> lista_vecinos=new ArrayList<>();
+                for (DataSnapshot dato : dataSnapshot.getChildren()) {
+                    Vecino aV = dato.getValue(Vecino.class);
+                    lista_vecinos.add(aV);
+                    String corre=aV.getMail();
+                    if(corre.equals(correo)){
+                        Toast.makeText(getContext(), "Ya estás en la comunidad "+nombreCom, Toast.LENGTH_LONG).show();
+                        progreso.cancel();
+                        return;
+                    }else{
+                        anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     //Cuando se compruebe si esa comunidad realmente existe, pasamos a añadir el domicilio
     private void anadirBuscarMiDomicilio(String n,String l,String d){
-        Fragment crear = new AnadirDomicilioFragment();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.contenedor_anadirComunidad,crear);
-        ft.addToBackStack(null);
-        ft.commit();
-        Bundle datos = new Bundle();
-        datos.putString("nombreCom",n);
-        datos.putString("localidad",l);
-        datos.putString("direccion",d);
-        datos.putString("ventana","buscar");
-        crear.setArguments(datos);
+        if (contenedor.equals("contenedorTablon")){
+            Fragment crear = new AnadirDomicilioFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.contenedorTablon,crear);
+            ft.addToBackStack(null);
+            ft.commit();
+            Bundle datos = new Bundle();
+            datos.putString("nombreCom",n);
+            datos.putString("localidad",l);
+            datos.putString("direccion",d);
+            datos.putString("ventana","buscar");
+            datos.putString("contenedor","contenedorTablon");
+            crear.setArguments(datos);
+        }else{
+            Fragment crear = new AnadirDomicilioFragment();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.contenedor_anadirComunidad,crear);
+            ft.addToBackStack(null);
+            ft.commit();
+            Bundle datos = new Bundle();
+            datos.putString("nombreCom",n);
+            datos.putString("localidad",l);
+            datos.putString("direccion",d);
+            datos.putString("ventana","buscar");
+            datos.putString("contenedor","contenedor_anadirComunidad");
+            crear.setArguments(datos);
+        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        contenedor = getArguments().getString("contenedor");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buscar_comunidad, container, false);
     }

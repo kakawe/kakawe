@@ -1,4 +1,4 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -15,12 +15,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.admin.kakawev2.Entidades.Anuncio;
+import com.example.admin.kakawev2.Entidades.Anuncio2;
+import com.example.admin.kakawev2.R;
 
 import java.util.Calendar;
 

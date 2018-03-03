@@ -1,14 +1,14 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.admin.kakawev2.R;
 
 /**
  * Created by jose on 19/02/2018.

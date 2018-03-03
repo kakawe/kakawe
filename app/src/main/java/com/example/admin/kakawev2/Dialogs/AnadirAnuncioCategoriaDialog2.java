@@ -1,4 +1,4 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,6 +19,8 @@ import com.example.admin.kakawev2.Adaptadores.RVAdapterAnuncioCategoria;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.admin.kakawev2.R;
 
 /**
  * Created by jose on 22/02/2018.

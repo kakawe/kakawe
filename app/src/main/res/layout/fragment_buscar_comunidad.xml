@@ -44,12 +44,12 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirBuscar_nomcom"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:hint="Nombre comunidad" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
-            style="@style/textosLogin"
+            style="@style/et_registro"
             android:padding="5dp"
             android:text="O"
             android:textSize="20sp" />
@@ -61,7 +61,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirBuscar_localidad"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:hint="Localidad" />
         </android.support.design.widget.TextInputLayout>
 
@@ -72,7 +72,7 @@
             android:gravity="center">
         <EditText
             android:id="@+id/et_anadirBuscar_direccion"
-            style="@style/camposTexto"
+            style="@style/et_registro"
             android:hint="Direccion"
             android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
@@ -87,7 +87,8 @@
 
         <Button
             android:id="@+id/bt_anadirBuscar_continuar"
-            style="@style/BotonLogin"
+            style="@style/bt_main"
+            android:backgroundTint="@color/rojo"
             android:text="Continuar" />
     </LinearLayout>
 

@@ -38,7 +38,7 @@ public class PerfilComunidadFragment extends Fragment {
 
     private String correo;
     //Habrá que traer de la ventana anterior la comunidad actual en la que se encuentra, para poder cargar los datos en esa comunidad
-    private String comActual="UnoDos";
+    private String comActual;
     private String piso,puerta,ruta;
 
     private Button bt_perfilCom_actualiarDatos;
@@ -81,17 +81,12 @@ public class PerfilComunidadFragment extends Fragment {
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Vecino vc = dato.getValue(Vecino.class);
                     listado_Vecinos.add(vc);
-                    String mail= vc.getMail();
+                    String corre= vc.getMail();
                     String key=dato.getKey();
-                    if (mail.equals(correo)){
-
+                    if (corre.equals(correo)){
                         piso = vc.getPiso();
                         puerta = vc.getPuerta();
                         ruta = key;
-                        Log.v("datos2",piso);
-                        Log.v("datos2",puerta);
-                        Log.v("datos2",mail);
-                        Log.v("datos2",ruta);
                         et_perfilCom_piso.setText(piso);
                         et_perfilCom_puerta.setText(puerta);
                     }
@@ -120,7 +115,7 @@ public class PerfilComunidadFragment extends Fragment {
         }
         FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
         String correoUsuario = usuarioActual.getEmail();
-        String mail = correo;
+        String mail=correoUsuario;
         Vecino vecino = new Vecino(correo,mail,pisoAct,puertaAct);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").child(ruta).setValue(vecino);

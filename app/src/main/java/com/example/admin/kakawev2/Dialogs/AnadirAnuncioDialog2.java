@@ -1,4 +1,4 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.admin.kakawev2.R;
 
 import static android.app.Activity.RESULT_OK;
 

@@ -26,7 +26,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         public ViewHolder(View v){
             super(v);
             tv_vista_anuncio_titulo = (TextView)v.findViewById(R.id.tv_vista_anuncio_titulo);
-            tv_vista_anuncio_descripcion = (TextView)v.findViewById(R.id.tv_vista_anuncio_descripcion);
+            tv_vista_anuncio_descripcion = (TextView)v.findViewById(R.id.tv_vista_anuncio_autor_nombre);
             //iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
         }
     }

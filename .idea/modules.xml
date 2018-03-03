@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kakawe1.iml" filepath="$PROJECT_DIR$/kakawe1.iml" />
       <module fileurl="file://C:\Users\jose\AndroidStudioImportados\kakaweV2\.idea\kakawe1.iml" filepath="C:\Users\jose\AndroidStudioImportados\kakaweV2\.idea\kakawe1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kakaweV2.iml" filepath="$PROJECT_DIR$/kakaweV2.iml" />
       <module fileurl="file://C:\Users\admin\AndroidStudioProjectsImportantes\kakawe1\kakaweV2.iml" filepath="C:\Users\admin\AndroidStudioProjectsImportantes\kakawe1\kakaweV2.iml" />
     </modules>
   </component>
