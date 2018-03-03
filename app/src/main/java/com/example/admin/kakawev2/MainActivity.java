@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
 
     private final int DURACION_SPLASH = 5000;
     private static DatabaseReference referencia;
@@ -113,5 +113,13 @@ public class MainActivity extends AppCompatActivity {
       //  intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
        // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //startActivity(intent);
+    }
+
+    //metodo para poder introdicir la categoria dentro de AñadirAnuncioDialog2
+    @Override
+    public void seleccionada(String categoria) {
+        String cat=categoria;
+        AnadirAnuncioDialog2 a=(AnadirAnuncioDialog2)getFragmentManager().findFragmentByTag("ad2");
+        a.setearCategoria(categoria);
     }
 }

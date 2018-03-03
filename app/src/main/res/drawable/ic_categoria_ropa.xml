@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <path
+        android:name="fondo_9_"
+        android:fillColor="#BBBDBF"
+        android:pathData="M 50 0 C 77.6142374915 0 100 22.3857625085 100 50 C 100 77.6142374915 77.6142374915 100 50 100 C 22.3857625085 100 0 77.6142374915 0 50 C 0 22.3857625085 22.3857625085 0 50 0 Z" />
+    <path
+        android:name="icono_9_"
+        android:fillColor="#FFFFFF"
+        android:pathData="M58.1,22.8c-1.1,0.9-4.3,1.5-8.1,1.5s-6.9-0.6-8.1-1.5L19.5,34.5c0,0,3.9,9.1,5.2,12.1l7.5-1v33
+h35.8v-33l7.5,1c1.3-3,5.2-12.1,5.2-12.1L58.1,22.8z
+M50,30.2c-3.3,0-6.1-1.8-7.5-4.4c1.4,0.9,4.3,1.5,7.5,1.5s6.1-0.6,7.5-1.5
+C56.1,28.4,53.3,30.2,50,30.2z" />
+</vector>

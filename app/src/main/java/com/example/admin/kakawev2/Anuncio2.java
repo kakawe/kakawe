@@ -8,34 +8,53 @@ public class Anuncio2 {
 
     /*
     String key;
+    String fotoCategoria;
 
      */
+    String key;
     String correoAnunciante;
     String titulo;
     String tipo;
     String categoria;
     String foto;
     String descripcion;
-    String fechaPublicacion;
     String fechaCaducidad;
     String horaCaducidad;
-    String horaPublicacion;
 
     public Anuncio2() {
     }
 
-
-    public Anuncio2(String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion, String fechaPublicacion, String fechaCaducidad) {
+    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion, String fechaCaducidad, String horaCaducidad) {
+        this.key = key;
         this.correoAnunciante = correoAnunciante;
         this.titulo = titulo;
         this.tipo = tipo;
         this.categoria = categoria;
         this.foto = foto;
         this.descripcion = descripcion;
-        this.fechaPublicacion = fechaPublicacion;
         this.fechaCaducidad = fechaCaducidad;
+        this.horaCaducidad = horaCaducidad;
     }
 
+    public Anuncio2(String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion , String fechaCaducidad, String horaCaducidad) {
+        this.correoAnunciante = correoAnunciante;
+        this.titulo = titulo;
+        this.tipo = tipo;
+        this.categoria = categoria;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.fechaCaducidad = fechaCaducidad;
+        this.horaCaducidad = horaCaducidad;
+
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getCorreoAnunciante() {
         return correoAnunciante;
@@ -51,14 +70,6 @@ public class Anuncio2 {
 
     public void setHoraCaducidad(String horaCaducidad) {
         this.horaCaducidad = horaCaducidad;
-    }
-
-    public String getHoraPublicacion() {
-        return horaPublicacion;
-    }
-
-    public void setHoraPublicacion(String horaPublicacion) {
-        this.horaPublicacion = horaPublicacion;
     }
 
     public String getTitulo() {
@@ -99,14 +110,6 @@ public class Anuncio2 {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
     }
 
     public String getFechaCaducidad() {
