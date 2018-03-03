@@ -77,13 +77,29 @@
         android:text="Categoria"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/ed_anadir_anuncio2_categoria"
+    <LinearLayout
+        android:id="@+id/ly_anadir_anuncio2_categoria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_anadir_anuncio2_imgen_categoria"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal" />
+
+        <TextView
+            android:id="@+id/tv_anadir_anuncio2_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Bricolaje"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

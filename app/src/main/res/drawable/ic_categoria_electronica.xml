@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <path
+        android:name="fondo_3_"
+        android:fillColor="#BBBDBF"
+        android:pathData="M 50 0 C 77.6142374915 0 100 22.3857625085 100 50 C 100 77.6142374915 77.6142374915 100 50 100 C 22.3857625085 100 0 77.6142374915 0 50 C 0 22.3857625085 22.3857625085 0 50 0 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42.7,23.8c0-2.1-1.7-3.8-3.8-3.8c-2.1,0-3.8,1.7-3.8,3.8v12.2h7.7V23.8z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M65,23.8c0-2.1-1.7-3.8-3.8-3.8c-2.1,0-3.8,1.7-3.8,3.8v12.2H65V23.8z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 43.6 73.7 H 56.5 V 75.6 H 43.6 V 73.7 Z" />
+    <path
+        android:name="_x3C_Trazado_x3E__1_"
+        android:fillColor="#FFFFFF"
+        android:pathData="M66.9,38.2h-1.4H65h-7.7H42.7H35h-0.8h-1.1c-2.2,0-4,1.8-4,4v14.2
+c0,8.9,7.2,16.1,16.1,16.1h9.6c8.9,0,16.1-7.2,16.1-16.1V42.2C70.9,40,69.1,38.2,66.9,38.2z
+M42.1,68l5-12.6h-4.6l4.6-11.7h9.3 L52.7,53h5.2L42.1,68z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 45.4 76.9 H 54.5 V 93.2 H 45.4 V 76.9 Z" />
+</vector>
