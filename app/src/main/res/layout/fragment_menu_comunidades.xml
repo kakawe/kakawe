@@ -9,12 +9,42 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/menu_comunidades"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         android:background="@color/marron"
-        app:itemTextColor="@color/blanco"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_menu_comunidades"
-        app:menu="@menu/menu_comunidades" />
+        app:itemTextColor="@color/blanco" >
+
+    </android.support.design.widget.NavigationView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/contComu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/menu_comunidades2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@color/marron"
+                android:fitsSystemWindows="true"
+                app:itemTextColor="@color/blanco"
+                app:menu="@menu/menu_comunidades">
+
+            </android.support.design.widget.NavigationView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

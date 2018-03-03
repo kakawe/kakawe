@@ -81,9 +81,9 @@ public class PerfilComunidadFragment extends Fragment {
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Vecino vc = dato.getValue(Vecino.class);
                     listado_Vecinos.add(vc);
-                    String mail= vc.getMail();
+                    String corre= vc.getMail();
                     String key=dato.getKey();
-                    if (mail.equals(correo)){
+                    if (corre.equals(correo)){
                         piso = vc.getPiso();
                         puerta = vc.getPuerta();
                         ruta = key;
@@ -115,7 +115,7 @@ public class PerfilComunidadFragment extends Fragment {
         }
         FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
         String correoUsuario = usuarioActual.getEmail();
-        String mail = correo;
+        String mail=correoUsuario;
         Vecino vecino = new Vecino(correo,mail,pisoAct,puertaAct);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").child(ruta).setValue(vecino);

@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
@@ -25,6 +27,8 @@ import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 
 /**
@@ -35,7 +39,10 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView tv_menuComunidades_nombre;
     View vista,vistaComunidad;
+    LinearLayout contComu;
     CierraDrawer c;
+    ArrayList<String> nombreComunidades;
+
     public interface CierraDrawer
     {
         public void cerrarDrawer();
@@ -55,15 +62,15 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
 
 
         NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
+        NavigationView navegadorCom2 = (NavigationView)vista.findViewById(R.id.menu_comunidades2);
         vistaComunidad=navegadorCom.getHeaderView(0);
         tv_menuComunidades_nombre = (TextView) vistaComunidad.findViewById(R.id.tv_menuComunidades_nombre);
         tv_menuComunidades_nombre.setText(nombre);
-        navegadorCom.setNavigationItemSelectedListener(this);
-
+        navegadorCom2.setNavigationItemSelectedListener(this);
+        contComu = (LinearLayout) vista.findViewById(R.id.contComu);
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //menu.closeDrawer(GravityCompat.START, true);
                 cerrarDrawer();
                 Fragment crear = new PerfilUsuarioFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -73,8 +80,22 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
 
             }
         });
+        //Log.v("orden","MenuComunidadesFragment");
+        //nombreComunidades=getArguments().getStringArrayList("comus");
+        //Log.v("comunidadesMenu",String.valueOf(nombreComunidades.size()));
         // Retornamos la vista nueva creada
         return vista;
+    }
+
+    private void agregarComLateral() {
+        Log.v("llega","llega");
+        LayoutInflater layoutInflater =
+                (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View addView = layoutInflater.inflate(R.layout.campo_menucom_comunidadagregada, null);
+        //Añado TextViews a la vista
+        TextView nomcom_agregada=(TextView)addView.findViewById(R.id.nomcom_agregada);
+        nomcom_agregada.setText("hola hola".toString());
+        contComu.addView(addView);
     }
 
     @Override
@@ -85,8 +106,8 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         Fragment crear = new BuscarComunidadFragment();
         Bundle datos= new Bundle();
         if (id == R.id.m_menuCom_anadir) {
-            //menu.closeDrawer(GravityCompat.START, true);
-            cerrarDrawer();
+            agregarComLateral();
+            //cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
             datos.putString("contenedor","contenedorTablon");
             crear.setArguments(datos);

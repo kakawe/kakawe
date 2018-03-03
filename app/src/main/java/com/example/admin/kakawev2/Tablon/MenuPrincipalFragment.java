@@ -32,8 +32,7 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
     String comActual;
     CierraDrawer c;
 
-    public interface CierraDrawer
-    {
+    public interface CierraDrawer {
         public void cerrarDrawer();
     }
 
@@ -95,6 +94,8 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         // Retornamos la vista nueva creada
         return vista;
     }
+
+
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Log.v("numeroqueviene",String.valueOf(id));

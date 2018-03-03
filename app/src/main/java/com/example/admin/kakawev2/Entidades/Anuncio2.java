@@ -1,4 +1,4 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Entidades;
 
 /**
  * Created by admin on 19/02/2018.

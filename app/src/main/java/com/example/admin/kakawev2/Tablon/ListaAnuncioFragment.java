@@ -1,11 +1,10 @@
 package com.example.admin.kakawev2.Tablon;
 
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,11 +14,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
-import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.DetallesAnuncio;
 import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.R;
@@ -35,14 +34,15 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaAnuncioFragment extends Fragment {
+public class ListaAnuncioFragment extends Fragment{
 
     private static DatabaseReference referencia;
 
     private RecyclerView rv_tablon_listatablon;
     private Button bt__tablon_izquierdo,bt_tablon_derecho;
     private RVAdapter rvAdapter;
-
+    LinearLayout contComu;
+    View vista;
     private String nombreCom="NogalGuadalix";
     private String pestana,tipo;
     private int contador=0;
@@ -60,20 +60,12 @@ public class ListaAnuncioFragment extends Fragment {
 
         bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
         bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
-        if (contador==0){
-            tipo="ofrecen";
-            contador++;
-        }else{
-            tipo =getArguments().getString("tipo");
-        }
-        Log.v("tipo",tipo);
-        Log.v("tipo",String.valueOf(contador));
-
+        //QUITAR ESTA COMUNIDAD PRECARGADA
         nombreCom="NogalGuadalix";
+
 
         if (tipo.equals("ofrecen")){
             obtenerOfertas();
-            pestana="oferta";
         }else{
             obtenerDemandas();
         }
@@ -92,6 +84,7 @@ public class ListaAnuncioFragment extends Fragment {
                 pestana="demanda";
             }
         });
+        agregarComLateral();
 
         //poder seleccionar las card dentro del recyclerView
         final GestureDetector mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -242,14 +235,27 @@ public class ListaAnuncioFragment extends Fragment {
             }
         });
     }
+    private View agregarComLateral() {
+        Log.v("llega","llega");
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
+        contComu = (LinearLayout) vista.findViewById(R.id.contComu);
 
+        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View addView = layoutInflater.inflate(R.layout.campo_menucom_comunidadagregada, null);
+        TextView nomcom_agregada=(TextView)addView.findViewById(R.id.nomcom_agregada);
+        nomcom_agregada.setText(nombreCom);
+        contComu.addView(addView);
+        return vista;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         nombreCom = getArguments().getString("nombreCom");
+        tipo=getArguments().getString("tipo");
+
 
         return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
     }
-
 }
