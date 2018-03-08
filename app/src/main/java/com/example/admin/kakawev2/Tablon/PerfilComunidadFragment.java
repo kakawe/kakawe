@@ -60,6 +60,8 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
     private String piso, puerta, ruta;
 
     private Button bt_perfilCom_actualiarDatos;
+
+
     private EditText et_perfilCom_piso, et_perfilCom_puerta;
     private TextView tv_perfilCom_nombreCom;
 
