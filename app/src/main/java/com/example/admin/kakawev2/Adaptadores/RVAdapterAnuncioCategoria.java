@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admin.kakawev2.Categoria;
+import com.example.admin.kakawev2.Entidades.Categoria;
 import com.example.admin.kakawev2.R;
 
 import java.util.List;

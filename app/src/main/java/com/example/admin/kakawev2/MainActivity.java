@@ -14,7 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioCategoriaDialog2;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog2;
 import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
@@ -89,18 +90,18 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
-        /*Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
+        Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
         bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
                 ad1.show(getFragmentManager(),"ad1");
             }
-        });*/
+        });
 
-
+*/
 
         /*new Handler().postDelayed(new Runnable(){
             public void run(){
@@ -109,17 +110,18 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
                 finish();
             };
         }, DURACION_SPLASH);*/
-        Intent intent = new Intent(this,TablonActivity.class);
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      startActivity(intent);
+
+       Intent intent = new Intent(this,LoginActivity.class);
+       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+       startActivity(intent);
     }
 
     //metodo para poder introdicir la categoria dentro de AñadirAnuncioDialog2
     @Override
     public void seleccionada(String categoria) {
         String cat=categoria;
-        AnadirAnuncioDialog2 a=(AnadirAnuncioDialog2)getFragmentManager().findFragmentByTag("ad2");
+        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2)getFragmentManager().findFragmentByTag("ad2");
         a.setearCategoria(categoria);
     }
 }

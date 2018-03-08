@@ -20,6 +20,7 @@ import com.example.admin.kakawev2.Adaptadores.RVAdapterAnuncioCategoria;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.admin.kakawev2.Entidades.Categoria;
 import com.example.admin.kakawev2.R;
 
 /**

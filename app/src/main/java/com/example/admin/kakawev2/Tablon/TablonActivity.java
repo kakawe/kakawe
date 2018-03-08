@@ -55,7 +55,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         cargaComunidadesMenuLateral();
 
         nombrecom = getIntent().getStringExtra("comunidad");
-        Fragment fragmentoSeleccionado2 = new ListaAnuncioFragment();
+        Fragment fragmentoSeleccionado2 = new PerfilComunidadFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
