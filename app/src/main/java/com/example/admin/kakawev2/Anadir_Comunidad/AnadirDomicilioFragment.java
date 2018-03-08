@@ -66,12 +66,18 @@ public class AnadirDomicilioFragment extends Fragment {
                         ft.replace(R.id.contenedorTablon,crear);
                         ft.addToBackStack(null);
                         ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedorTablon");
+                        crear.setArguments(datos);
                     }else {
                         Fragment crear = new CrearComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.contenedorTablon, crear);
                         ft.addToBackStack(null);
                         ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedorTablon");
+                        crear.setArguments(datos);
                     }
                 }else{
                     if (ventana.equals("buscar")){
@@ -80,12 +86,18 @@ public class AnadirDomicilioFragment extends Fragment {
                         ft.replace(R.id.contenedor_anadirComunidad,crear);
                         ft.addToBackStack(null);
                         ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        crear.setArguments(datos);
                     }else{
                         Fragment crear = new CrearComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.contenedor_anadirComunidad,crear);
                         ft.addToBackStack(null);
                         ft.commit();
+                        Bundle datos=new Bundle();
+                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        crear.setArguments(datos);
                 }
 
                 }
@@ -118,8 +130,9 @@ public class AnadirDomicilioFragment extends Fragment {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
             Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
-            String mail = correoUsuario;
-            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
+            String correo = correoUsuario;
+            String mail = correo;
+            Vecino vecino = new Vecino(correo,mail,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(comunidad.getNombre()).setValue(comunidad);
@@ -129,8 +142,9 @@ public class AnadirDomicilioFragment extends Fragment {
         }else{
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
-            String mail = correoUsuario;
-            Vecino vecino = new Vecino(correoUsuario,mail,piso,puerta);
+            String correo = correoUsuario;
+            String mail = correo;
+            Vecino vecino = new Vecino(correo,mail,piso,puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
@@ -141,6 +155,7 @@ public class AnadirDomicilioFragment extends Fragment {
             Fragment crear = new ListaAnuncioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             datos.putString("comunidad",nombreCom);
+            datos.putString("tipo","ofrecen");
             ft.replace(R.id.contenedorTablon,crear);
             ft.addToBackStack(null);
             ft.commit();
@@ -149,6 +164,7 @@ public class AnadirDomicilioFragment extends Fragment {
 
             intent = new Intent(getContext(), TablonActivity.class);
             intent.putExtra("comunidad",nombreCom);
+            intent.putExtra("tipo","ofrecen");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

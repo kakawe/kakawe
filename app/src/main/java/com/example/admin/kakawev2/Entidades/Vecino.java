@@ -10,18 +10,14 @@ public class Vecino {
     String piso;
     String puerta;
 
-    public Vecino() {
-    }
-
-    public Vecino(String correo,String mail, String piso, String puerta) {
+    public Vecino(String correo, String mail, String piso, String puerta) {
         this.correo = correo;
         this.mail = mail;
         this.piso = piso;
         this.puerta = puerta;
     }
 
-    public String getMail() {
-        return mail;
+    public Vecino() {
     }
 
     public String getCorreo() {
@@ -29,7 +25,15 @@ public class Vecino {
     }
 
     public void setCorreo(String correo) {
-        correo = correo;
+        this.correo = correo;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPiso() {

@@ -1,9 +1,10 @@
-package com.example.admin.kakawev2;
+package com.example.admin.kakawev2.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.admin.kakawev2.R;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -21,17 +25,26 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener {
-
+    // AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
     View vista;
-    TextView tv_anadir_anuncio2_tipo;
-    EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion, ed_anadir_anuncio2_categoria;
-    ImageView iv_anadir_anuncio2_imagen;
+    //LinearLayout ly_anadir_anuncio2_categoria;
+    TextView tv_anadir_anuncio2_tipo, tv_anadir_anuncio2_cerrar, tv_anadir_anuncio2_categoria;
+    EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion;
+    ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria;
     Button bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
     private String tv_ruta_imagen;
     private String tipo, tipo1;
+    String categoria;
+
+
+    public void setearCategoria(String categoria) {
+        tv_anadir_anuncio2_categoria.setText(categoria);
+        Log.v("desdeAnadir", categoria);
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle saveIntanceState) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio2, null);
@@ -39,21 +52,31 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         tipo = getArguments().getString("tipo") + " ...";
         tipo1 = getArguments().getString("tipo");
         Log.v("datos", tipo);
+        //String cat = getArguments().getString("cat");
+        //Log.v("cat", cat);
 
         //declaramos las vistas del dialog2
+        tv_anadir_anuncio2_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_cerrar);
         tv_anadir_anuncio2_tipo = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_tipo);
         et_anadir_anuncio2_titulo = (EditText) vista.findViewById(R.id.et_anadir_anuncio2_titulo);
         ed_anadir_anuncio2_descripcion = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_descripcion);
-        ed_anadir_anuncio2_categoria = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_categoria);
+        iv_anadir_anuncio2_imgen_categoria = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imgen_categoria);
+        tv_anadir_anuncio2_categoria = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_categoria);
         iv_anadir_anuncio2_imagen = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imagen);
         bt_anadir_anuncio2_atras = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
         bt_anadir_anuncio2_adelante = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_adelante);
+
         //damos valor a la etique tipo
         tv_anadir_anuncio2_tipo.setText(tipo);
+
         //onclick listener
+        //ly_anadir_anuncio2_categoria.setOnClickListener(this);
+
+        tv_anadir_anuncio2_cerrar.setOnClickListener(this);
         iv_anadir_anuncio2_imagen.setOnClickListener(this);
         ed_anadir_anuncio2_descripcion.setOnClickListener(this);
-        ed_anadir_anuncio2_categoria.setOnClickListener(this);
+        iv_anadir_anuncio2_imgen_categoria.setOnClickListener(this);
+        tv_anadir_anuncio2_categoria.setOnClickListener(this);
         bt_anadir_anuncio2_atras.setOnClickListener(this);
         bt_anadir_anuncio2_adelante.setOnClickListener(this);
 
@@ -66,22 +89,15 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v.getId() == R.id.iv_anadir_anuncio2_imagen) {
             obtenerImagen();
-
-        } else if (v.getId() == R.id.ed_anadir_anuncio2_categoria) {
+        } else if (v.getId() == R.id.tv_anadir_anuncio2_categoria || v.getId() == R.id.iv_anadir_anuncio2_imgen_categoria) {
             obtenerCategoria();
-
         } else if (v.getId() == R.id.bt_anadir_anuncio2_atras) {
             atrasDialog();
-
         } else if (v.getId() == R.id.bt_anadir_anuncio2_adelante) {
             adelanteDialog();
+        } else if (v.getId() == R.id.tv_anadir_anuncio2_cerrar) {
+            cerrarAnuncio();
         }
-    }
-
-    private void obtenerCategoria() {
-        //metodo que envia todos los datos al siguiente dialog
-
-
     }
 
 
@@ -110,30 +126,52 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     }
 
     private void adelanteDialog() {
+
         String titulo = et_anadir_anuncio2_titulo.getText().toString();
         String descripcionAnuncio = ed_anadir_anuncio2_descripcion.getText().toString();
-        String categoria = ed_anadir_anuncio2_categoria.getText().toString();
+        String categoria = tv_anadir_anuncio2_categoria.getText().toString();
         Bundle bundle = new Bundle();
         bundle.putString("tipo2", tipo1);
         bundle.putString("titulo2", titulo);
-        //bundle.putString("ruta_imagen2",tv_ruta_imagen);
+        bundle.putString("ruta_imagen2", tv_ruta_imagen);
         bundle.putString("descripcionAnuncio2", descripcionAnuncio);
-        //bundle.putString("categoria2", categoria);
+        bundle.putString("categoria2", categoria);
+
+        AnadirAnuncioDialog3 ad3 = new AnadirAnuncioDialog3();
+        ad3.show(getFragmentManager(), "ad3");
+        ad3.setArguments(bundle);
 
         //Log.v("dialog2", tipo1);
         //Log.v("dialog2", titulo);
         //Log.v("dialog2", tv_ruta_imagen);
         //Log.v("dialog2", descripcionAnuncio);
-        AnadirAnuncioDialog3 ad3 = new AnadirAnuncioDialog3();
-
-        ad3.show(getFragmentManager(), "ad3");
-        ad3.setArguments(bundle);
+        Log.v("categoria2", categoria);
 
     }
 
     private void atrasDialog() {
-        AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
-        ad1.show(getFragmentManager(), "ad1");
+        this.dismiss();
+
+        //ad1.set.show(getFragmentManager(), "ad1");
+    }
+
+    //metodo para cerrar dialog2
+    private void cerrarAnuncio() {
+        DialogFragment ad1 = (DialogFragment) getFragmentManager().findFragmentByTag("ad1");
+        this.dismiss();
+        ad1.dismiss();
+    }
+
+    //metodo para obtener la imagen y el texto de la catgoria
+    private void obtenerCategoria() {
+        AnadirAnuncioCategoriaDialog2 adc2 = new AnadirAnuncioCategoriaDialog2();
+        Bundle datos= new Bundle();
+        categoria=tv_anadir_anuncio2_categoria.getText().toString();
+        datos.putString("categoria2",categoria);
+        adc2.show(getFragmentManager(), "adc2");
+        adc2.setArguments(datos);
+
+
     }
 
 

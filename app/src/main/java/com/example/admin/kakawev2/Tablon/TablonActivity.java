@@ -22,14 +22,30 @@ import android.widget.TextView;
 
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
+import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer{
+import java.util.ArrayList;
+
+public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer,MenuPrincipalFragment.CierraDrawer{
 
     DrawerLayout menu;
     String nombrecom;
     private boolean isOutSideClicked;
+    Fragment crear;
+    PaginadorMenu paginadorMenu;
+
+    private static DatabaseReference referencia;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +53,28 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         setContentView(R.layout.drawer_menu);
 
         nombrecom = getIntent().getStringExtra("comunidad");
-
         Fragment fragmentoSeleccionado2 = new ListaAnuncioFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
+        Bundle datos = new Bundle();
+        datos.putString("nombreCom",nombrecom);
+        datos.putString("tipo","ofrecen");
+        fragmentoSeleccionado2.setArguments(datos);
         t2.commit();
 
-        Bundle datos = new Bundle();
         //el nombre que se envia, será la comunidad a la que se registre nada mas entrar, o si hace login, habrá que buscar en que comunidad está metido y
         // mostrar los anuncios de esa como predeterminados
-        datos.putString("nombreCom","NogalGuadalix");
-        fragmentoSeleccionado2.setArguments(datos);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ViewPager vp_menu = (ViewPager) findViewById(R.id.vp_menu);
-        PaginadorMenu paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
+        paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
+
+        paginadorMenu.cargaDatos(nombrecom);
+
         vp_menu.setAdapter(paginadorMenu);
         //1 es el último fragment. Con esto fuerzo que al salir, la paginación sea RTL (de derecha a izquierda)
         vp_menu.setCurrentItem(1);
@@ -63,8 +83,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
         inkPageIndicator.setViewPager(vp_menu);
 
-        Fragment crear = new MenuComunidadesFragment();
-
+        crear = new MenuComunidadesFragment();
         menu = (DrawerLayout) findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, menu, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,9 +115,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
             }
         });
         toggle.syncState();
-
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -136,6 +153,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
 
         return super.dispatchTouchEvent(event);
     }
+
 
     @Override
     public void cerrarDrawer() {

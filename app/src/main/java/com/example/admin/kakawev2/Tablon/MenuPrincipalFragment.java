@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -27,8 +30,14 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
 
     TextView tv_menuPrincipal_nombre,tv_menuPrincipal_domicilio;
     View vista,vistaPrincipal,vistaPrincipal1;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     String comActual;
+    CierraDrawer c;
+
+    public interface CierraDrawer {
+        public void cerrarDrawer();
+    }
 
     public MenuPrincipalFragment() {
         // Required empty public constructor
@@ -45,7 +54,9 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
 
         vista = inflater.inflate(R.layout.fragment_menu_principal,null);
 
-        comActual="UnoDos";
+        comActual=getArguments().getString("nombreCom");
+        //Log.v("nombrecomunidadmenu",comActual);
+        String nombreUser = user.getDisplayName();
 
         NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_principal);
         vistaPrincipal = navegadorCom.getHeaderView(0);
@@ -53,8 +64,8 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         navegadorCom.setNavigationItemSelectedListener(this);
         tv_menuPrincipal_nombre = (TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_nombre);
         tv_menuPrincipal_domicilio=(TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_domicilio);
-        tv_menuPrincipal_nombre.setText("holaaaa".toString());
-        tv_menuPrincipal_domicilio.setText("Primero, "+"derecha");
+        tv_menuPrincipal_nombre.setText(nombreUser);
+        //tv_menuPrincipal_domicilio.setText("Primero, "+"derecha");
 
 
 
@@ -65,6 +76,7 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
 
             @Override
             public void onClick(View v) {
+                cerrarDrawer();
                 final Fragment crear = new PerfilComunidadFragment();
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.contenedorTablon,crear).commit();
@@ -75,6 +87,7 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         tv_menuPrincipal_domicilio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cerrarDrawer();
                 final Fragment crear = new PerfilComunidadFragment();
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.contenedorTablon,crear).commit();
@@ -86,6 +99,8 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         // Retornamos la vista nueva creada
         return vista;
     }
+
+
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Log.v("numeroqueviene",String.valueOf(id));
@@ -93,16 +108,25 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         Fragment crear = new ListaAnuncioFragment();
         Bundle datos= new Bundle();
         if (id == R.id.m_menuP_ofrecen) {
+            cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
             datos.putString("tipo","ofrecen");
+            datos.putString("nombreCom",comActual);
             crear.setArguments(datos);
 
         }if (id == R.id.m_menuP_necesitan) {
-
+            cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
             datos.putString("tipo","necesitan");
+            datos.putString("nombreCom",comActual);
             crear.setArguments(datos);
         }
         return true;
+    }
+    public void cerrarDrawer()
+    {
+        FragmentActivity fa= getActivity();
+        c= (MenuPrincipalFragment.CierraDrawer)fa;
+        c.cerrarDrawer();
     }
 }

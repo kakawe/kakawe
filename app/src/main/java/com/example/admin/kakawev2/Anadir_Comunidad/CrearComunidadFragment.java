@@ -62,12 +62,18 @@ public class CrearComunidadFragment extends Fragment {
                     ft.replace(R.id.contenedorTablon,crear);
                     ft.addToBackStack(null);
                     ft.commit();
+                    Bundle datos=new Bundle();
+                    datos.putString("contenedor","contenedorTablon");
+                    crear.setArguments(datos);
                 }else{
                     Fragment crear = new BuscarComunidadFragment();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.contenedor_anadirComunidad,crear);
                     ft.addToBackStack(null);
                     ft.commit();
+                    Bundle datos=new Bundle();
+                    datos.putString("contenedor","contenedor_anadirComunidad");
+                    crear.setArguments(datos);
                 }
 
             }
@@ -156,7 +162,7 @@ public class CrearComunidadFragment extends Fragment {
             datos.putString("localidad",l);
             datos.putString("direccion",d);
             datos.putString("ventana","crear");
-            datos.putString("contenedor","contenedorTablon");
+            datos.putString("contenedor","contenedor_anadirComunidad");
             crear.setArguments(datos);
         }
 
