@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="1ª A"
+            android:text=""
             android:textAlignment="inherit"
             android:textColor="@android:color/white"
             android:textSize="15sp" />

@@ -69,8 +69,7 @@ public class PerfilComunidadFragment extends Fragment {
     }
 
     private void cargaComunidad() {
-        correo = "eloy1@mail.com";
-
+        correo =user.getEmail();
 
         //Buscamos en la comunidad el usuario con el mismo correo que el logueado, para coger sus datos de sesion
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");

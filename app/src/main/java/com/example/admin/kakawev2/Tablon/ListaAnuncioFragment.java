@@ -21,7 +21,11 @@ import android.widget.Toast;
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.DetallesAnuncio;
 import com.example.admin.kakawev2.Entidades.Anuncio;
+import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,9 +47,12 @@ public class ListaAnuncioFragment extends Fragment{
     private RVAdapter rvAdapter;
     LinearLayout contComu;
     View vista;
-    private String nombreCom="NogalGuadalix";
+    private String nombreCom;
     private String pestana,tipo;
     private int contador=0;
+    ArrayList<String> comus_usuario=new ArrayList<>();
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
     public ListaAnuncioFragment() {
@@ -54,6 +61,14 @@ public class ListaAnuncioFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        /* Cuando vienes de anadir comunidad, carga perfectamente
+        pero peta cuando cambias a otro fragment y vuelves aquí
+        Hay que enviar todo el rato a los fragmentos creados la comunidad en la que te encuentras actualmente
+
+        * Falta hacer que cargue cuando vienes de login
+        * Y cuando clicas en el menu lateral y seleccionas otra comunidad*/
+        nombreCom = getArguments().getString("nombreCom");
+        tipo=getArguments().getString("tipo");
 
         rv_tablon_listatablon = (RecyclerView)getView().findViewById(R.id.rv_tablon_listatablon);
         rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -61,8 +76,7 @@ public class ListaAnuncioFragment extends Fragment{
         bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
         bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
         //QUITAR ESTA COMUNIDAD PRECARGADA
-        nombreCom="NogalGuadalix";
-
+        //nombreCom="NogalGuadalix";
 
         if (tipo.equals("ofrecen")){
             obtenerOfertas();
@@ -84,7 +98,6 @@ public class ListaAnuncioFragment extends Fragment{
                 pestana="demanda";
             }
         });
-        agregarComLateral();
 
         //poder seleccionar las card dentro del recyclerView
         final GestureDetector mGestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
@@ -121,8 +134,8 @@ public class ListaAnuncioFragment extends Fragment{
 
             }
         });
-
     }
+
 
     private void selectorAnuncio(String pestana, final int position) {
         if (pestana.equals("oferta")) {
@@ -235,25 +248,11 @@ public class ListaAnuncioFragment extends Fragment{
             }
         });
     }
-    private View agregarComLateral() {
-        Log.v("llega","llega");
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
-        contComu = (LinearLayout) vista.findViewById(R.id.contComu);
-
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View addView = layoutInflater.inflate(R.layout.campo_menucom_comunidadagregada, null);
-        TextView nomcom_agregada=(TextView)addView.findViewById(R.id.nomcom_agregada);
-        nomcom_agregada.setText(nombreCom);
-        contComu.addView(addView);
-        return vista;
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        nombreCom = getArguments().getString("nombreCom");
-        tipo=getArguments().getString("tipo");
+
 
 
         return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);

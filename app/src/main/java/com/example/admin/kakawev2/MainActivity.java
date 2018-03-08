@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioCategoriaDialog2;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog2;
 import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
                 finish();
             };
         }, DURACION_SPLASH);*/
-        Intent intent = new Intent(this,TablonActivity.class);
+        Intent intent = new Intent(this,RegisterActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
       startActivity(intent);

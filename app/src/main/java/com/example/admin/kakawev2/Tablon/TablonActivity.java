@@ -43,8 +43,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
     private boolean isOutSideClicked;
     Fragment crear;
     PaginadorMenu paginadorMenu;
-    ViewPager vp_menu;
-    final ArrayList<String> comus_usuario=new ArrayList<>();
+
     private static DatabaseReference referencia;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -52,39 +51,39 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_menu);
-        cargaComunidadesMenuLateral();
 
         nombrecom = getIntent().getStringExtra("comunidad");
         Fragment fragmentoSeleccionado2 = new ListaAnuncioFragment();
         FragmentManager fm2 = getSupportFragmentManager();
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
+        Bundle datos = new Bundle();
+        datos.putString("nombreCom",nombrecom);
+        datos.putString("tipo","ofrecen");
+        fragmentoSeleccionado2.setArguments(datos);
         t2.commit();
 
         //el nombre que se envia, será la comunidad a la que se registre nada mas entrar, o si hace login, habrá que buscar en que comunidad está metido y
         // mostrar los anuncios de esa como predeterminados
-        Bundle datos = new Bundle();
-        datos.putString("nombreCom","NogalGuadalix");
-        datos.putString("tipo","ofrecen");
-        fragmentoSeleccionado2.setArguments(datos);
-        crear = new MenuComunidadesFragment();
-        vp_menu = (ViewPager) findViewById(R.id.vp_menu);
-        paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
-        vp_menu.setAdapter(paginadorMenu);
-        //1 es el último fragment. Con esto fuerzo que al salir, la paginación sea RTL (de derecha a izquierda)
-        vp_menu.setCurrentItem(1);
-        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
-        inkPageIndicator.setViewPager(vp_menu);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ViewPager vp_menu = (ViewPager) findViewById(R.id.vp_menu);
+        paginadorMenu = new PaginadorMenu(getSupportFragmentManager());
+
+        paginadorMenu.cargaDatos(nombrecom);
+
+        vp_menu.setAdapter(paginadorMenu);
+        //1 es el último fragment. Con esto fuerzo que al salir, la paginación sea RTL (de derecha a izquierda)
+        vp_menu.setCurrentItem(1);
 
 
+        InkPageIndicator inkPageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        inkPageIndicator.setViewPager(vp_menu);
 
-
-
-
+        crear = new MenuComunidadesFragment();
         menu = (DrawerLayout) findViewById(R.id.menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, menu, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -116,64 +115,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
             }
         });
         toggle.syncState();
-
     }
-
-    private void cargaComunidadesMenuLateral() {
-        Log.v("orden","tablon1");
-        final String correo= user.getEmail();
-        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-        referencia.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot dato : dataSnapshot.getChildren()){
-                    Comunidad com= dato.getValue(Comunidad.class);
-                    final String nombreComunidad= com.getNombre();
-                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
-                    referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot1) {
-                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
-                                Vecino vD = dato2.getValue(Vecino.class);
-                                Log.v("nombreApuntado2",vD.toString());
-                                String corre=vD.getMail();
-                                String corr=corre;
-                                if (corr.equals(correo)){
-                                    Log.v("nombreApuntado3",nombreComunidad);
-                                    comus_usuario.add(nombreComunidad);
-                                    Log.v("nombreApuntado4",String.valueOf(comus_usuario.size()));
-                                    //enviar cada nombre de comunidad al fragmentMenuComunidadesFragment
-                                    Bundle datos=new Bundle();
-
-                                    datos.putStringArrayList("comus",comus_usuario);
-                                    crear.setArguments(datos);
-
-
-                                }
-
-                            }}
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-
-    }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
