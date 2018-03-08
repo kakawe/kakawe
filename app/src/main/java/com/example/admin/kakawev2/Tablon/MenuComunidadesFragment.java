@@ -85,7 +85,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         tv_menuComunidades_nombre = (TextView) vistaComunidad.findViewById(R.id.tv_menuComunidades_nombre);
         tv_menuComunidades_nombre.setText(comunidadActual);
         navegadorCom2.setNavigationItemSelectedListener(this);
-        contComu = (LinearLayout) vista.findViewById(R.id.contComu);
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,17 +145,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         });
     }
 
-    private void agregarComLateral() {
-        Log.v("llega","llega");
-        LayoutInflater layoutInflater =
-                (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View addView = layoutInflater.inflate(R.layout.campo_menucom_comunidadagregada, null);
-        //Añado TextViews a la vista
-        TextView nomcom_agregada=(TextView)addView.findViewById(R.id.nomcom_agregada);
-        nomcom_agregada.setText("hola hola".toString());
-        contComu.addView(addView);
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -165,8 +153,7 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         Fragment crear = new BuscarComunidadFragment();
         Bundle datos= new Bundle();
         if (id == R.id.m_menuCom_anadir) {
-            agregarComLateral();
-            //cerrarDrawer();
+            cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
             datos.putString("contenedor","contenedorTablon");
             crear.setArguments(datos);
