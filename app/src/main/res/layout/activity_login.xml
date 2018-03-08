@@ -22,16 +22,15 @@
             android:layout_gravity="top|left"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/ic_atras"/>
+            android:src="@drawable/ic_atras"/>
 
         <ImageView
             android:id="@+id/logo_kakawe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/logotipo_kakawe"/>
+            android:src="@drawable/logotipo_kakawe" />
 
     </FrameLayout>
 
@@ -40,7 +39,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:layout_weight="1"
-        android:background="@color/marron"
+        android:background="@drawable/vector_fondo_login"
         android:orientation="vertical">
 
 

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         /*AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
         AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(),R.drawable.animated_logo_kakawe);
-        //AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(), R.drawable.logo_kakawe);
+        //AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(), R.drawable.vector_anim_kakawe);
         imageView.setImageDrawable(splash);
         final Animatable animatable = (Animatable) imageView.getDrawable();
         animatable.start();
