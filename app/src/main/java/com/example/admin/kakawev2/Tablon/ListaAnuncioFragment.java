@@ -154,7 +154,7 @@ public class ListaAnuncioFragment extends Fragment{
 
 
     private void selectorAnuncio(String pestana, final int position) {
-        if (pestana.equals("oferta")) {
+        if (pestana.equals("Ofrezco")) {
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             referencia.child(nombreCom).child("Anuncios").child("Ofrezco").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -163,19 +163,30 @@ public class ListaAnuncioFragment extends Fragment{
                     for (DataSnapshot dato : dataSnapshot.getChildren()) {
                         Anuncio2 aO = dato.getValue(Anuncio2.class);
                         anuncio_oferta.add(aO);
+                        Log.v("anuncio_oferta",aO.toString());
+
                     }
 
                     String titulo = anuncio_oferta.get(position).getTitulo();
                     String mensaje = anuncio_oferta.get(position).getDescripcion();
                     //String foto = anuncio_oferta.get(position).getFoto();
                     String tipo = anuncio_oferta.get(position).getTipo();
+                    String piso = anuncio_oferta.get(position).getPiso();
+                    String puerta = anuncio_oferta.get(position).getPuerta();
+                    String anunciante= anuncio_oferta.get(position).getNombreAnunciante();
+                    String categoria=anuncio_oferta.get(position).getCategoria();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
                     //b.putString("ImagenAnuncio","imangen_anuncio");
+                    b.putString("Categoria",categoria);
                     b.putString("TipoAnuncio", tipo);
                     b.putString("TituloAnuncio", titulo);
                     b.putString("MensajeAnuncio", mensaje);
+                    b.putString("PisoAnuncio", piso);
+                    b.putString("PuertaAnuncio", puerta);
+                    b.putString("Anunciante",anunciante);
+
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
 
@@ -197,18 +208,27 @@ public class ListaAnuncioFragment extends Fragment{
                     for (DataSnapshot dato : dataSnapshot.getChildren()) {
                         Anuncio2 aO = dato.getValue(Anuncio2.class);
                         anuncio_demanda.add(aO);
+                        Log.v("anuncio_demanda",aO.toString());
                     }
                     String titulo = anuncio_demanda.get(position).getTitulo();
                     String mensaje = anuncio_demanda.get(position).getDescripcion();
                     //String foto = anuncio_demanda.get(position).getFoto();
                     String tipo = anuncio_demanda.get(position).getTipo();
+                    String piso = anuncio_demanda.get(position).getPiso();
+                    String puerta = anuncio_demanda.get(position).getPuerta();
+                    String anunciante= anuncio_demanda.get(position).getNombreAnunciante();
+                    String categoria=anuncio_demanda.get(position).getCategoria();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
                     //b.putString("ImagenAnuncio","imangen_anuncio");
+                    b.putString("Categoria",categoria);
                     b.putString("TipoAnuncio", tipo);
                     b.putString("TituloAnuncio", titulo);
                     b.putString("MensajeAnuncio", mensaje);
+                    b.putString("PisoAnuncio", piso);
+                    b.putString("PuertaAnuncio", puerta);
+                    b.putString("Anunciante",anunciante);
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");

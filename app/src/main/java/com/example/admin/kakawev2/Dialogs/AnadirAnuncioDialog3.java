@@ -185,7 +185,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
         reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
         String key = reference.push().getKey();
-        Anuncio2 a2 = new Anuncio2(key,correo,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);
+        Anuncio2 a2 = new Anuncio2(key,correo,alias,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);
         reference.child(nomComunidad).child("Anuncios").child(tipo).child(key).setValue(a2);
 
         //creamos otro carpeta desde la raiz para poder referenciar a cada user con su anuncio
