@@ -81,7 +81,7 @@ public class ListaAnuncioFragment extends Fragment {
                     b.putString("MensajeAnuncio", mensaje);
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
-                    
+
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");
 
                 }
