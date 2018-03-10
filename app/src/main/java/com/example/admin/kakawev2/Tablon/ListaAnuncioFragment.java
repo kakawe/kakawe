@@ -55,7 +55,6 @@ public class ListaAnuncioFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     private void selectorAnuncio(String pestana, final int position) {
         if (pestana.equals("oferta")) {
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");

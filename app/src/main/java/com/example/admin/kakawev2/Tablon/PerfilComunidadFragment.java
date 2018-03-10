@@ -44,6 +44,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
     private ProgressDialog progreso;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Intent intent;
+    Uri uri;
 
     //Subir imagen a FireBase
     private ImageView iv_perfilCom_fotoCom;
@@ -149,6 +150,26 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         Vecino vecino = new Vecino(correo, mail, pisoAct, puertaAct);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").child(ruta).setValue(vecino);
+        subirFoto();
+    }
+
+    //cuando se actualizan los datos lanza la foto a firebase
+    private void subirFoto() {
+        StorageReference rutaCarpetaImg = storageReference.child("ImagenesComunidad").child(tv_perfilCom_nombreCom.getText().toString());
+        //subimos la imagen y verificamos mediante un toast que se subio la foto
+        rutaCarpetaImg.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //descargar imagen de firebase
+
+                Uri descargarFoto = taskSnapshot.getDownloadUrl();
+                Glide.with(getActivity())
+                        .load(descargarFoto)
+                        .into(iv_perfilCom_fotoCom);
+
+                Toast.makeText(getContext(), "Se subio la foto", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
@@ -208,24 +229,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         //verificamos si obtenemos la imagen de la galeria
         if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
-            final Uri uri = data.getData();
-            //Creamos la referencia en el estorage para crear la carpeta donde se van almacenar las images
-            //y posteriormetente le insertamos el segmento de la imagen
-            StorageReference rutaCarpetaImg = storageReference.child("ImagenesComunidad").child(tv_perfilCom_nombreCom.getText().toString());
-            //subimos la imagen y verificamos mediante un toast que se subio la foto
-            rutaCarpetaImg.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //descargar imagen de firebase
-
-                    Uri descargarFoto = taskSnapshot.getDownloadUrl();
-                    Glide.with(getActivity())
-                            .load(descargarFoto)
-                            .into(iv_perfilCom_fotoCom);
-
-                    Toast.makeText(getContext(), "Se subio la foto", Toast.LENGTH_LONG).show();
-                }
-            });
+           uri = data.getData();
 
         }
 

@@ -1,5 +1,6 @@
 package com.example.admin.kakawev2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
 
             }
         });*/
+        /*
 
         Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
         bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
         });
 
 
-
+*/
         /*new Handler().postDelayed(new Runnable(){
             public void run(){
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -97,12 +99,12 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
                 finish();
             };
         }, DURACION_SPLASH);*/
-        /*
-        Intent intent = new Intent(this, RegisterActivity.class);
+
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        */
+
     }
 
     //metodo para poder introdicir la categoria dentro de AñadirAnuncioDialog2

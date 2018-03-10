@@ -19,7 +19,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
 
     View vista;
     String nomComunidad;
-    ImageView bt_anadir_anuncio1_necesito,bt_anadir_anuncio1_ofrezco;
+    ImageView iv_anadir_anuncio1_necesito,iv_anadir_anuncio1_ofrezco;
 
     @Override
     public Dialog onCreateDialog(Bundle saveIntanceState) {
@@ -28,10 +28,10 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
 
         nomComunidad = getArguments().getString("nomComunidad");
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio1,null);
-        bt_anadir_anuncio1_necesito = (ImageView) vista.findViewById(R.id.bt_anadir_anuncio1_necesito);
-        bt_anadir_anuncio1_ofrezco = (ImageView) vista.findViewById(R.id.bt_anadir_anuncio1_ofrezco);
-        bt_anadir_anuncio1_necesito.setOnClickListener(this);
-        bt_anadir_anuncio1_ofrezco.setOnClickListener(this);
+        iv_anadir_anuncio1_necesito = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio1_necesito);
+        iv_anadir_anuncio1_ofrezco = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio1_ofrezco);
+        iv_anadir_anuncio1_necesito.setOnClickListener(this);
+        iv_anadir_anuncio1_ofrezco.setOnClickListener(this);
 
         builder.setView(vista);
         return builder.create();
@@ -42,7 +42,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         AnadirAnuncioDialog2 ad2 = new AnadirAnuncioDialog2();
-        if(v.getId() == R.id.bt_anadir_anuncio1_necesito){
+        if(v.getId() == R.id.iv_anadir_anuncio1_necesito){
             ad2.show(getFragmentManager(),"ad2");
             Bundle bundle = new Bundle();
             bundle.putString("tipo","Necesito");
