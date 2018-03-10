@@ -35,10 +35,10 @@ public class PerfilUsuarioFragment extends Fragment{
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    private String nombre="";
-    private String correo="";
+    private String nombre;
+    private String correo;
     private String correoViejo;
-
+    private String comActual;
     private String actuContra = user.getEmail();
 
     private ImageView iv_perfilUs_fotoUs;
@@ -57,11 +57,12 @@ public class PerfilUsuarioFragment extends Fragment{
         et_perfilUs_correoUsuario = (TextView)getView().findViewById(R.id.et_perfilUs_correoUsuario);
         bt_perfilUs_modContrasena = (Button)getView().findViewById(R.id.bt_perfilUs_modContrasena);
         bt_perfilUs_actualiarDatos = (Button)getView().findViewById(R.id.bt_perfilUs_actualiarDatos);
-        bt_perfilUs_cerrarSesion = (Button)getView().findViewById(R.id.bt_perfilUs_cerrarSesion);
+        //bt_perfilUs_cerrarSesion = (Button)getView().findViewById(R.id.bt_perfilUs_cerrarSesion);
 
         bt_perfilUs_modContrasena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 PerfilUsuarioDialog pu = new PerfilUsuarioDialog();
                 pu.show(getActivity().getFragmentManager(), "Dialog boton Añadir");
                 Bundle datos = new Bundle();
@@ -80,6 +81,7 @@ public class PerfilUsuarioFragment extends Fragment{
         bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*esto peta por la creacion del dialog de mierda*/
                 cerrarSesion();
             }
         });

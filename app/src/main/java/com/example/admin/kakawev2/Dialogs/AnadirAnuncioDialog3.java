@@ -54,7 +54,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         //declaramos los componentes de la vista
 
         //imagen X para cerrar
-        tv_anadir_anuncio3_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_cerrar);
+        //tv_anadir_anuncio3_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_cerrar);
 
         //etiqueta fecha
         tv_anadir_anuncio3_etiquetaFC = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaFC);
@@ -116,8 +116,8 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         } else if (v.getId() == R.id.bt_anadir_anuncio3_publicar) {
 
             publicarAnuncio();
-        } else if (v.getId() == R.id.tv_anadir_anuncio3_cerrar) {
-            cerrarAnuncio();
+        //} else if (v.getId() == R.id.tv_anadir_anuncio3_cerrar) {
+        //    cerrarAnuncio();
         }
 
     }

@@ -1,2 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="iniciandoSesion">Iniciando sesión</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="Correo">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="continuar">Continuar</string>
+    <string name="iniciarSesion">¿Tienes cuenta? Inicia sesión</string>
+    <string name="entrar">Entrar</string>
+    <string name="contrasenaOlvidada">Olvidé la contraseña</string>
+    <string name="nombreRequerido">Nombre requerido</string>
+    <string name="correoNoValido">Correo no válido</string>
+    <string name="contraseñaRequerida">Contraseña requerida</string>
+    <string name="contraseñaCorta">Contraseña corta, mínimo 6 caracteres</string>
+
+    <string name="ofrecen">Ofrecen</string>
+    <string name="necesitan">Necesitan</string>
+
+    <string name="tablon">Tablón</string>
+    <string name="misAnuncios">Mis anuncios</string>
+    <string name="historial">Historial</string>
+
+    <string name="anadirComunidad">Aádir comunidad</string>
+
+    <string name="buscar">Buscar</string>
+    <string name="crear">Crear</string>
+    <string name="nombreComunidad">Nombre comunidad</string>
+    <string name="localidad">Localidad</string>
+    <string name="direccion">Direccion</string>
+    <string name="introduceNomCom">Introduce el nombre de la comunidad a buscar</string>
+    <string name="noExisteComBuscar">No existe una comunidad con el nombre </string>
+    <string name="localidadRequerida">Localidad requerida</string>
+    <string name="direccionRequerida">Dirección requerida</string>
+    <string name="existeComunidad">Ya existe una comunidad con ese nombre</string>
+    <string name="piso">Piso</string>
+    <string name="puerta">Puerta</string>
+    <string name="pisoRequerido">Añada tu piso</string>
+    <string name="puertarequerida">Añada su puerta</string>
+    <string name="yaestasEnLaComunidad">Ya estás en la comunidad </string>
+
+
+
+</resources>

@@ -2,6 +2,7 @@ package com.example.admin.kakawev2.Tablon;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +30,8 @@ import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
+import com.example.admin.kakawev2.LoginActivity;
+import com.example.admin.kakawev2.PerfilUsuarioActivity;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,9 +66,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
     {
         public void cerrarDrawer();
     }
-
-    private String nombre="benitocamela";
-
     public MenuComunidadesFragment() {
         // Required empty public constructor
     }
@@ -89,12 +90,27 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
             @Override
             public void onClick(View v) {
                 cerrarDrawer();
-                Fragment crear = new PerfilUsuarioFragment();
+                Intent intent = new Intent(getContext(), PerfilUsuarioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("comunidad",comunidadActual);
+                startActivity(intent);
+
+                /*Fragment crear = new PerfilUsuarioFragment();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.contenedorTablon,crear);
                 ft.addToBackStack(null);
-                ft.commit();
+                ft.commit();*/
 
+            }
+        });
+        lv_listaCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView comunidad = view.findViewById(R.id.tv_vistaCom_nomCom);
+                comunidadActual = comunidad.getText().toString();
+                recargarTablon();
+                Log.v("clic",comunidadActual);
             }
         });
         cargaComunidadesMenuLateral();
@@ -102,7 +118,15 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         return vista;
     }
 
-    //cargar la comunidad y el adapter del listview
+    private void recargarTablon() {
+        Intent intent = new Intent(getContext(), TablonActivity.class);
+        intent.putExtra("comunidad",comunidadActual);
+        intent.putExtra("tipo","ofrecen");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     private void cargaComunidadesMenuLateral() {
         final String correo= user.getEmail();
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
@@ -148,7 +172,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        Log.v("numeroqueviene",String.valueOf(id));
         FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
         Fragment crear = new BuscarComunidadFragment();
         Bundle datos= new Bundle();

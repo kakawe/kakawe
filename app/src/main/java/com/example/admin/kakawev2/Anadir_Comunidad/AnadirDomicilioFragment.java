@@ -148,7 +148,6 @@ public class AnadirDomicilioFragment extends Fragment {
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
-
         }
         if (contenedor.equals("contenedorTablon")){
             Bundle datos = new Bundle();

@@ -4,6 +4,7 @@ package com.example.admin.kakawev2.Tablon;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.DetallesAnuncio;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog1;
 import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
@@ -41,50 +43,40 @@ import java.util.ArrayList;
 public class ListaAnuncioFragment extends Fragment{
 
     private static DatabaseReference referencia;
-
+    private FloatingActionButton fb_lista_agregarAnuncio;
     private RecyclerView rv_tablon_listatablon;
-    private Button bt__tablon_izquierdo,bt_tablon_derecho;
+    private Button bt_tablon_izquierdo,bt_tablon_derecho;
     private RVAdapter rvAdapter;
-    LinearLayout contComu;
-    View vista;
     private String nombreCom;
     private String pestana,tipo;
-    private int contador=0;
-    ArrayList<String> comus_usuario=new ArrayList<>();
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
+    FloatingActionButton fb_listar_anadirAnuncio;
     public ListaAnuncioFragment() {
         // Required empty public constructor
     }
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        /* Cuando vienes de anadir comunidad, carga perfectamente
-        pero peta cuando cambias a otro fragment y vuelves aquí
-        Hay que enviar todo el rato a los fragmentos creados la comunidad en la que te encuentras actualmente
-
-        * Falta hacer que cargue cuando vienes de login
-        * Y cuando clicas en el menu lateral y seleccionas otra comunidad*/
         nombreCom = getArguments().getString("nombreCom");
         tipo=getArguments().getString("tipo");
 
         rv_tablon_listatablon = (RecyclerView)getView().findViewById(R.id.rv_tablon_listatablon);
         rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
+        fb_listar_anadirAnuncio = (FloatingActionButton)getView().findViewById(R.id.fb_listar_anadirAnuncio);
+
         bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
-        //QUITAR ESTA COMUNIDAD PRECARGADA
-        //nombreCom="NogalGuadalix";
+        bt_tablon_izquierdo = (Button)getView().findViewById(R.id.bt_tablon_izquierdo);
 
         if (tipo.equals("ofrecen")){
             obtenerOfertas();
+            pestana="oferta";
         }else{
             obtenerDemandas();
+            pestana="demanda";
         }
 
-        bt__tablon_izquierdo.setOnClickListener(new View.OnClickListener() {
+        bt_tablon_izquierdo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 obtenerOfertas();
@@ -111,7 +103,10 @@ public class ListaAnuncioFragment extends Fragment{
                 try{
                     View child = rv.findChildViewUnder(e.getX(),e.getY());
                     if (child != null && mGestureDetector.onTouchEvent(e)){
+                        Log.v("toque","toque1");
                         int posicion = rv.getChildAdapterPosition(child);
+                        Log.v("toque",String.valueOf(posicion));
+                        Log.v("toque",pestana);
                         selectorAnuncio(pestana,posicion);
                         //mensaje numero card selecciona
                         Toast.makeText(getContext(), "Clicado " + posicion, Toast.LENGTH_LONG).show();
@@ -134,6 +129,16 @@ public class ListaAnuncioFragment extends Fragment{
 
             }
         });
+        fb_listar_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
+                Bundle datos = new Bundle();
+                datos.putString("nombreCom",nombreCom);
+                ad1.show(getActivity().getFragmentManager(),"ad1");
+                ad1.setArguments(datos);
+            }
+        });
     }
 
 
@@ -148,7 +153,7 @@ public class ListaAnuncioFragment extends Fragment{
                         Anuncio aO = dato.getValue(Anuncio.class);
                         anuncio_oferta.add(aO);
                     }
-
+                    Log.v("toque","llego al anuncio");
                     String titulo = anuncio_oferta.get(position).getTitulo();
                     String mensaje = anuncio_oferta.get(position).getMensaje();
                     //String foto = anuncio_oferta.get(position).getFoto();
@@ -252,9 +257,6 @@ public class ListaAnuncioFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-
         return inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
     }
 }

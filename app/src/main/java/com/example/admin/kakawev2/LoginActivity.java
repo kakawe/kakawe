@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth instancia;
     private ProgressDialog progreso;
     private static DatabaseReference referencia;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser user;
+    String correo;
 
     private EditText et_login_correo,et_login_contrasena;
     private Button bt_login_entrar;
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         progreso = new ProgressDialog(this);
         instancia= FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         et_login_correo=(EditText)findViewById(R.id.et_login_correo);
         et_login_contrasena=(EditText)findViewById(R.id.et_login_contrasena);
@@ -148,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     private void cargaComunidades() {
-        final String correo= user.getEmail();
+        //
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -165,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Vecino vD = dato2.getValue(Vecino.class);
                                 String corre=vD.getMail();
                                 String corr=corre;
-                                if (corr.equals(correo)){
+                                if (corr.equals(user.getEmail())){
                                     comus_usuario.add(nombreComunidad);
                                     String nombreCom=comus_usuario.get(0);
                                     loginLanzaTablon(nombreCom);
