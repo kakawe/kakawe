@@ -24,7 +24,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by jose on 19/02/2018.
  */
 
-public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener {
+public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener,AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
 
     String nomComunidad;
     View vista;
@@ -52,16 +52,15 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         nomComunidad = getArguments().getString("nomComunidad");
         tipo = getArguments().getString("tipo") + " ...";
         tipo1 = getArguments().getString("tipo");
-        Log.v("datos", tipo);
-        //String cat = getArguments().getString("cat");
-        //Log.v("cat", cat);
+        Log.v("clicados", tipo);
+        categoria = getArguments().getString("categoria");
+        Log.v("clicados", categoria);
 
         //declaramos las vistas del dialog2
         iv_anuncio2_cerrar = (ImageView) vista.findViewById(R.id.iv_anuncio2_cerrar);
         tv_anadir_anuncio2_tipo = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_tipo);
         et_anadir_anuncio2_titulo = (EditText) vista.findViewById(R.id.et_anadir_anuncio2_titulo);
         ed_anadir_anuncio2_descripcion = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_descripcion);
-        //iv_anadir_anuncio2_imgen_categoria = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imgen_categoria);
         ed_anadir_anuncio2_categoria = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_categoria);
         iv_anadir_anuncio2_imagen = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imagen);
         bt_anadir_anuncio2_atras = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
@@ -70,13 +69,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         //damos valor a la etique tipo
         tv_anadir_anuncio2_tipo.setText(tipo);
 
-        //onclick listener
-        //ly_anadir_anuncio2_categoria.setOnClickListener(this);
-
         iv_anuncio2_cerrar.setOnClickListener(this);
         iv_anadir_anuncio2_imagen.setOnClickListener(this);
         ed_anadir_anuncio2_descripcion.setOnClickListener(this);
-//        iv_anadir_anuncio2_imgen_categoria.setOnClickListener(this);
         ed_anadir_anuncio2_categoria.setOnClickListener(this);
         bt_anadir_anuncio2_atras.setOnClickListener(this);
         bt_anadir_anuncio2_adelante.setOnClickListener(this);
@@ -180,4 +175,11 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     }
 
 
+    @Override
+    public void seleccionada(String categoria) {
+        String cat = categoria;
+        Log.v("clicado","estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getActivity().getFragmentManager().findFragmentByTag("ad2");
+        a.setearCategoria(categoria);
+    }
 }

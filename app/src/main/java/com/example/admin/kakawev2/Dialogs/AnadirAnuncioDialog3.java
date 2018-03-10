@@ -21,12 +21,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.admin.kakawev2.Entidades.Anuncio2;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -37,11 +43,8 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
     DatabaseReference reference;
     FirebaseStorage storage;
     FirebaseAuth user;
-
     View vista;
-    String fechaCaducidad;
-    String horaCaducidad;
-    String nomComunidad;
+    String fechaCaducidad,horaCaducidad,nomComunidad,piso,puerta;
     private String tipo, titulo, ruta_imagen, descripcion, categoria;
     TextView tv_anadir_anuncio3_etiquetaFC, tv_anadir_anuncio3_etiquetaHC;
     ImageView iv_anuncio3_cerrar;
@@ -56,7 +59,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio3, null);
-
+        user = FirebaseAuth.getInstance();
         //datos pasados por argumentes desde dialog2
         tipo = getArguments().getString("tipo2");
         titulo = getArguments().getString("titulo2");
@@ -118,9 +121,34 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
             }
         };
-
+        cogerDatosComunidad();
         builder.setView(vista);
         return builder.create();
+    }
+
+    private void cogerDatosComunidad() {
+        reference = FirebaseDatabase.getInstance().getReference("comunidades");
+        reference.child(nomComunidad).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Vecino> listado_Vecinos = new ArrayList<>();
+                for (DataSnapshot dato : dataSnapshot.getChildren()) {
+                    Vecino vc = dato.getValue(Vecino.class);
+                    listado_Vecinos.add(vc);
+                    String corre = vc.getMail();
+                    String key = dato.getKey();
+                    if (corre.equals(user.getCurrentUser().getEmail())) {
+                        piso = vc.getPiso();
+                        puerta = vc.getPuerta();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
@@ -148,31 +176,22 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
         creacionAnuncioFirebase();
 
-        // Log.v("dialog3", titulo);
-        // Log.v("dialog3", tipo);
-        // Log.v("dialog3", categoria);
-        // Log.v("dialog3", ruta_imagen);
-        // Log.v("dialog3", descripcion);
-        // Log.v("dialog3", fechaCaducidad);
-        // Log.v("dialog3", horaCaducidad);
-
-
     }
 
     //metodo para subir los datos a firebase para posterior creacón de anuncio
     private void creacionAnuncioFirebase() {
-        String correo = "josele@mail.com";
-        String user = "pepito";
+        String correo = user.getCurrentUser().getEmail().toString();
+        String alias = user.getCurrentUser().getDisplayName();
 
         reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
         String key = reference.push().getKey();
-        Anuncio2 a2 = new Anuncio2(key,correo,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad);
+        Anuncio2 a2 = new Anuncio2(key,correo,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);
         reference.child(nomComunidad).child("Anuncios").child(tipo).child(key).setValue(a2);
 
         //creamos otro carpeta desde la raiz para poder referenciar a cada user con su anuncio
         //para poder ver su historial
         reference = FirebaseDatabase.getInstance().getReference().child("AnunciosUsuarios");
-        reference.child(user).child(key).setValue(a2);
+        reference.child(alias).child(key).setValue(a2);
 
         //cerramos los dialog
         DialogFragment ad3 = (DialogFragment) getFragmentManager().findFragmentByTag("ad3");

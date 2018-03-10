@@ -20,11 +20,13 @@ public class Anuncio2 {
     String descripcion;
     String fechaCaducidad;
     String horaCaducidad;
+    String piso;
+    String puerta;
 
     public Anuncio2() {
     }
 
-    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String descripcion, String fechaCaducidad, String horaCaducidad) {
+    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String descripcion, String fechaCaducidad, String horaCaducidad, String piso, String puerta) {
         this.key = key;
         this.correoAnunciante = correoAnunciante;
         this.titulo = titulo;
@@ -33,9 +35,25 @@ public class Anuncio2 {
         this.descripcion = descripcion;
         this.fechaCaducidad = fechaCaducidad;
         this.horaCaducidad = horaCaducidad;
+        this.piso = piso;
+        this.puerta = puerta;
     }
 
+    public String getPiso() {
+        return piso;
+    }
 
+    public void setPiso(String piso) {
+        this.piso = piso;
+    }
+
+    public String getPuerta() {
+        return puerta;
+    }
+
+    public void setPuerta(String puerta) {
+        this.puerta = puerta;
+    }
 
     public String getKey() {
         return key;

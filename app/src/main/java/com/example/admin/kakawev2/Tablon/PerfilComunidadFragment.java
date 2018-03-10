@@ -97,8 +97,6 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
 
 
     private void cargaComunidad() {
-
-        correo = "eloy1@mail.com";
         //Buscamos en la comunidad el usuario con el mismo correo que el logueado, para coger sus datos de sesion
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
