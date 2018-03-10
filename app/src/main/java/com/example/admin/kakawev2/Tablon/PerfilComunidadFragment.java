@@ -177,6 +177,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
                     .into(iv_perfilCom_fotoCom);
 
         } else {
+
             Log.v("Entrada","2");
             Glide.with(getActivity()).using(new FirebaseImageLoader())
                     .load(refGuardar)
