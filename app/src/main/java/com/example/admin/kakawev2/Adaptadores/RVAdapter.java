@@ -4,10 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admin.kakawev2.Entidades.Anuncio;
+import com.example.admin.kakawev2.Entidades.Anuncio2;
 import com.example.admin.kakawev2.R;
 
 import java.util.List;
@@ -30,9 +29,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
             //iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
         }
     }
-    public List<Anuncio> anuncioTablon;
+    public List<Anuncio2> anuncioTablon;
 
-    public RVAdapter(List<Anuncio> anuncioTablon) {
+    public RVAdapter(List<Anuncio2> anuncioTablon) {
         this.anuncioTablon = anuncioTablon;
     }
 
@@ -46,7 +45,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(RVAdapter.ViewHolder holder, int position) {
         holder.tv_vista_anuncio_titulo.setText(anuncioTablon.get(position).getTitulo());
-        holder.tv_vista_anuncio_descripcion.setText(anuncioTablon.get(position).getMensaje());
+        holder.tv_vista_anuncio_descripcion.setText(anuncioTablon.get(position).getDescripcion());
         //holder.iv_vista_anuncio_foto.setImageResource(anuncioLista.get(position).getFoto());
     }
 

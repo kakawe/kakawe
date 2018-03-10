@@ -15,12 +15,17 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.admin.kakawev2.Entidades.Anuncio2;
 import com.example.admin.kakawev2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.Calendar;
 
@@ -29,12 +34,20 @@ import java.util.Calendar;
  */
 
 public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClickListener {
+    DatabaseReference reference;
+    FirebaseStorage storage;
+    FirebaseAuth user;
+
     View vista;
+    String fechaCaducidad;
+    String horaCaducidad;
+    String nomComunidad;
     private String tipo, titulo, ruta_imagen, descripcion, categoria;
-    TextView tv_anadir_anuncio3_etiquetaFC,  tv_anadir_anuncio3_etiquetaHC, tv_anadir_anuncio3_cerrar;
+    TextView tv_anadir_anuncio3_etiquetaFC, tv_anadir_anuncio3_etiquetaHC;
+    ImageView iv_anuncio3_cerrar;
     Button bt_anadir_anuncio3_publicar;
     Switch sw_anadir_anuncio3_desabilitar;
-    EditText et_anadir_anuncio3_fecha_caducidad,  et_anadir_anuncio3_hora_caducidad;
+    EditText et_anadir_anuncio3_fecha_caducidad, et_anadir_anuncio3_hora_caducidad;
     DatePickerDialog.OnDateSetListener mDatelistenerCaducidad, mDatelistenerPublicacion;
     TimePickerDialog.OnTimeSetListener onTimeSetListenerCaducidad, onTimeSetListenerPublicacion;
 
@@ -50,11 +63,11 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         ruta_imagen = getArguments().getString("ruta_imagen2");
         descripcion = getArguments().getString("descripcionAnuncio2");
         categoria = getArguments().getString("categoria2");
+        nomComunidad = getArguments().getString("nomComunidad");
 
-        //declaramos los componentes de la vista
 
         //imagen X para cerrar
-        tv_anadir_anuncio3_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_cerrar);
+        iv_anuncio3_cerrar = (ImageView) vista.findViewById(R.id.iv_anuncio3_cerrar);
 
         //etiqueta fecha
         tv_anadir_anuncio3_etiquetaFC = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaFC);
@@ -69,7 +82,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         et_anadir_anuncio3_hora_caducidad = (EditText) vista.findViewById(R.id.et_anadir_anuncio3_hora_caducidad);
 
         //metodo para cerrar el Dialog3
-        tv_anadir_anuncio3_cerrar.setOnClickListener(this);
+        iv_anuncio3_cerrar.setOnClickListener(this);
 
         //boton desabilitar
         bt_anadir_anuncio3_publicar = (Button) vista.findViewById(R.id.bt_anadir_anuncio3_publicar);
@@ -79,6 +92,10 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         bt_anadir_anuncio3_publicar.setOnClickListener(this);
 
         //metodo para desabilitar componetes
+        tv_anadir_anuncio3_etiquetaFC.setEnabled(false);
+        tv_anadir_anuncio3_etiquetaHC.setEnabled(false);
+        et_anadir_anuncio3_fecha_caducidad.setEnabled(false);
+        et_anadir_anuncio3_hora_caducidad.setEnabled(false);
         sw_anadir_anuncio3_desabilitar.setChecked(false);
         desabilitar(sw_anadir_anuncio3_desabilitar);
 
@@ -114,9 +131,8 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         } else if (v.getId() == R.id.et_anadir_anuncio3_hora_caducidad) {
             obtenerHoraCaducidad();
         } else if (v.getId() == R.id.bt_anadir_anuncio3_publicar) {
-
             publicarAnuncio();
-        } else if (v.getId() == R.id.tv_anadir_anuncio3_cerrar) {
+        } else if (v.getId() == R.id.iv_anuncio3_cerrar) {
             cerrarAnuncio();
         }
 
@@ -127,32 +143,47 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
     //evento que recoge los datos de los 3 dialog para la creación del anuncio
     private void publicarAnuncio() {
 
-        String correo = "josele@mail.com";
-        String tituloA = titulo;
-        String tipoA = tipo;
-        String ruta_imagenA = ruta_imagen;
-        String descripcionA = descripcion;
-        String categoriaA = categoria;
-        String fechaCaducidad = et_anadir_anuncio3_fecha_caducidad.getText().toString();
-        String horaCaducidad = et_anadir_anuncio3_hora_caducidad.getText().toString();
+        fechaCaducidad = et_anadir_anuncio3_fecha_caducidad.getText().toString();
+        horaCaducidad = et_anadir_anuncio3_hora_caducidad.getText().toString();
 
-        Anuncio2 anuncio2 = new Anuncio2(correo, tituloA, tipoA, categoriaA, ruta_imagenA, descripcionA, fechaCaducidad,horaCaducidad);
+        creacionAnuncioFirebase();
 
-        creacionAnuncioFirebase(anuncio2);
+        // Log.v("dialog3", titulo);
+        // Log.v("dialog3", tipo);
+        // Log.v("dialog3", categoria);
+        // Log.v("dialog3", ruta_imagen);
+        // Log.v("dialog3", descripcion);
+        // Log.v("dialog3", fechaCaducidad);
+        // Log.v("dialog3", horaCaducidad);
 
-       // Log.v("dialog3", titulo);
-       // Log.v("dialog3", tipo);
-       // Log.v("dialog3", categoria);
-       // Log.v("dialog3", ruta_imagen);
-       // Log.v("dialog3", descripcion);
-       // Log.v("dialog3", fechaCaducidad);
-       // Log.v("dialog3", horaCaducidad);
 
-       // Log.v("anuncio2", anuncio2.toString());
     }
 
     //metodo para subir los datos a firebase para posterior creacón de anuncio
-    private void creacionAnuncioFirebase(Anuncio2 anuncio2) {
+    private void creacionAnuncioFirebase() {
+        String correo = "josele@mail.com";
+        String user = "pepito";
+
+        reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
+        String key = reference.push().getKey();
+        Anuncio2 a2 = new Anuncio2(key,correo,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad);
+        reference.child(nomComunidad).child("Anuncios").child(tipo).child(key).setValue(a2);
+
+        //creamos otro carpeta desde la raiz para poder referenciar a cada user con su anuncio
+        //para poder ver su historial
+        reference = FirebaseDatabase.getInstance().getReference().child("AnunciosUsuarios");
+        reference.child(user).child(key).setValue(a2);
+
+        //cerramos los dialog
+        DialogFragment ad3 = (DialogFragment) getFragmentManager().findFragmentByTag("ad3");
+        ad3.dismiss();
+        DialogFragment ad2 = (DialogFragment) getFragmentManager().findFragmentByTag("ad2");
+        ad2.dismiss();
+        DialogFragment ad1 = (DialogFragment) getFragmentManager().findFragmentByTag("ad1");
+        ad1.dismiss();
+
+
+
     }
 
 
@@ -210,8 +241,8 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
     //metodo para cerrar el dialog3
     private void cerrarAnuncio() {
-        DialogFragment ad1=(DialogFragment)getFragmentManager().findFragmentByTag("ad1");
-        DialogFragment ad2=(DialogFragment)getFragmentManager().findFragmentByTag("ad2");
+        DialogFragment ad1 = (DialogFragment) getFragmentManager().findFragmentByTag("ad1");
+        DialogFragment ad2 = (DialogFragment) getFragmentManager().findFragmentByTag("ad2");
         this.dismiss();
         ad1.dismiss();
         ad2.dismiss();

@@ -24,44 +24,18 @@ public class Anuncio2 {
     public Anuncio2() {
     }
 
-    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion, String fechaCaducidad, String horaCaducidad) {
+    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String descripcion, String fechaCaducidad, String horaCaducidad) {
         this.key = key;
         this.correoAnunciante = correoAnunciante;
         this.titulo = titulo;
         this.tipo = tipo;
         this.categoria = categoria;
-        this.foto = foto;
         this.descripcion = descripcion;
         this.fechaCaducidad = fechaCaducidad;
         this.horaCaducidad = horaCaducidad;
     }
 
-    public Anuncio2(String correoAnunciante, String titulo, String tipo, String categoria, String foto, String descripcion, String fechaCaducidad, String horaCaducidad) {
-        this.correoAnunciante = correoAnunciante;
-        this.titulo = titulo;
-        this.tipo = tipo;
-        this.categoria = categoria;
-        this.foto = foto;
-        this.descripcion = descripcion;
-        this.fechaCaducidad = fechaCaducidad;
-        this.horaCaducidad = horaCaducidad;
 
-    }
-
-    @Override
-    public String toString() {
-        return "Anuncio2{" +
-                "key='" + key + '\'' +
-                ", correoAnunciante='" + correoAnunciante + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", foto='" + foto + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", fechaCaducidad='" + fechaCaducidad + '\'' +
-                ", horaCaducidad='" + horaCaducidad + '\'' +
-                '}';
-    }
 
     public String getKey() {
         return key;
