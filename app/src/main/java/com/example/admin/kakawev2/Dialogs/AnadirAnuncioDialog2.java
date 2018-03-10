@@ -25,13 +25,12 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener {
-    // AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
+
+    String nomComunidad;
     View vista;
-    //LinearLayout ly_anadir_anuncio2_categoria;
-    ImageView iv_anuncio2_cerrar;
-    TextView tv_anadir_anuncio2_tipo, tv_anadir_anuncio2_categoria;
+    TextView tv_anadir_anuncio2_tipo;
     EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion,ed_anadir_anuncio2_categoria;
-    ImageView iv_anadir_anuncio2_imagen;
+    ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria,iv_anuncio2_cerrar;
     Button bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
     private String tv_ruta_imagen;
     private String tipo, tipo1;
@@ -39,7 +38,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
 
 
     public void setearCategoria(String categoria) {
-        tv_anadir_anuncio2_categoria.setText(categoria);
+        ed_anadir_anuncio2_categoria.setText(categoria);
         Log.v("desdeAnadir", categoria);
     }
 
@@ -50,6 +49,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         LayoutInflater inflater = getActivity().getLayoutInflater();
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio2, null);
 
+        nomComunidad = getArguments().getString("nomComunidad");
         tipo = getArguments().getString("tipo") + " ...";
         tipo1 = getArguments().getString("tipo");
         Log.v("datos", tipo);
@@ -61,6 +61,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         tv_anadir_anuncio2_tipo = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_tipo);
         et_anadir_anuncio2_titulo = (EditText) vista.findViewById(R.id.et_anadir_anuncio2_titulo);
         ed_anadir_anuncio2_descripcion = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_descripcion);
+        //iv_anadir_anuncio2_imgen_categoria = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imgen_categoria);
         ed_anadir_anuncio2_categoria = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_categoria);
         iv_anadir_anuncio2_imagen = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imagen);
         bt_anadir_anuncio2_atras = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
@@ -75,8 +76,8 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         iv_anuncio2_cerrar.setOnClickListener(this);
         iv_anadir_anuncio2_imagen.setOnClickListener(this);
         ed_anadir_anuncio2_descripcion.setOnClickListener(this);
+//        iv_anadir_anuncio2_imgen_categoria.setOnClickListener(this);
         ed_anadir_anuncio2_categoria.setOnClickListener(this);
-        tv_anadir_anuncio2_categoria.setOnClickListener(this);
         bt_anadir_anuncio2_atras.setOnClickListener(this);
         bt_anadir_anuncio2_adelante.setOnClickListener(this);
 
@@ -89,7 +90,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v.getId() == R.id.iv_anadir_anuncio2_imagen) {
             obtenerImagen();
-        } else if (v.getId() == R.id.ed_anadir_anuncio2_categoria) {
+        } else if (v.getId() == R.id.ed_anadir_anuncio2_categoria ) {//|| v.getId() == R.id.iv_anadir_anuncio2_imgen_categoria
             obtenerCategoria();
         } else if (v.getId() == R.id.bt_anadir_anuncio2_atras) {
             atrasDialog();
@@ -129,8 +130,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
 
         String titulo = et_anadir_anuncio2_titulo.getText().toString();
         String descripcionAnuncio = ed_anadir_anuncio2_descripcion.getText().toString();
-        String categoria = tv_anadir_anuncio2_categoria.getText().toString();
+        String categoria = ed_anadir_anuncio2_categoria.getText().toString();
         Bundle bundle = new Bundle();
+        bundle.putString("nomComunidad",nomComunidad);
         bundle.putString("tipo2", tipo1);
         bundle.putString("titulo2", titulo);
         bundle.putString("ruta_imagen2", tv_ruta_imagen);
@@ -140,6 +142,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         AnadirAnuncioDialog3 ad3 = new AnadirAnuncioDialog3();
         ad3.show(getFragmentManager(), "ad3");
         ad3.setArguments(bundle);
+
+        //DialogFragment ad2 = (DialogFragment) getFragmentManager().findFragmentByTag("ad2");
+        //ad2.dismiss();
 
         //Log.v("dialog2", tipo1);
         //Log.v("dialog2", titulo);
@@ -166,7 +171,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     private void obtenerCategoria() {
         AnadirAnuncioCategoriaDialog2 adc2 = new AnadirAnuncioCategoriaDialog2();
         Bundle datos= new Bundle();
-        categoria=tv_anadir_anuncio2_categoria.getText().toString();
+        categoria=ed_anadir_anuncio2_categoria.getText().toString();
         datos.putString("categoria2",categoria);
         adc2.show(getFragmentManager(), "adc2");
         adc2.setArguments(datos);

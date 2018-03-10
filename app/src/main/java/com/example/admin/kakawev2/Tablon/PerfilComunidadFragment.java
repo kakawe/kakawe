@@ -1,7 +1,6 @@
 package com.example.admin.kakawev2.Tablon;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,10 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.admin.kakawev2.DetallesAnuncio;
-import com.example.admin.kakawev2.Entidades.Anuncio;
 import com.example.admin.kakawev2.Entidades.Vecino;
-import com.example.admin.kakawev2.LoginActivity;
 import com.example.admin.kakawev2.R;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -167,7 +163,12 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child(comActual);
         Log.v("comActual",comActual);
-        if (refGuardar == null) {
+        Log.v("refGuardar",refGuardar.toString());
+
+       if (refGuardar.getName().isEmpty()) {
+
+           Log.v("imagen","null");
+        /*
             Log.v("Entrada",refGuardar.toString());
             StorageReference refGuardarDeFecto = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child("fotoPorDefecto.jpg");
             Glide.with(getActivity()).using(new FirebaseImageLoader())
@@ -175,7 +176,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(iv_perfilCom_fotoCom);
-
+        */
         } else {
 
             Log.v("Entrada","2");
@@ -184,6 +185,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(iv_perfilCom_fotoCom);
+
 
         }
 

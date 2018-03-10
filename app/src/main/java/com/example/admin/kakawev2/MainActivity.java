@@ -1,40 +1,20 @@
 package com.example.admin.kakawev2;
 
-import android.content.Intent;
-import android.graphics.drawable.Animatable;
-import android.os.Handler;
-import android.support.design.widget.TabLayout;
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity;
 import com.example.admin.kakawev2.Dialogs.AnadirAnuncioCategoriaDialog2;
+import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog1;
 import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog2;
-import com.example.admin.kakawev2.Entidades.Anuncio;
-import com.example.admin.kakawev2.Entidades.Comunidad;
-import com.example.admin.kakawev2.Entidades.Vecino;
-import com.example.admin.kakawev2.Tablon.TablonActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
+public class MainActivity extends AppCompatActivity implements AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada {
 
     private final int DURACION_SPLASH = 5000;
     private static DatabaseReference referencia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,14 +73,20 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
             }
         });*/
 
-        /*Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
+        Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
         bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //nombre comunidad se cogera del tablon
+                String nomComunidad = "Cuatro";
                 AnadirAnuncioDialog1 ad1 = new AnadirAnuncioDialog1();
+                Bundle datos = new Bundle();
+                datos.putString("nomComunidad",nomComunidad);
                 ad1.show(getFragmentManager(),"ad1");
+                ad1.setArguments(datos);
+
             }
-        });*/
+        });
 
 
 
@@ -111,17 +97,19 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
                 finish();
             };
         }, DURACION_SPLASH);*/
-        Intent intent = new Intent(this,RegisterActivity.class);
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      startActivity(intent);
+        /*
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        */
     }
 
     //metodo para poder introdicir la categoria dentro de AñadirAnuncioDialog2
     @Override
     public void seleccionada(String categoria) {
-        String cat=categoria;
-        AnadirAnuncioDialog2 a=(AnadirAnuncioDialog2)getFragmentManager().findFragmentByTag("ad2");
+        String cat = categoria;
+        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getFragmentManager().findFragmentByTag("ad2");
         a.setearCategoria(categoria);
     }
 }
