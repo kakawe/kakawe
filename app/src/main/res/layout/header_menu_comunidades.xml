@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_height="100dp"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:gravity="bottom"
-    android:background="@color/rojo"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@color/marron"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center_vertical"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="20dp">
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/ic_launcher_round"
+            app:civ_border_color="@color/blancoTransparente"
+            app:civ_border_width="8dp"
+            app:civ_shadow_radius="10" />
 
         <TextView
             android:id="@+id/tv_menuComunidades_nombre"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="mi nombre"
-            android:textAlignment="inherit"
+            android:layout_marginTop="15dp"
+            android:text="Fulanito Martínez"
+            android:fontFamily="@font/lato_black"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
+
 
     </LinearLayout>
 
 
-</LinearLayout>
+</FrameLayout>

@@ -1,52 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="bottom"
-    android:background="@color/rojo"
-    android:orientation="horizontal"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/gris"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center_vertical"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="20dp">
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:gravity="end"
+        android:orientation="vertical">
+
 
         <TextView
-            android:id="@+id/tv_menuPrincipal_nombre"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_menuPrincipal_comunidad"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="end"
+            android:fontFamily="@font/lato_black"
             android:text="Nogales"
-            android:textAlignment="inherit"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
+
         <TextView
             android:id="@+id/tv_menuPrincipal_domicilio"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:textAlignment="inherit"
+            android:layout_gravity="end"
+            android:fontFamily="@font/lato_bold"
+            android:text="1º A"
             android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>
 
-</LinearLayout>
+
+</FrameLayout>
