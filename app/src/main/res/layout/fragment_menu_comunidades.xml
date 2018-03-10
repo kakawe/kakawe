@@ -1,10 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.admin.kakawev2.Tablon.MenuComunidadesFragment"
-    android:orientation="vertical">
+    android:background="@color/marron"
+    android:orientation="vertical"
+    tools:context="com.example.admin.kakawev2.Tablon.MenuComunidadesFragment">
 
     <android.support.design.widget.NavigationView
         android:id="@+id/menu_comunidades"
@@ -14,34 +15,54 @@
         android:background="@color/marron"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_menu_comunidades"
-        app:itemTextColor="@color/blanco" >
+        app:itemTextColor="@color/blanco"></android.support.design.widget.NavigationView>
 
-    </android.support.design.widget.NavigationView>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/menu_comunidades2"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blancoTransparente"
+        android:fontFamily="@font/lato_black"
+        android:paddingVertical="10dp"
+        android:text="MIS COMUNIDADES"
+        android:textAlignment="center"
+        android:textColor="@color/marron"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_menu_comunidades_anadir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/marron"
+        android:fontFamily="@font/lato_black"
+        android:text="Añadir"
+        android:textAllCaps="false"
+        android:textColor="@color/blanco"
+        android:textSize="17sp" />
+
+
+    <!--<android.support.design.widget.NavigationView
+        android:id="@+id/menu_comunidades2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@color/marron"
         android:fitsSystemWindows="true"
         app:itemTextColor="@color/blanco"
         app:menu="@menu/menu_comunidades">
 
-    </android.support.design.widget.NavigationView>
+    </android.support.design.widget.NavigationView>-->
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_marginBottom="35dp"
         android:fillViewport="true">
-
 
         <ListView
             android:id="@+id/lv_listaCom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
+            android:layout_height="match_parent" />
     </ScrollView>
+
 
 </LinearLayout>
