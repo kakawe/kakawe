@@ -42,5 +42,23 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="tv_anadir_anuncio">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="tv_titulo_anuncio">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">45dp</item>
+        <item name="android:layout_marginRight">45dp</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/marron</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
 
 </resources>
