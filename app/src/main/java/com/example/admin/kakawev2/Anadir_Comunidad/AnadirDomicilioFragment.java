@@ -99,7 +99,6 @@ public class AnadirDomicilioFragment extends Fragment {
                         datos.putString("contenedor","contenedor_anadirComunidad");
                         crear.setArguments(datos);
                 }
-
                 }
             }
         });
