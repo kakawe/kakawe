@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:orientation="horizontal">
-
+V
         <ImageView
             android:id="@+id/iv_anuncio3_cerrar"
             android:layout_width="25dp"

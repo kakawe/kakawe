@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.admin.kakawev2.AnadirAnuncioDialog3;
 import com.example.admin.kakawev2.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -56,12 +57,11 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         //Log.v("cat", cat);
 
         //declaramos las vistas del dialog2
-        tv_anadir_anuncio2_cerrar = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_cerrar);
+
         tv_anadir_anuncio2_tipo = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_tipo);
         et_anadir_anuncio2_titulo = (EditText) vista.findViewById(R.id.et_anadir_anuncio2_titulo);
         ed_anadir_anuncio2_descripcion = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_descripcion);
-        iv_anadir_anuncio2_imgen_categoria = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imgen_categoria);
-        tv_anadir_anuncio2_categoria = (TextView) vista.findViewById(R.id.tv_anadir_anuncio2_categoria);
+
         iv_anadir_anuncio2_imagen = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imagen);
         bt_anadir_anuncio2_atras = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
         bt_anadir_anuncio2_adelante = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_adelante);
@@ -89,14 +89,11 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v.getId() == R.id.iv_anadir_anuncio2_imagen) {
             obtenerImagen();
-        } else if (v.getId() == R.id.tv_anadir_anuncio2_categoria || v.getId() == R.id.iv_anadir_anuncio2_imgen_categoria) {
-            obtenerCategoria();
+
         } else if (v.getId() == R.id.bt_anadir_anuncio2_atras) {
             atrasDialog();
         } else if (v.getId() == R.id.bt_anadir_anuncio2_adelante) {
             adelanteDialog();
-        } else if (v.getId() == R.id.tv_anadir_anuncio2_cerrar) {
-            cerrarAnuncio();
         }
     }
 

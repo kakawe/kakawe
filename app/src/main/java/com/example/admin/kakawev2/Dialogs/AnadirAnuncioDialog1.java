@@ -26,7 +26,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
 
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio1,null);
         bt_anadir_anuncio1_necesito = (Button)vista.findViewById(R.id.bt_anadir_anuncio1_necesito);
-        bt_anadir_necesito1_ofrezco = (Button)vista.findViewById(R.id.bt_anadir_necesito1_ofrezco);
+        bt_anadir_necesito1_ofrezco = (Button)vista.findViewById(R.id.bt_anadir_anuncio1_ofrezco);
         bt_anadir_anuncio1_necesito.setOnClickListener(this);
         bt_anadir_necesito1_ofrezco.setOnClickListener(this);
 
