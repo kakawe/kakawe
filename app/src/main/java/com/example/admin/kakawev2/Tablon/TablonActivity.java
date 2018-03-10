@@ -64,7 +64,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         //el nombre que se envia, será la comunidad a la que se registre nada mas entrar, o si hace login, habrá que buscar en que comunidad está metido y
         // mostrar los anuncios de esa como predeterminados
         Bundle datos = new Bundle();
-        datos.putString("nombreCom","NogalGuadalix");
+        datos.putString("nombreCom","verde");
         datos.putString("tipo","ofrecen");
         fragmentoSeleccionado2.setArguments(datos);
         crear = new MenuComunidadesFragment();

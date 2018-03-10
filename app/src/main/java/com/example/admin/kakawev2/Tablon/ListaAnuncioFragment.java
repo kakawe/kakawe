@@ -43,7 +43,7 @@ public class ListaAnuncioFragment extends Fragment{
     private RVAdapter rvAdapter;
     LinearLayout contComu;
     View vista;
-    private String nombreCom="NogalGuadalix";
+    private String nombreCom;
     private String pestana,tipo;
     private int contador=0;
 
@@ -61,7 +61,7 @@ public class ListaAnuncioFragment extends Fragment{
         bt__tablon_izquierdo = (Button)getView().findViewById(R.id.bt__tablon_izquierdo);
         bt_tablon_derecho = (Button)getView().findViewById(R.id.bt_tablon_derecho);
         //QUITAR ESTA COMUNIDAD PRECARGADA
-        nombreCom="NogalGuadalix";
+        nombreCom="verde";
 
 
         if (tipo.equals("ofrecen")){

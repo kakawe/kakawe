@@ -2,6 +2,7 @@ package com.example.admin.kakawev2.Anadir_Comunidad;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,18 +13,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
 import com.example.admin.kakawev2.Tablon.ListaAnuncioFragment;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+
+import static android.app.Activity.RESULT_OK;
+
 
 
 /**
@@ -32,17 +46,19 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AnadirDomicilioFragment extends Fragment {
     private static DatabaseReference referencia;
     private Intent intent;
+    private StorageReference storageReference;
+    private ImageView fotoComPredeterminada;
 
 
-    public interface OyenteInsercion{
+    public interface OyenteInsercion {
         public void anadirComunidad(Comunidad comunidad, Vecino vecino);
     }
 
     TextView tv_anadirDomicilio_crear;
-    EditText et_anadirDomicilio_piso,et_anadirDomicilio_puerta;
+    EditText et_anadirDomicilio_piso, et_anadirDomicilio_puerta;
     Button bt_anadirDomicilio_continuar;
 
-    private String nombreCom,localidad,direccion,ventana,contenedor;
+    private String nombreCom, localidad, direccion, ventana, contenedor;
 
     public AnadirDomicilioFragment() {
         // Required empty public constructor
@@ -50,7 +66,7 @@ public class AnadirDomicilioFragment extends Fragment {
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         et_anadirDomicilio_piso = (EditText) getView().findViewById(R.id.et_anadirDomicilio_piso);
         et_anadirDomicilio_puerta = (EditText) getView().findViewById(R.id.et_anadirDomicilio_puerta);
         tv_anadirDomicilio_crear = (TextView) getView().findViewById(R.id.tv_anadirDomicilio_crear);
@@ -59,46 +75,46 @@ public class AnadirDomicilioFragment extends Fragment {
         tv_anadirDomicilio_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (contenedor.equals("contenedorTablon")){
-                    if (ventana.equals("buscar")){
+                if (contenedor.equals("contenedorTablon")) {
+                    if (ventana.equals("buscar")) {
                         Fragment crear = new BuscarComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.contenedorTablon,crear);
+                        ft.replace(R.id.contenedorTablon, crear);
                         ft.addToBackStack(null);
                         ft.commit();
-                        Bundle datos=new Bundle();
-                        datos.putString("contenedor","contenedorTablon");
+                        Bundle datos = new Bundle();
+                        datos.putString("contenedor", "contenedorTablon");
                         crear.setArguments(datos);
-                    }else {
+                    } else {
                         Fragment crear = new CrearComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.contenedorTablon, crear);
                         ft.addToBackStack(null);
                         ft.commit();
-                        Bundle datos=new Bundle();
-                        datos.putString("contenedor","contenedorTablon");
+                        Bundle datos = new Bundle();
+                        datos.putString("contenedor", "contenedorTablon");
                         crear.setArguments(datos);
                     }
-                }else{
-                    if (ventana.equals("buscar")){
+                } else {
+                    if (ventana.equals("buscar")) {
                         Fragment crear = new BuscarComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.contenedor_anadirComunidad,crear);
+                        ft.replace(R.id.contenedor_anadirComunidad, crear);
                         ft.addToBackStack(null);
                         ft.commit();
-                        Bundle datos=new Bundle();
-                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        Bundle datos = new Bundle();
+                        datos.putString("contenedor", "contenedor_anadirComunidad");
                         crear.setArguments(datos);
-                    }else{
+                    } else {
                         Fragment crear = new CrearComunidadFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.contenedor_anadirComunidad,crear);
+                        ft.replace(R.id.contenedor_anadirComunidad, crear);
                         ft.addToBackStack(null);
                         ft.commit();
-                        Bundle datos=new Bundle();
-                        datos.putString("contenedor","contenedor_anadirComunidad");
+                        Bundle datos = new Bundle();
+                        datos.putString("contenedor", "contenedor_anadirComunidad");
                         crear.setArguments(datos);
-                }
+                    }
 
                 }
             }
@@ -115,65 +131,79 @@ public class AnadirDomicilioFragment extends Fragment {
         String piso = et_anadirDomicilio_piso.getText().toString().trim();
         String puerta = et_anadirDomicilio_puerta.getText().toString().trim();
 
-        if (piso.isEmpty()){
-            Toast.makeText(getContext(),"Añada su piso", Toast.LENGTH_LONG).show();
+        if (piso.isEmpty()) {
+            Toast.makeText(getContext(), "Añada su piso", Toast.LENGTH_LONG).show();
             et_anadirDomicilio_piso.requestFocus();
             return;
-        }if (puerta.isEmpty()) {
+        }
+        if (puerta.isEmpty()) {
             Toast.makeText(getContext(), "Añada su puerta", Toast.LENGTH_LONG).show();
             et_anadirDomicilio_puerta.requestFocus();
             return;
         }
 
         //si viene de crear, hay que añadir la comunidad,por lo que es un metodo diferente
-        if (ventana.equals("crear")){
+        if (ventana.equals("crear")) {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
-            Comunidad comunidad = new Comunidad(nombreCom,localidad,direccion);
+            Comunidad comunidad = new Comunidad(nombreCom, localidad, direccion);
             String correo = correoUsuario;
             String mail = correo;
-            Vecino vecino = new Vecino(correo,mail,piso,puerta);
+            Vecino vecino = new Vecino(correo, mail, piso, puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(comunidad.getNombre()).setValue(comunidad);
             referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(vecino);
+            fotoPredeterminadaComunidad();
 
             //si viene de buscar, lo que hay que hacer es agregar el vecino a esa comunidad.
-        }else{
+        } else {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
             String correoUsuario = usuarioActual.getEmail();
             String correo = correoUsuario;
             String mail = correo;
-            Vecino vecino = new Vecino(correo,mail,piso,puerta);
+            Vecino vecino = new Vecino(correo, mail, piso, puerta);
             referencia = FirebaseDatabase.getInstance().getReference("comunidades");
             String key = referencia.push().getKey();
             referencia.child(nombreCom).child("usuarios").child(key).setValue(vecino);
 
         }
-        if (contenedor.equals("contenedorTablon")){
+        if (contenedor.equals("contenedorTablon")) {
             Bundle datos = new Bundle();
             Fragment crear = new ListaAnuncioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            datos.putString("comunidad",nombreCom);
-            datos.putString("tipo","ofrecen");
-            ft.replace(R.id.contenedorTablon,crear);
+            datos.putString("comunidad", nombreCom);
+            datos.putString("tipo", "ofrecen");
+            ft.replace(R.id.contenedorTablon, crear);
             ft.addToBackStack(null);
             ft.commit();
             crear.setArguments(datos);
-        }else{
+        } else {
 
             intent = new Intent(getContext(), TablonActivity.class);
-            intent.putExtra("comunidad",nombreCom);
-            intent.putExtra("tipo","ofrecen");
+            intent.putExtra("comunidad", nombreCom);
+            intent.putExtra("tipo", "ofrecen");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
 
 
+    }
+
+    private void fotoPredeterminadaComunidad() {
+
+
+        Uri uriImage = Uri.parse("android.resource:R.drawable.stewie");
+        //Uri file = Uri.fromFile(new File(R.drawable.stewie));
+        StorageReference rutaCarpetaImg = storageReference.child("ImagenesComunidad").child(nombreCom);
+        //subimos la imagen y verificamos mediante un toast que se subio la foto
+        rutaCarpetaImg.putFile(uriImage);
 
 
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
