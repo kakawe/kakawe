@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="90dp"
+    android:height="90dp"
+    android:viewportWidth="90"
+    android:viewportHeight="90">
+
+    <path
+        android:name="flecha"
+        android:strokeColor="#000000"
+        android:strokeWidth="4"
+        android:strokeMiterLimit="10"
+        android:pathData="M 52.1 61 L 36.1 45 L 52.1 29 " />
+</vector>

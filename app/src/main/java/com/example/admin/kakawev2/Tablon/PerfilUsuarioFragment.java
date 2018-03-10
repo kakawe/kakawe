@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.kakawev2.Dialogs.PerfilUsuarioDialog;
+import com.example.admin.kakawev2.LoginActivity;
 import com.example.admin.kakawev2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,7 +44,7 @@ public class PerfilUsuarioFragment extends Fragment{
     private ImageView iv_perfilUs_fotoUs;
     private TextView et_perfilUs_nombreUsuario;
     private TextView et_perfilUs_correoUsuario;
-    private Button bt_perfilUs_modContrasena,bt_perfilUs_actualiarDatos;
+    private Button bt_perfilUs_modContrasena,bt_perfilUs_actualiarDatos,bt_perfilUs_cerrarSesion;
 
     public PerfilUsuarioFragment() {
         // Required empty public constructor
@@ -55,6 +57,7 @@ public class PerfilUsuarioFragment extends Fragment{
         et_perfilUs_correoUsuario = (TextView)getView().findViewById(R.id.et_perfilUs_correoUsuario);
         bt_perfilUs_modContrasena = (Button)getView().findViewById(R.id.bt_perfilUs_modContrasena);
         bt_perfilUs_actualiarDatos = (Button)getView().findViewById(R.id.bt_perfilUs_actualiarDatos);
+        bt_perfilUs_cerrarSesion = (Button)getView().findViewById(R.id.bt_perfilUs_cerrarSesion);
 
         bt_perfilUs_modContrasena.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +77,16 @@ public class PerfilUsuarioFragment extends Fragment{
             }
         });
 
+        bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cerrarSesion();
+            }
+        });
         cargarPerfil();
 }
+
+
 
     //Carga los datos del usuario actual y los setea en sitio, luego habrá que hacer que el dialog, compare los datos nuevos con los viejos para
     //ver que se quiere cambiar, al igual que la contraseña.
@@ -139,7 +150,13 @@ public class PerfilUsuarioFragment extends Fragment{
                 });
     }
 
-
+    private void cerrarSesion() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getContext(),LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

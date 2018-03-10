@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,16 +23,29 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth instancia;
     private ProgressDialog progreso;
+    private static DatabaseReference referencia;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private EditText et_login_correo,et_login_contrasena;
     private Button bt_login_entrar;
     private TextView tv_login_recordarcontra;
     private ImageView iv_login_registro;
+
+    ArrayList<String> comus_usuario=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 progreso.setMessage("Iniciando sesión...");
                 progreso.show();
                 if (task.isSuccessful()){
-                    loginLanzaTablon();
+                    cargaComunidades();
                 }else{
                     if (task.getException() instanceof FirebaseAuthInvalidUserException){
                         progreso.cancel();
@@ -131,11 +147,53 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private void cargaComunidades() {
+        final String correo= user.getEmail();
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-    private void loginLanzaTablon() {
+                for (DataSnapshot dato : dataSnapshot.getChildren()){
+                    Comunidad com= dato.getValue(Comunidad.class);
+                    final String nombreComunidad= com.getNombre();
+                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
+                    referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot1) {
+                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
+                                Vecino vD = dato2.getValue(Vecino.class);
+                                String corre=vD.getMail();
+                                String corr=corre;
+                                if (corr.equals(correo)){
+                                    comus_usuario.add(nombreComunidad);
+                                    String nombreCom=comus_usuario.get(0);
+                                    loginLanzaTablon(nombreCom);
+                                    Log.v("nombreComunidad",nombreCom);
+
+                                }
+                            }}
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void loginLanzaTablon(String nombrecomunidad) {
         Intent intent = new Intent(LoginActivity.this, TablonActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("comunidad",nombrecomunidad);
         startActivity(intent);
     }
+
 }

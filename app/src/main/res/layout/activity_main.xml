@@ -13,12 +13,11 @@
         android:id="@+id/bt_tablon_anadirAnuncio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Button"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="389dp"
-        android:layout_height="332dp"
-        />
+        android:layout_height="332dp"/>
 
 </LinearLayout>

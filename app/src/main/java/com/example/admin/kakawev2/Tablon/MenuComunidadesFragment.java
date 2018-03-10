@@ -19,14 +19,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.admin.kakawev2.Adaptadores.LVAdapter;
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.CrearComunidadFragment;
+import com.example.admin.kakawev2.Entidades.Comunidad;
+import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -41,7 +50,13 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
     View vista,vistaComunidad;
     LinearLayout contComu;
     CierraDrawer c;
-    ArrayList<String> nombreComunidades;
+    ArrayList<String> comus_usuario=new ArrayList<>();
+    String comunidadActual;
+    LVAdapter adaptador;
+    ListView lv_listaCom;
+    Context context;
+
+    private static DatabaseReference referencia;
 
     public interface CierraDrawer
     {
@@ -60,14 +75,16 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
 
         vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
 
-
+        comunidadActual=getArguments().getString("nombreCom");
+        //Log.v("nombrecomunidadmenu",comunidadActual);
+        lv_listaCom =(ListView)vista.findViewById(R.id.lv_listaCom);
+        lv_listaCom.setClickable(true);
         NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
         NavigationView navegadorCom2 = (NavigationView)vista.findViewById(R.id.menu_comunidades2);
         vistaComunidad=navegadorCom.getHeaderView(0);
         tv_menuComunidades_nombre = (TextView) vistaComunidad.findViewById(R.id.tv_menuComunidades_nombre);
-        tv_menuComunidades_nombre.setText(nombre);
+        tv_menuComunidades_nombre.setText(comunidadActual);
         navegadorCom2.setNavigationItemSelectedListener(this);
-        contComu = (LinearLayout) vista.findViewById(R.id.contComu);
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,22 +97,52 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
 
             }
         });
-        //Log.v("orden","MenuComunidadesFragment");
-        //nombreComunidades=getArguments().getStringArrayList("comus");
-        //Log.v("comunidadesMenu",String.valueOf(nombreComunidades.size()));
+        cargaComunidadesMenuLateral();
         // Retornamos la vista nueva creada
         return vista;
     }
 
-    private void agregarComLateral() {
-        Log.v("llega","llega");
-        LayoutInflater layoutInflater =
-                (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View addView = layoutInflater.inflate(R.layout.campo_menucom_comunidadagregada, null);
-        //Añado TextViews a la vista
-        TextView nomcom_agregada=(TextView)addView.findViewById(R.id.nomcom_agregada);
-        nomcom_agregada.setText("hola hola".toString());
-        contComu.addView(addView);
+    //cargar la comunidad y el adapter del listview
+    private void cargaComunidadesMenuLateral() {
+        final String correo= user.getEmail();
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dato : dataSnapshot.getChildren()){
+                    Comunidad com= dato.getValue(Comunidad.class);
+                    final String nombreComunidad= com.getNombre();
+                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
+                    referencia1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot1) {
+                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
+                                Vecino vD = dato2.getValue(Vecino.class);
+                                String corre=vD.getMail();
+                                String corr=corre;
+                                if (corr.equals(correo)){
+                                    comus_usuario.add(nombreComunidad);
+                                    Log.v("nombreApuntado4",String.valueOf(comus_usuario.size()));
+                                    //enviar cada nombre de comunidad al pager primero
+                                }
+                                adaptador = new LVAdapter(comus_usuario,getContext());
+                                lv_listaCom.setAdapter(adaptador);
+                            }}
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                Log.v("nombreApuntado",String.valueOf(comus_usuario.size()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
@@ -106,8 +153,7 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         Fragment crear = new BuscarComunidadFragment();
         Bundle datos= new Bundle();
         if (id == R.id.m_menuCom_anadir) {
-            agregarComLateral();
-            //cerrarDrawer();
+            cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
             datos.putString("contenedor","contenedorTablon");
             crear.setArguments(datos);
