@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   android:versionCode="1"
   android:versionName="1.0.0"
-  -->
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.admin.kakawev2"
     android:versionCode="1"
@@ -24,11 +24,13 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Tablon.TablonActivity" />
-        <activity android:name=".Anadir_Comunidad.AnadirComunidadActivity"></activity>
+        <activity android:name=".Anadir_Comunidad.AnadirComunidadActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".PerfilUsuarioActivity"></activity>
     </application>
 
 </manifest>

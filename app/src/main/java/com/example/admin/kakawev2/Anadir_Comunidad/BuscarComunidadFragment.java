@@ -126,7 +126,6 @@ public class BuscarComunidadFragment extends Fragment {
                 Comunidad c=dataSnapshot.getValue(Comunidad.class);
                 if (c!=null){
                     progreso.cancel();
-                    //Primero hay que mirar si ese usuario ya está en la comunidad antes de poder unirse a ella
                     mirarSiPertenece(nombreCom,localidad,direccion);
                     progreso.cancel();
                 }else{
@@ -145,19 +144,20 @@ public class BuscarComunidadFragment extends Fragment {
     private void mirarSiPertenece(final String nombreCom, final String localidad, final String direccion) {
         final String correo=user.getEmail();
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-        referencia.child(nombreCom).child("usuarios").addValueEventListener(new ValueEventListener() {
+        referencia.child(nombreCom).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Vecino> lista_vecinos=new ArrayList<>();
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Vecino aV = dato.getValue(Vecino.class);
-                    lista_vecinos.add(aV);
                     String corre=aV.getMail();
-                    if(corre.equals(correo)){
+                    //te deja entrar si munidad hay mucha gente, ya que tarda en comparar los correos
+                    //crear un metodo boolean para ver esto
+                    if(comprobarUser(corre,correo)){
                         Toast.makeText(getContext(), "Ya estás en la comunidad "+nombreCom, Toast.LENGTH_LONG).show();
                         progreso.cancel();
                         return;
                     }else{
+
                         anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
                     }
                 }
@@ -169,6 +169,19 @@ public class BuscarComunidadFragment extends Fragment {
 
             }
         });
+    }
+
+
+
+    private boolean comprobarUser(String corre, String correo) {
+        if (corre.equals(correo)){
+            return false;
+        }else{
+            return true;
+        }
+
+
+
     }
 
     //Cuando se compruebe si esa comunidad realmente existe, pasamos a añadir el domicilio

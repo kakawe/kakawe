@@ -55,7 +55,6 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         vista = inflater.inflate(R.layout.fragment_menu_principal,null);
 
         comActual=getArguments().getString("nombreCom");
-        //Log.v("nombrecomunidadmenu",comActual);
         String nombreUser = user.getDisplayName();
 
         NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_principal);

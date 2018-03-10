@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +9,7 @@
     android:focusableInTouchMode="true"
     android:focusable="true"
     android:weightSum="10"
-    tools:context="com.example.admin.kakawev2.Tablon.PerfilUsuarioFragment">
+    tools:context="com.example.admin.kakawev2.PerfilUsuarioActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
         android:orientation="vertical">
 
         <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/iv_perfilUs_fotoUs"
+            android:id="@+id/iv_perfilUs_fotoUs1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/googleg_standard_color_18"
@@ -29,31 +30,37 @@
             app:civ_shadow_color="#8BC34A"/>
 
         <EditText
-            android:id="@+id/et_perfilUs_nombreUsuario"
+            android:id="@+id/et_perfilUs_nombreUsuario1"
             style="@style/et_registro"
             android:layout_width="match_parent"
             android:drawableLeft="@drawable/ic_action_person"
             android:hint="Nombre Usuario" />
 
         <EditText
-            android:id="@+id/et_perfilUs_correoUsuario"
+            android:id="@+id/et_perfilUs_correoUsuario1"
             style="@style/et_registro"
             android:layout_width="match_parent"
             android:drawableLeft="@drawable/ic_action_correo"
             android:hint="Correo Usuario" />
 
         <Button
-            android:id="@+id/bt_perfilUs_modContrasena"
+            android:id="@+id/bt_perfilUs_modContrasena1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Modificar Contraseña" />
 
         <Button
-            android:id="@+id/bt_perfilUs_actualiarDatos"
+            android:id="@+id/bt_perfilUs_actualiarDatos1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar" />
+
+        <Button
+            android:id="@+id/bt_perfilUs_cerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
     </LinearLayout>
 

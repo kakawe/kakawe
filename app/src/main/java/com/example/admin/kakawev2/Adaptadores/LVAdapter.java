@@ -74,7 +74,6 @@ public class LVAdapter implements ListAdapter {
         View vista = inflater.inflate(R.layout.vista_comunidad,parent,false);
         TextView tv_vistaCom_nomCom = (TextView)vista.findViewById(R.id.tv_vistaCom_nomCom);
         tv_vistaCom_nomCom.setText(listaComunidades.get(position).toString());
-        Log.v("LVAPTERLATERAL",listaComunidades.get(position).toString());
         return vista;
     }
 
