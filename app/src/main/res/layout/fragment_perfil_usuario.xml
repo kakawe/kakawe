@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:focusableInTouchMode="true"
-    android:focusable="true"
     android:weightSum="10"
     tools:context="com.example.admin.kakawev2.Tablon.PerfilUsuarioFragment">
 
@@ -25,8 +25,11 @@
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
-            app:civ_shadow_radius="10"
-            app:civ_shadow_color="#8BC34A"/>
+            app:civ_shadow_color="#8BC34A"
+            app:civ_shadow_radius="10" />
+
+
+
 
         <EditText
             android:id="@+id/et_perfilUs_nombreUsuario"
