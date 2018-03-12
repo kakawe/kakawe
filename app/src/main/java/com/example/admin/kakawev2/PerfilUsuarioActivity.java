@@ -17,11 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Dialogs.ConfirmarSalirAppDialog;
 import com.example.admin.kakawev2.Dialogs.PerfilUsuarioDialog;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +45,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     Uri uri;
 
     TextView bt_perfilUs_modContrasena;
-    private ImageView iv_perfilUs_fotoUs1,iv_perfilUs_cerrar;
+    private ImageView iv_perfilUs_fotoUs1,iv_perfilUs_atras;
     private EditText et_perfilUs_nombreUsuario,et_perfilUs_correoUsuario;
     private Button bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
 
@@ -59,14 +57,11 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
 
         comunidadActual = getIntent().getStringExtra("comunidad");
         iv_perfilUs_fotoUs1 = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs);
+        iv_perfilUs_atras = (ImageView) findViewById(R.id.iv_perfilUs_atras);
         et_perfilUs_nombreUsuario = (EditText) findViewById(R.id.et_perfilUs_nombre);
         et_perfilUs_correoUsuario = (EditText) findViewById(R.id.et_perfilUs_email);
         bt_perfilUs_modContrasena = (TextView) findViewById(R.id.bt_perfilUs_modContrasena);
         bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos);
-        //bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
-
-        //traer imager al perfil usuario
-        cargarImagenPerfilUsuario();
 
         //metodo para acceder a la galetia
         iv_perfilUs_fotoUs1.setOnClickListener(new View.OnClickListener() {
@@ -104,20 +99,17 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                 df.show(getFragmentManager(), "Confirmar salir de la App");
             }
         });*/
+        iv_perfilUs_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("comunidad", comunidadActual);
+                startActivity(intent);
+            }
+        });
         cargarPerfil();
-    }
-
-    //traer imagen menu comunidad
-    private void cargarImagenPerfilUsuario() {
-        FirebaseAuth au = FirebaseAuth.getInstance();
-        String correo = au.getCurrentUser().getEmail();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(correo);
-        Glide.with(PerfilUsuarioActivity.this).using(new FirebaseImageLoader())
-                .load(refGuardar)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(iv_perfilUs_fotoUs1);
     }
 
     //cargamos la imagen desde firebase
