@@ -135,7 +135,6 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         AnadirAnuncioDialog3 ad3 = new AnadirAnuncioDialog3();
         ad3.show(getFragmentManager(), "ad3");
         ad3.setArguments(bundle);
-
         //DialogFragment ad2 = (DialogFragment) getFragmentManager().findFragmentByTag("ad2");
         //ad2.dismiss();
 
