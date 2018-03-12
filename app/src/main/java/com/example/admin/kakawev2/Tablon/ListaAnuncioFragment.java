@@ -63,14 +63,12 @@ public class ListaAnuncioFragment extends Fragment{
         nombreCom = getArguments().getString("nombreCom");
         tipo = getArguments().getString("tipo");
 
-        fb_listar_anadirAnuncio = (FloatingActionButton)vista.findViewById(R.id.fb_listar_anadirAnuncio);
+        fb_listar_anadirAnuncio = (FloatingActionButton)vista.findViewById(R.id.fab_listar_anandir_anuncio);
         rv_tablon_listatablon = (RecyclerView) vista.findViewById(R.id.rv_tablon_listatablon);
         rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(getContext()));
 
         bt_tablon_izquierdo = (Button) vista.findViewById(R.id.bt_tablon_izquierdo);
         bt_tablon_derecho = (Button) vista.findViewById(R.id.bt_tablon_derecho);
-
-        fb_listar_anadirAnuncio = (FloatingActionButton) vista.findViewById(R.id.fb_listar_anadirAnuncio);
 
 
         if (tipo.equals("Ofrezco")) {
