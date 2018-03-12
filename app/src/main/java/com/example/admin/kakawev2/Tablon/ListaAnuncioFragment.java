@@ -70,8 +70,6 @@ public class ListaAnuncioFragment extends Fragment{
         bt_tablon_izquierdo = (Button) vista.findViewById(R.id.bt_tablon_izquierdo);
         bt_tablon_derecho = (Button) vista.findViewById(R.id.bt_tablon_derecho);
 
-
-
         fb_listar_anadirAnuncio = (FloatingActionButton) vista.findViewById(R.id.fb_listar_anadirAnuncio);
 
 
@@ -175,6 +173,7 @@ public class ListaAnuncioFragment extends Fragment{
                     String puerta = anuncio_oferta.get(position).getPuerta();
                     String anunciante= anuncio_oferta.get(position).getNombreAnunciante();
                     String categoria=anuncio_oferta.get(position).getCategoria();
+                    String fechaCad = anuncio_oferta.get(position).getFechaCaducidad();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
@@ -186,6 +185,7 @@ public class ListaAnuncioFragment extends Fragment{
                     b.putString("PisoAnuncio", piso);
                     b.putString("PuertaAnuncio", puerta);
                     b.putString("Anunciante",anunciante);
+                    b.putString("fechaCad",fechaCad);
 
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
@@ -218,6 +218,7 @@ public class ListaAnuncioFragment extends Fragment{
                     String puerta = anuncio_demanda.get(position).getPuerta();
                     String anunciante= anuncio_demanda.get(position).getNombreAnunciante();
                     String categoria=anuncio_demanda.get(position).getCategoria();
+                    String fechaCad = anuncio_demanda.get(position).getFechaCaducidad();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
@@ -229,6 +230,7 @@ public class ListaAnuncioFragment extends Fragment{
                     b.putString("PisoAnuncio", piso);
                     b.putString("PuertaAnuncio", puerta);
                     b.putString("Anunciante",anunciante);
+                    b.putString("fechaCad",fechaCad);
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");
@@ -268,7 +270,7 @@ public class ListaAnuncioFragment extends Fragment{
 
     public void obtenerDemandas() {
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-            referencia.child(nombreCom).child("Anuncios").child("Necesito").addValueEventListener(new ValueEventListener() {
+        referencia.child(nombreCom).child("Anuncios").child("Necesito").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Anuncio2> anuncio_demanda = new ArrayList<>();

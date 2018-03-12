@@ -159,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                 for (DataSnapshot dato : dataSnapshot.getChildren()){
                     Comunidad com= dato.getValue(Comunidad.class);
                     final String nombreComunidad= com.getNombre();
-                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
+                    final DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
                     referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot1) {
@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String nombreCom=comus_usuario.get(0);
                                     loginLanzaTablon(nombreCom);
                                     Log.v("nombreComunidad",nombreCom);
-
+                                    referencia1.removeEventListener(this);
                                 }
                             }}
                         }

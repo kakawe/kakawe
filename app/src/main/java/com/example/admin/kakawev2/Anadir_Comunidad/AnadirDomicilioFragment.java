@@ -156,6 +156,9 @@ public class AnadirDomicilioFragment extends Fragment {
             referencia.child(comunidad.getNombre()).child("usuarios").child(key).setValue(vecino);
             fotoPredeterminadaComunidad();
 
+
+
+
             //si viene de buscar, lo que hay que hacer es agregar el vecino a esa comunidad.
         } else {
             FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
@@ -172,8 +175,8 @@ public class AnadirDomicilioFragment extends Fragment {
             Bundle datos = new Bundle();
             Fragment crear = new ListaAnuncioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            datos.putString("comunidad", nombreCom);
-            datos.putString("tipo", "ofrecen");
+            datos.putString("nombreCom", nombreCom);
+            datos.putString("tipo", "Ofrezco");
             ft.replace(R.id.contenedorTablon, crear);
             ft.addToBackStack(null);
             ft.commit();
@@ -182,7 +185,7 @@ public class AnadirDomicilioFragment extends Fragment {
 
             intent = new Intent(getContext(), TablonActivity.class);
             intent.putExtra("comunidad", nombreCom);
-            intent.putExtra("tipo", "ofrecen");
+            intent.putExtra("tipo", "Ofrezco");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -193,13 +196,11 @@ public class AnadirDomicilioFragment extends Fragment {
 
     private void fotoPredeterminadaComunidad() {
 
-
         Uri uriImage = Uri.parse("android.resource:R.drawable.stewie");
         //Uri file = Uri.fromFile(new File(R.drawable.stewie));
         StorageReference rutaCarpetaImg = storageReference.child("ImagenesComunidad").child(nombreCom);
         //subimos la imagen y verificamos mediante un toast que se subio la foto
         rutaCarpetaImg.putFile(uriImage);
-
 
     }
 

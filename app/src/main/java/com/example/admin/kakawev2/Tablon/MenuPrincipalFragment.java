@@ -18,9 +18,18 @@ import android.widget.TextView;
 
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
+import com.example.admin.kakawev2.Entidades.Vecino;
+import com.example.admin.kakawev2.FragmentMisAnuncios;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,7 +37,9 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class MenuPrincipalFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener{
 
-    TextView tv_menuPrincipal_nombre,tv_menuPrincipal_domicilio;
+    private static DatabaseReference referencia;
+
+    TextView tv_menuPrincipal_comunidad,tv_menuPrincipal_domicilio;
     View vista,vistaPrincipal,vistaPrincipal1;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -61,9 +72,10 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         vistaPrincipal = navegadorCom.getHeaderView(0);
         vistaPrincipal1= navegadorCom.getHeaderView(1);
         navegadorCom.setNavigationItemSelectedListener(this);
-        tv_menuPrincipal_nombre = (TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_nombre);
+        tv_menuPrincipal_comunidad = (TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_comunidad);
         tv_menuPrincipal_domicilio=(TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_domicilio);
-        tv_menuPrincipal_nombre.setText(nombreUser);
+        tv_menuPrincipal_comunidad.setText(comActual);
+
         //tv_menuPrincipal_domicilio.setText("Primero, "+"derecha");
 
 
@@ -71,7 +83,7 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
 
         final Bundle datos = new Bundle();
 
-        tv_menuPrincipal_nombre.setOnClickListener(new View.OnClickListener() {
+        tv_menuPrincipal_comunidad.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -94,11 +106,40 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
                 crear.setArguments(datos);
             }
         });
-
+        cargaComunidad();
         // Retornamos la vista nueva creada
         return vista;
     }
 
+    private void cargaComunidad() {
+        final String correo = user.getEmail();
+        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+        referencia.child(comActual).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Vecino> listado_Vecinos = new ArrayList<>();
+                for (DataSnapshot dato : dataSnapshot.getChildren()) {
+                    Vecino vc = dato.getValue(Vecino.class);
+                    listado_Vecinos.add(vc);
+                    String corre = vc.getMail();
+                    String key = dato.getKey();
+                    if (corre.equals(correo)) {
+                        String piso = vc.getPiso();
+                        String puerta = vc.getPuerta();
+                        String pisoyPuerta = piso + " " + puerta;
+                        tv_menuPrincipal_domicilio.setText(pisoyPuerta);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -109,16 +150,26 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
         if (id == R.id.m_menuP_ofrecen) {
             cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
-            datos.putString("tipo","ofrecen");
+            datos.putString("tipo","Ofrezco");
             datos.putString("nombreCom",comActual);
             crear.setArguments(datos);
 
         }if (id == R.id.m_menuP_necesitan) {
             cerrarDrawer();
             fragmentManager.replace(R.id.contenedorTablon,crear).commit();
-            datos.putString("tipo","necesitan");
+            datos.putString("tipo","Necesito");
             datos.putString("nombreCom",comActual);
             crear.setArguments(datos);
+        }if(id== R.id.m_menuP_historial){
+
+            FragmentTransaction fm = getFragmentManager().beginTransaction();
+            Fragment listado = new FragmentMisAnuncios();
+            cerrarDrawer();
+            fm.replace(R.id.contenedorTablon,listado).commit();
+            Bundle dato= new Bundle();
+            dato.putString("nombreCom",comActual);
+            listado.setArguments(dato);
+
         }
         return true;
     }

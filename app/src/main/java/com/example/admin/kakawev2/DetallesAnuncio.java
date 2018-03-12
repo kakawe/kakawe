@@ -17,7 +17,7 @@ public class DetallesAnuncio extends DialogFragment{
 
     View vista;
     ImageView iv_detallesAnuncio_fotoAnuncio,iv_detallesAnuncio_cerrar;
-    TextView tv_detallesAnuncio_tituloAnuncio, tv_detallesAnuncio_mensajeAnuncio,tv_detallesAnuncio_autor_domicilio,tv_detallesAnuncio_autor_nombre;
+    TextView tv_detallesAnuncio_tituloAnuncio, tv_detallesAnuncio_mensajeAnuncio,tv_detallesAnuncio_autor_domicilio,tv_detallesAnuncio_autor_nombre,tv_detallesAnuncio_disponibilidad;
     OyenteDialog oyente;
 
     public interface OyenteDialog {
@@ -36,6 +36,7 @@ public class DetallesAnuncio extends DialogFragment{
         String puerta_str=(String)b.get("PuertaAnuncio");
         String anunciante = (String)b.get("Anunciante");
         String categoria = (String)b.get("Categoria");
+        String fechaCad = (String)b.get("fechaCad");
 
         String tituloCompleto = tipo_str+" "+titulo_str;
         String direccionCompleta = piso_str+" "+puerta_str;
@@ -50,12 +51,14 @@ public class DetallesAnuncio extends DialogFragment{
         tv_detallesAnuncio_mensajeAnuncio = (TextView)vista.findViewById(R.id.tv_detallesAnuncio_mensajeAnuncio);
         tv_detallesAnuncio_autor_domicilio = (TextView)vista.findViewById(R.id.tv_detallesAnuncio_autor_domicilio);
         tv_detallesAnuncio_autor_nombre = (TextView)vista.findViewById(R.id.tv_detallesAnuncio_autor_nombre);
+        tv_detallesAnuncio_disponibilidad = (TextView)vista.findViewById(R.id.tv_detallesAnuncio_disponibilidad);
 
         //seteamos los datos a al dialog
         tv_detallesAnuncio_tituloAnuncio.setText(tituloCompleto);
         tv_detallesAnuncio_mensajeAnuncio.setText(mensaje_str);
         tv_detallesAnuncio_autor_domicilio.setText(direccionCompleta);
         tv_detallesAnuncio_autor_nombre.setText(anunciante);
+        tv_detallesAnuncio_disponibilidad.setText(fechaCad);
 
         iv_detallesAnuncio_cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
