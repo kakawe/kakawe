@@ -45,7 +45,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     Uri uri;
 
     TextView bt_perfilUs_modContrasena;
-    private ImageView iv_perfilUs_fotoUs1,iv_perfilUs_cerrar;
+    private ImageView iv_perfilUs_fotoUs1,iv_perfilUs_atras;
     private EditText et_perfilUs_nombreUsuario,et_perfilUs_correoUsuario;
     private Button bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
 
@@ -57,12 +57,11 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
 
         comunidadActual = getIntent().getStringExtra("comunidad");
         iv_perfilUs_fotoUs1 = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs);
+        iv_perfilUs_atras = (ImageView) findViewById(R.id.iv_perfilUs_atras);
         et_perfilUs_nombreUsuario = (EditText) findViewById(R.id.et_perfilUs_nombre);
         et_perfilUs_correoUsuario = (EditText) findViewById(R.id.et_perfilUs_email);
         bt_perfilUs_modContrasena = (TextView) findViewById(R.id.bt_perfilUs_modContrasena);
         bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos);
-        //bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
-
 
         //metodo para acceder a la galetia
         iv_perfilUs_fotoUs1.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +99,16 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                 df.show(getFragmentManager(), "Confirmar salir de la App");
             }
         });*/
+        iv_perfilUs_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("comunidad", comunidadActual);
+                startActivity(intent);
+            }
+        });
         cargarPerfil();
     }
 

@@ -29,15 +29,6 @@
             android:textColor="@android:color/white"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_vistaCom_domCom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_bold"
-            android:text="1º A"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
-
     </LinearLayout>
 
 </LinearLayout>

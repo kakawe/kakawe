@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.Entidades.Anuncio2;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,17 +47,19 @@ public class FragmentMisAnuncios extends Fragment {
     }
 
     private void cargarListado() {
-        referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-        referencia.child(nombreCom).child("Anuncios").child("Ofrezco").addValueEventListener(new ValueEventListener() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String alias = user.getDisplayName();
+        referencia = FirebaseDatabase.getInstance().getReference("AnunciosUsuarios");
+        referencia.child(alias).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Anuncio2> anuncio_oferta = new ArrayList<>();
+                ArrayList<Anuncio2> anuncios = new ArrayList<>();
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Anuncio2 aO = dato.getValue(Anuncio2.class);
-                    Log.v("baseDatos",String.valueOf(anuncio_oferta.size()));
-                    anuncio_oferta.add(aO);
+                    anuncios.add(aO);
+                    Log.v("datosUsuarios",aO.toString());
                 }
-                rvAdapter = new RVAdapter(anuncio_oferta);
+                rvAdapter = new RVAdapter(anuncios);
                 rv_tablon_misAnuncios.setAdapter(rvAdapter);
             }
 

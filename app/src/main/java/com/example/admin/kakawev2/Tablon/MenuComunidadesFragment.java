@@ -98,8 +98,6 @@ public class MenuComunidadesFragment extends Fragment{
             public void onClick(View v) {
                 cerrarDrawer();
                 Intent intent = new Intent(getContext(), PerfilUsuarioActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("comunidad",comunidadActual);
                 startActivity(intent);
             }
@@ -109,8 +107,6 @@ public class MenuComunidadesFragment extends Fragment{
             public void onClick(View v) {
                 cerrarDrawer();
                 Intent intent = new Intent(getContext(), PerfilUsuarioActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("comunidad",comunidadActual);
                 startActivity(intent);
             }
