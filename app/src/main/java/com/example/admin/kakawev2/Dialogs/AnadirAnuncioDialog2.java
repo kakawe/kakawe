@@ -24,13 +24,13 @@ import static android.app.Activity.RESULT_OK;
  * Created by jose on 19/02/2018.
  */
 
-public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener,AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
+public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener, AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
 
     String nomComunidad;
     View vista;
     TextView tv_anadir_anuncio2_tipo;
     EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion,ed_anadir_anuncio2_categoria;
-    ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria,iv_anuncio2_cerrar;
+    ImageView iv_anadir_anuncio2_imagen,iv_anuncio2_cerrar;
     Button bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
     private String tv_ruta_imagen;
     private String tipo, tipo1;
@@ -49,12 +49,10 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         LayoutInflater inflater = getActivity().getLayoutInflater();
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio2, null);
 
+
         nomComunidad = getArguments().getString("nomComunidad");
         tipo = getArguments().getString("tipo") + " ...";
         tipo1 = getArguments().getString("tipo");
-        Log.v("clicados", tipo);
-        categoria = getArguments().getString("categoria");
-        Log.v("clicados", categoria);
 
         //declaramos las vistas del dialog2
         iv_anuncio2_cerrar = (ImageView) vista.findViewById(R.id.iv_anuncio2_cerrar);
@@ -164,7 +162,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
 
     //metodo para obtener la imagen y el texto de la catgoria
     private void obtenerCategoria() {
+
         AnadirAnuncioCategoriaDialog2 adc2 = new AnadirAnuncioCategoriaDialog2();
+        adc2.setTargetFragment(AnadirAnuncioDialog2.this, 0);
         Bundle datos= new Bundle();
         categoria=ed_anadir_anuncio2_categoria.getText().toString();
         datos.putString("categoria2",categoria);
@@ -174,12 +174,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
 
     }
 
-
     @Override
     public void seleccionada(String categoria) {
-        String cat = categoria;
-        Log.v("clicado","estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getActivity().getFragmentManager().findFragmentByTag("ad2");
-        a.setearCategoria(categoria);
+        Log.v("hasclicado","llegaste"+categoria);
+        ed_anadir_anuncio2_categoria.setText(categoria);
     }
 }

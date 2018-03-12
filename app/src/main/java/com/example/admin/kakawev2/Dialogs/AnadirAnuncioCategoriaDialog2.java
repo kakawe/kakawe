@@ -34,7 +34,7 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
     ImageView iv_anadir_anuncio2_imgen_categoria;
     private RecyclerView rv_dg_anadir_categoria;
     private RVAdapterAnuncioCategoria adaptadorTabla;
-
+    private CategoriaSeleccionada claseLlamadora;
 
 
     //creamos un interfaz para poder setear el dato categoria en en añadirAnuncioDialog2
@@ -61,10 +61,6 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
         adaptadorTabla = new RVAdapterAnuncioCategoria(ObtenerCategorias(), categoriaSeleccionada);
         rv_dg_anadir_categoria.setAdapter(adaptadorTabla);
         rv_dg_anadir_categoria.setClickable(true);
-
-
-
-
         final GestureDetector mGestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -86,11 +82,8 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
                         String cat = categorias.get(posicion).getCategoria();
                         Log.v("clicado",String.valueOf(cat));
                         //cat_selected=(CategoriaSeleccionada)getActivity();
-                        AnadirAnuncioDialog2 a = new AnadirAnuncioDialog2();
-                        Bundle datos = new Bundle();
-                        datos.putString("categoria",cat);
-                        a.setArguments(datos);
-                        cat_selected.seleccionada(cat);
+                        claseLlamadora=(CategoriaSeleccionada)getTargetFragment();
+                        claseLlamadora.seleccionada(String.valueOf(cat));
                         Log.v("categoria", cat);
                         Toast.makeText(getActivity(), "Clicado " + cat, Toast.LENGTH_LONG).show();
                         cerrar();

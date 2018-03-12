@@ -37,7 +37,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaAnuncioFragment extends Fragment{
+public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
 
     private static DatabaseReference referencia;
 
@@ -287,4 +287,11 @@ public class ListaAnuncioFragment extends Fragment{
         });
     }
 
+    @Override
+    public void seleccionada(String categoria) {
+        String cat = categoria;
+        Log.v("clicado","estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getActivity().getFragmentManager().findFragmentByTag("ad2");
+        a.setearCategoria(categoria);
+    }
 }
