@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Created by jose on 26/02/2018.
  */
-
 public class RVAdapterAnuncioCategoria extends RecyclerView.Adapter<RVAdapterAnuncioCategoria.ViewHolder>{
     public List<Categoria> listaCategoria;
     public String categoriaSeleccionada;

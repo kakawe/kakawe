@@ -47,6 +47,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
             Bundle bundle = new Bundle();
             bundle.putString("tipo","Necesito");
             bundle.putString("nomComunidad",nomComunidad);
+            bundle.putString("categoria","Selecciona categoria");
             ad2.setArguments(bundle);
 
         }else{
@@ -54,6 +55,7 @@ public class AnadirAnuncioDialog1 extends DialogFragment implements View.OnClick
             Bundle bundle = new Bundle();
             bundle.putString("tipo","Ofrezco");
             bundle.putString("nomComunidad",nomComunidad);
+            bundle.putString("categoria","Selecciona categoria");
             ad2.setArguments(bundle);
 
         }

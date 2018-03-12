@@ -73,7 +73,11 @@ public class LVAdapter implements ListAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View vista = inflater.inflate(R.layout.vista_comunidad,parent,false);
         TextView tv_vistaCom_nomCom = (TextView)vista.findViewById(R.id.tv_vistaCom_nomCom);
+        TextView tv_vistaCom_domCom = (TextView)vista.findViewById(R.id.tv_vistaCom_domCom);
+
+
         tv_vistaCom_nomCom.setText(listaComunidades.get(position).toString());
+
         return vista;
     }
 

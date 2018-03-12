@@ -39,7 +39,6 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
 
     //creamos un interfaz para poder setear el dato categoria en en añadirAnuncioDialog2
     CategoriaSeleccionada cat_selected;
-    AnadirAnuncioDialog2 a;
     public interface CategoriaSeleccionada
     {
         public void seleccionada(String categoria);
@@ -61,6 +60,7 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
 
         adaptadorTabla = new RVAdapterAnuncioCategoria(ObtenerCategorias(), categoriaSeleccionada);
         rv_dg_anadir_categoria.setAdapter(adaptadorTabla);
+        rv_dg_anadir_categoria.setClickable(true);
 
 
 
@@ -77,20 +77,21 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
                 try {
+
                     View child = rv.findChildViewUnder(e.getX(), e.getY());
                     if (child != null && mGestureDetector.onTouchEvent(e)) {
                         int posicion = rv.getChildAdapterPosition(child);
 
-
                         //obtenemos los datos segun su posicion en el array
                         String cat = categorias.get(posicion).getCategoria();
-                        int fot = categorias.get(posicion).getFotoCategoria();
-
-                        cat_selected=(CategoriaSeleccionada)getActivity();
+                        Log.v("clicado",String.valueOf(cat));
+                        //cat_selected=(CategoriaSeleccionada)getActivity();
+                        AnadirAnuncioDialog2 a = new AnadirAnuncioDialog2();
+                        Bundle datos = new Bundle();
+                        datos.putString("categoria",cat);
+                        a.setArguments(datos);
                         cat_selected.seleccionada(cat);
-
                         Log.v("categoria", cat);
-
                         Toast.makeText(getActivity(), "Clicado " + cat, Toast.LENGTH_LONG).show();
                         cerrar();
                         builder.setView(vista).create();

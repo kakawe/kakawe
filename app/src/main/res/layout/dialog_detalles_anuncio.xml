@@ -2,70 +2,161 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_detallesAnuncio_cardView"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_detallesAnuncio_cerrar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_cerrar" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_detallesAnuncio_autor_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/lato"
+                    android:text="Adrián Marcos"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_detallesAnuncio_autor_domicilio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="1º A"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_detallesAnuncio_autor_foto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_social" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_detallesAnuncio_fotoAnuncio"
-                    android:layout_width="429dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/stewie" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_detallesAnuncio_tipoAnuncio"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:text="Tipo"
-                android:textSize="18sp" />
-
-            <TextView
                 android:id="@+id/tv_detallesAnuncio_tituloAnuncio"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:text="Titulo"
-                android:textSize="18sp" />
+                android:layout_gravity="end"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/lato_black"
+                android:text="Ofrezco verduras frescas"
+                android:textSize="35sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_detallesAnuncio_fotoAnuncio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/gris"
+                    android:src="@drawable/stewie" />
+
+                <ImageView
+                    android:id="@+id/iv_detallesAnuncio_categoria"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/bg_social" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_detallesAnuncio_mensajeAnuncio"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:text="Mensaje"
-                android:textSize="18sp" />
+                android:layout_marginHorizontal="40dp"
+                android:fontFamily="@font/lato"
+                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in "
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_detallesAnuncio_disponibilidad"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/bg_social" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Anuncio disponible hasta"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_detallesAnuncio_disponibilidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="16 de Septiembre a las 22:30"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
+        
+    </ScrollView>
 
 </LinearLayout>
+

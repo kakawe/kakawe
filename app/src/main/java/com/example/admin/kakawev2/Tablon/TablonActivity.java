@@ -65,7 +65,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
         Bundle datos = new Bundle();
         datos.putString("nombreCom",nombrecom);
-        datos.putString("tipo","ofrecen");
+        datos.putString("tipo","Ofrezco");
         fragmentoSeleccionado2.setArguments(datos);
         t2.commit();
 

@@ -19,13 +19,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_vista_anuncio_titulo;
-        private TextView tv_vista_anuncio_descripcion;
+        private TextView tv_vista_anuncio_autor_nombre;
         //private ImageView iv_vista_anuncio_foto;
 
         public ViewHolder(View v){
             super(v);
             tv_vista_anuncio_titulo = (TextView)v.findViewById(R.id.tv_vista_anuncio_titulo);
-            tv_vista_anuncio_descripcion = (TextView)v.findViewById(R.id.tv_vista_anuncio_autor_nombre);
+            tv_vista_anuncio_autor_nombre = (TextView)v.findViewById(R.id.tv_vista_anuncio_autor_nombre);
             //iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
         }
     }
@@ -45,7 +45,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(RVAdapter.ViewHolder holder, int position) {
         holder.tv_vista_anuncio_titulo.setText(anuncioTablon.get(position).getTitulo());
-        holder.tv_vista_anuncio_descripcion.setText(anuncioTablon.get(position).getDescripcion());
+        holder.tv_vista_anuncio_autor_nombre.setText(anuncioTablon.get(position).getNombreAnunciante());
+
         //holder.iv_vista_anuncio_foto.setImageResource(anuncioLista.get(position).getFoto());
     }
 

@@ -20,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,18 +54,18 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MenuComunidadesFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuComunidadesFragment extends Fragment{
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    Button btn_menu_comunidades_anadir;
     TextView tv_menuComunidades_nombre;
+    ImageView iv_menuComunidades_foto;
     View vista,vistaComunidad;
-    LinearLayout contComu;
     CierraDrawer c;
     ArrayList<String> comus_usuario=new ArrayList<>();
     String comunidadActual;
     LVAdapter adaptador;
     ListView lv_listaCom;
-    Context context;
 
     private static DatabaseReference referencia;
 
@@ -80,18 +82,19 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
 
+        vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
+        btn_menu_comunidades_anadir = (Button)vista.findViewById(R.id.btn_menu_comunidades_anadir);
         comunidadActual=getArguments().getString("nombreCom");
         //Log.v("nombrecomunidadmenu",comunidadActual);
         lv_listaCom =(ListView)vista.findViewById(R.id.lv_listaCom);
         lv_listaCom.setClickable(true);
-        NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
-        NavigationView navegadorCom2 = (NavigationView)vista.findViewById(R.id.menu_comunidades2);
-        vistaComunidad=navegadorCom.getHeaderView(0);
-        tv_menuComunidades_nombre = (TextView) vistaComunidad.findViewById(R.id.tv_menuComunidades_nombre);
-        tv_menuComunidades_nombre.setText(comunidadActual);
-        navegadorCom2.setNavigationItemSelectedListener(this);
+        //NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
+        //vistaComunidad=navegadorCom.getHeaderView(0);
+        tv_menuComunidades_nombre = (TextView) vista.findViewById(R.id.tv_menuComunidades_nombre);
+        iv_menuComunidades_foto = (ImageView)vista.findViewById(R.id.iv_menuComunidades_foto);
+        tv_menuComunidades_nombre.setText(user.getDisplayName());
+        //navegadorCom2.setNavigationItemSelectedListener(this);
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,17 +104,34 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("comunidad",comunidadActual);
                 startActivity(intent);
-
-                /*Fragment crear = new PerfilUsuarioFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedorTablon,crear);
-                ft.addToBackStack(null);
-                ft.commit();*/
+            }
+        });
+        iv_menuComunidades_foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cerrarDrawer();
+                Intent intent = new Intent(getContext(), PerfilUsuarioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("comunidad",comunidadActual);
+                startActivity(intent);
+            }
+        });
+        btn_menu_comunidades_anadir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
+                Fragment crear = new BuscarComunidadFragment();
+                Bundle datos= new Bundle();
+                cerrarDrawer();
+                fragmentManager.replace(R.id.contenedorTablon,crear).commit();
+                datos.putString("contenedor","contenedorTablon");
+                crear.setArguments(datos);
 
             }
         });
         lv_listaCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView comunidad = view.findViewById(R.id.tv_vistaCom_nomCom);
                 comunidadActual = comunidad.getText().toString();
@@ -175,21 +195,6 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         });
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
-        Fragment crear = new BuscarComunidadFragment();
-        Bundle datos= new Bundle();
-        if (id == R.id.m_menuCom_anadir) {
-            cerrarDrawer();
-            fragmentManager.replace(R.id.contenedorTablon,crear).commit();
-            datos.putString("contenedor","contenedorTablon");
-            crear.setArguments(datos);
-
-        }
-        return true;
-    }
     public void cerrarDrawer()
     {
       FragmentActivity fa= getActivity();

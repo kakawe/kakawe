@@ -13,6 +13,7 @@ public class Anuncio2 {
      */
     String key;
     String correoAnunciante;
+    String nombreAnunciante;
     String titulo;
     String tipo;
     String categoria;
@@ -20,22 +21,49 @@ public class Anuncio2 {
     String descripcion;
     String fechaCaducidad;
     String horaCaducidad;
+    String piso;
+    String puerta;
 
     public Anuncio2() {
     }
 
-    public Anuncio2(String key, String correoAnunciante, String titulo, String tipo, String categoria, String descripcion, String fechaCaducidad, String horaCaducidad) {
+    public Anuncio2(String key, String correoAnunciante, String nombreAnunciante, String titulo, String tipo, String categoria, String descripcion, String fechaCaducidad, String horaCaducidad, String piso, String puerta) {
         this.key = key;
         this.correoAnunciante = correoAnunciante;
+        this.nombreAnunciante = nombreAnunciante;
         this.titulo = titulo;
         this.tipo = tipo;
         this.categoria = categoria;
         this.descripcion = descripcion;
         this.fechaCaducidad = fechaCaducidad;
         this.horaCaducidad = horaCaducidad;
+        this.piso = piso;
+        this.puerta = puerta;
     }
 
+    public String getNombreAnunciante() {
+        return nombreAnunciante;
+    }
 
+    public void setNombreAnunciante(String nombreAnunciante) {
+        this.nombreAnunciante = nombreAnunciante;
+    }
+
+    public String getPiso() {
+        return piso;
+    }
+
+    public void setPiso(String piso) {
+        this.piso = piso;
+    }
+
+    public String getPuerta() {
+        return puerta;
+    }
+
+    public void setPuerta(String puerta) {
+        this.puerta = puerta;
+    }
 
     public String getKey() {
         return key;
@@ -107,5 +135,22 @@ public class Anuncio2 {
 
     public void setFechaCaducidad(String fechaCaducidad) {
         this.fechaCaducidad = fechaCaducidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Anuncio2{" +
+                "key='" + key + '\'' +
+                ", correoAnunciante='" + correoAnunciante + '\'' +
+                ", nombreAnunciante='" + nombreAnunciante + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaCaducidad='" + fechaCaducidad + '\'' +
+                ", horaCaducidad='" + horaCaducidad + '\'' +
+                ", piso='" + piso + '\'' +
+                ", puerta='" + puerta + '\'' +
+                '}';
     }
 }

@@ -2,44 +2,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.admin.kakawev2.Tablon.MenuComunidadesFragment"
-    android:orientation="vertical">
+    android:background="@color/gris"
+    android:orientation="vertical"
+    tools:context="com.example.admin.kakawev2.Tablon.MenuComunidadesFragment">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/menu_comunidades"
+    <include
+        layout="@layout/header_menu_comunidades"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@color/marron"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_menu_comunidades"
-        app:itemTextColor="@color/blanco" >
+        android:layout_height="170dp" />
 
-    </android.support.design.widget.NavigationView>
+    <TextView
+        style="@style/menu_subheader"
+        android:text="Mis comunidades"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btn_menu_comunidades_anadir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gris"
+        android:fontFamily="@font/lato_black"
+        android:text="Añadir"
+        android:textAllCaps="false"
+        android:textColor="@color/blanco"
+        android:textSize="17sp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center">
-
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <ListView
             android:id="@+id/lv_listaCom"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-
     </ScrollView>
-    <android.support.design.widget.NavigationView
-        android:id="@+id/menu_comunidades2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/marron"
-        android:fitsSystemWindows="true"
-        app:itemTextColor="@color/blanco"
-        app:menu="@menu/menu_comunidades">
 
-    </android.support.design.widget.NavigationView>
 
 </LinearLayout>
