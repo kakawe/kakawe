@@ -86,15 +86,13 @@ public class MenuComunidadesFragment extends Fragment{
         vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
         btn_menu_comunidades_anadir = (Button)vista.findViewById(R.id.btn_menu_comunidades_anadir);
         comunidadActual=getArguments().getString("nombreCom");
-        //Log.v("nombrecomunidadmenu",comunidadActual);
         lv_listaCom =(ListView)vista.findViewById(R.id.lv_listaCom);
         lv_listaCom.setClickable(true);
-        //NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
-        //vistaComunidad=navegadorCom.getHeaderView(0);
+
         tv_menuComunidades_nombre = (TextView) vista.findViewById(R.id.tv_menuComunidades_nombre);
         iv_menuComunidades_foto = (ImageView)vista.findViewById(R.id.iv_menuComunidades_foto);
         tv_menuComunidades_nombre.setText(user.getDisplayName());
-        //navegadorCom2.setNavigationItemSelectedListener(this);
+
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

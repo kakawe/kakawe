@@ -11,7 +11,7 @@ import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog1;
 import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog2;
 import com.google.firebase.database.DatabaseReference;
 
-public class MainActivity extends AppCompatActivity implements AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada {
+public class MainActivity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 5000;
     private static DatabaseReference referencia;
@@ -73,9 +73,8 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
 
             }
         });*/
-        /*
 
-        Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
+        /*Button bt_tablon_anadirAnuncio = (Button)findViewById(R.id.bt_tablon_anadirAnuncio);
         bt_tablon_anadirAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
                 ad1.setArguments(datos);
 
             }
-        });
+        });*/
 
 
-*/
+
         /*new Handler().postDelayed(new Runnable(){
             public void run(){
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
@@ -100,18 +99,11 @@ public class MainActivity extends AppCompatActivity implements AnadirAnuncioCate
             };
         }, DURACION_SPLASH);*/
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
     }
 
-    //metodo para poder introdicir la categoria dentro de AñadirAnuncioDialog2
-    @Override
-    public void seleccionada(String categoria) {
-        String cat = categoria;
-        AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getFragmentManager().findFragmentByTag("ad2");
-        a.setearCategoria(categoria);
     }
-}

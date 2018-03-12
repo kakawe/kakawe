@@ -44,11 +44,10 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     private String actuContra = user.getEmail();
     Uri uri;
 
-
-    private ImageView iv_perfilUs_fotoUs;
-    private TextView et_perfilUs_nombreUsuario;
-    private TextView et_perfilUs_correoUsuario;
-    private Button bt_perfilUs_modContrasena, bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
+    TextView bt_perfilUs_modContrasena;
+    private ImageView iv_perfilUs_fotoUs1,iv_perfilUs_cerrar;
+    private EditText et_perfilUs_nombreUsuario,et_perfilUs_correoUsuario;
+    private Button bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +56,16 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         storageReference = FirebaseStorage.getInstance().getReference();
 
         comunidadActual = getIntent().getStringExtra("comunidad");
-        iv_perfilUs_fotoUs = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs);
-        et_perfilUs_nombreUsuario = (EditText) findViewById(R.id.et_perfilUs_nombreUsuario1);
-        et_perfilUs_correoUsuario = (EditText) findViewById(R.id.et_perfilUs_correoUsuario1);
-        bt_perfilUs_modContrasena = (Button) findViewById(R.id.bt_perfilUs_modContrasena1);
-        bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos1);
-        bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
+        iv_perfilUs_fotoUs1 = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs);
+        et_perfilUs_nombreUsuario = (EditText) findViewById(R.id.et_perfilUs_nombre);
+        et_perfilUs_correoUsuario = (EditText) findViewById(R.id.et_perfilUs_email);
+        bt_perfilUs_modContrasena = (TextView) findViewById(R.id.bt_perfilUs_modContrasena);
+        bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos);
+        //bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
 
 
         //metodo para acceder a la galetia
-        iv_perfilUs_fotoUs.setOnClickListener(new View.OnClickListener() {
+        iv_perfilUs_fotoUs1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(Intent.ACTION_PICK);
@@ -94,13 +93,13 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             }
         });
 
-        bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
+/*        bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ConfirmarSalirAppDialog df = new ConfirmarSalirAppDialog();
                 df.show(getFragmentManager(), "Confirmar salir de la App");
             }
-        });
+        });*/
         cargarPerfil();
     }
 
@@ -115,7 +114,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             Log.v("Entra", "2");
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
             uri = data.getData();
-
+            subirFoto();
         }
 
     }
@@ -178,7 +177,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                         Log.v("nombre2", nombre);
                         if (task.isSuccessful()) {
                             //lanzamos el metodo para subir la imagen
-                            subirFoto();
+
 
                             Toast.makeText(PerfilUsuarioActivity.this, "Perfil actualizado con éxito", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
