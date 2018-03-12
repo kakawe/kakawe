@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,9 +13,9 @@
         android:layout_margin="15dp">
 
         <Button
-            android:id="@+id/bt_tablon_izquierdo"
-            android:background="@drawable/bg_btn_segment_left"
-            android:textColor="@color/blanco"
+            android:id="@+id/bt__tablon_izquierdo"
+            android:background="@drawable/selector_segment_left"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -27,8 +26,8 @@
 
         <Button
             android:id="@+id/bt_tablon_derecho"
-            android:background="@drawable/bg_btn_segment_right"
-            android:textColor="@color/marron"
+            android:background="@drawable/selector_segment_right"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -39,29 +38,10 @@
 
     </LinearLayout>
 
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_tablon_listatablon"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_tablon_listatablon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fb_listar_anadirAnuncio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="30dp"
-            android:src="@android:drawable/btn_dialog" />
-
-
-    </FrameLayout>
-
-
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
 </LinearLayout>
