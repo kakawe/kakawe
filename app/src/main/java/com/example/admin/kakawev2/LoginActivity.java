@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String nombreCom=comus_usuario.get(0);
                                     loginLanzaTablon(nombreCom);
                                     Log.v("nombreComunidad",nombreCom);
-                                    referencia1.removeEventListener(this);
+                                    
                                 }
                             }}
                         }
