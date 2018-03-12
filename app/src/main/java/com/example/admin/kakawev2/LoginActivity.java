@@ -37,15 +37,16 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth instancia;
     private ProgressDialog progreso;
     private static DatabaseReference referencia;
+    private boolean comunidad_encontrada=false;
     FirebaseUser user;
     String correo;
 
-    private EditText et_login_correo,et_login_contrasena;
+    private EditText et_login_correo, et_login_contrasena;
     private Button bt_login_entrar;
     private TextView tv_login_recordarcontra;
     private ImageView iv_login_registro;
 
-    ArrayList<String> comus_usuario=new ArrayList<>();
+    ArrayList<String> comus_usuario = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +54,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progreso = new ProgressDialog(this);
-        instancia= FirebaseAuth.getInstance();
+        instancia = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        et_login_correo=(EditText)findViewById(R.id.et_login_correo);
-        et_login_contrasena=(EditText)findViewById(R.id.et_login_contrasena);
-        bt_login_entrar=(Button) findViewById(R.id.bt_login_entrar);
-        tv_login_recordarcontra=(TextView) findViewById(R.id.tv_login_recordarcontra);
-        iv_login_registro=(ImageView) findViewById(R.id.iv_login_registro);
+        et_login_correo = (EditText) findViewById(R.id.et_login_correo);
+        et_login_contrasena = (EditText) findViewById(R.id.et_login_contrasena);
+        bt_login_entrar = (Button) findViewById(R.id.bt_login_entrar);
+        tv_login_recordarcontra = (TextView) findViewById(R.id.tv_login_recordarcontra);
+        iv_login_registro = (ImageView) findViewById(R.id.iv_login_registro);
 
         iv_login_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -82,9 +83,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private void recordarContraseña() {
         String correo = et_login_correo.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             Toast.makeText(this, "Escribe el correo con el que te registraste", Toast.LENGTH_LONG).show();
             et_login_correo.requestFocus();
             return;
@@ -95,13 +97,13 @@ public class LoginActivity extends AppCompatActivity {
         instancia.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     progreso.cancel();
-                    Toast.makeText(LoginActivity.this,"Correo enviado", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Correo enviado", Toast.LENGTH_LONG).show();
 
-                }else{
+                } else {
                     progreso.cancel();
-                    Toast.makeText(LoginActivity.this,"Error con el correo electrónico", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Error con el correo electrónico", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -112,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String correo = et_login_correo.getText().toString().trim();
         String contrasena = et_login_contrasena.getText().toString();
-        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             Toast.makeText(this, "Correo no valido", Toast.LENGTH_LONG).show();
             et_login_correo.requestFocus();
             return;
@@ -121,61 +123,69 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Contraseña requerida", Toast.LENGTH_LONG).show();
             et_login_contrasena.requestFocus();
             return;
-        }if (contrasena.length()<6) {
+        }
+        if (contrasena.length() < 6) {
             Toast.makeText(this, "Contraseña corta", Toast.LENGTH_LONG).show();
             et_login_contrasena.requestFocus();
             return;
         }
-        instancia.signInWithEmailAndPassword(correo,contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        instancia.signInWithEmailAndPassword(correo, contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progreso.setMessage("Iniciando sesión...");
                 progreso.show();
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     cargaComunidades();
-                }else{
-                    if (task.getException() instanceof FirebaseAuthInvalidUserException){
+                } else {
+                    if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                         progreso.cancel();
                         Toast.makeText(LoginActivity.this, "Credenciales invalidas", Toast.LENGTH_SHORT).show();
                     }
-                    if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
+                    if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                         progreso.cancel();
                         Toast.makeText(LoginActivity.this, "Credenciales invalidas", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         progreso.cancel();
-                        Toast.makeText(LoginActivity.this,"Error al intentar iniciar sesión", Toast.LENGTH_LONG).cancel();
+                        Toast.makeText(LoginActivity.this, "Error al intentar iniciar sesión", Toast.LENGTH_LONG).cancel();
                     }
                 }
             }
         });
     }
+
     private void cargaComunidades() {
         //
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
+
         referencia.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot dato : dataSnapshot.getChildren()){
-                    Comunidad com= dato.getValue(Comunidad.class);
-                    final String nombreComunidad= com.getNombre();
-                    DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
+                for (DataSnapshot dato : dataSnapshot.getChildren()) {
+                    Comunidad com = dato.getValue(Comunidad.class);
+                    final String nombreComunidad = com.getNombre();
+                    final DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
                     referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot1) {
-                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
-                                Vecino vD = dato2.getValue(Vecino.class);
-                                String corre=vD.getMail();
-                                String corr=corre;
-                                if (corr.equals(user.getEmail())){
-                                    comus_usuario.add(nombreComunidad);
-                                    String nombreCom=comus_usuario.get(0);
-                                    loginLanzaTablon(nombreCom);
-                                    Log.v("nombreComunidad",nombreCom);
-
+                            for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {
+                                {
+                                    Vecino vD = dato2.getValue(Vecino.class);
+                                    String corre = vD.getMail();
+                                    String corr = corre;
+                                    if (corr.equals(user.getEmail()) && comunidad_encontrada==false) {
+                                        comunidad_encontrada=true;
+                                        comus_usuario.add(nombreComunidad);
+                                        String nombreCom = comus_usuario.get(0);
+                                        loginLanzaTablon(nombreCom);
+                                        Log.v("nombreComunidad", nombreCom);
+                                        //referencia1.removeEventListener(this);
+                                    }
                                 }
-                            }}
+                            }
                         }
+
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
@@ -194,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, TablonActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("comunidad",nombrecomunidad);
+        intent.putExtra("comunidad", nombrecomunidad);
         startActivity(intent);
     }
 

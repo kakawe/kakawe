@@ -1,9 +1,14 @@
 package com.example.admin.kakawev2.Anadir_Comunidad;
 
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.AnyRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -39,7 +44,6 @@ import java.io.File;
 import static android.app.Activity.RESULT_OK;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -63,6 +67,7 @@ public class AnadirDomicilioFragment extends Fragment {
     public AnadirDomicilioFragment() {
         // Required empty public constructor
     }
+
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -172,7 +177,7 @@ public class AnadirDomicilioFragment extends Fragment {
             Bundle datos = new Bundle();
             Fragment crear = new ListaAnuncioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            datos.putString("comunidad", nombreCom);
+            datos.putString("nombreCom", nombreCom);
             datos.putString("tipo", "ofrecen");
             ft.replace(R.id.contenedorTablon, crear);
             ft.addToBackStack(null);
@@ -191,14 +196,25 @@ public class AnadirDomicilioFragment extends Fragment {
 
     }
 
+    //cargamos a firebase la foto predeterminada de la comunidad
+    public static final Uri getUriToDrawable(@NonNull Context context,
+                                             @AnyRes int drawableId) {
+        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + context.getResources().getResourcePackageName(drawableId)
+                + '/' + context.getResources().getResourceTypeName(drawableId)
+                + '/' + context.getResources().getResourceEntryName(drawableId));
+        return imageUri;
+    }
+
     private void fotoPredeterminadaComunidad() {
 
-
-        Uri uriImage = Uri.parse("android.resource:R.drawable.stewie");
+        //subimos a firebase
+        FirebaseAuth au = FirebaseAuth.getInstance();
+        Uri u = getUriToDrawable(getContext(), R.drawable.stewie);
         //Uri file = Uri.fromFile(new File(R.drawable.stewie));
         StorageReference rutaCarpetaImg = storageReference.child("ImagenesComunidad").child(nombreCom);
         //subimos la imagen y verificamos mediante un toast que se subio la foto
-        rutaCarpetaImg.putFile(uriImage);
+        rutaCarpetaImg.putFile(u);
 
 
     }

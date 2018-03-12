@@ -183,12 +183,12 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
     private void cargarFotoComunidd() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child(comActual);
-        Log.v("comActual",comActual);
-        Log.v("refGuardar",refGuardar.toString());
+        Log.v("comActual", comActual);
+        Log.v("refGuardar", refGuardar.toString());
 
-       if (refGuardar.getName().isEmpty()) {
+        if (refGuardar.getName().isEmpty()) {
 
-           Log.v("imagen","null");
+            Log.v("imagen", "null");
         /*
             Log.v("Entrada",refGuardar.toString());
             StorageReference refGuardarDeFecto = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child("fotoPorDefecto.jpg");
@@ -200,7 +200,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         */
         } else {
 
-            Log.v("Entrada","2");
+            Log.v("Entrada", "2");
             Glide.with(getActivity()).using(new FirebaseImageLoader())
                     .load(refGuardar)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -229,7 +229,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         //verificamos si obtenemos la imagen de la galeria
         if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
-           uri = data.getData();
+            uri = data.getData();
 
         }
 

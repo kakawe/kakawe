@@ -1,7 +1,11 @@
 package com.example.admin.kakawev2;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.AnyRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,13 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.StorageReference;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth instancia;
     private ProgressDialog progreso;
 
-    private EditText et_registro_nombre,et_registro_correo,et_registro_contrasena;
+
+    private EditText et_registro_nombre, et_registro_correo, et_registro_contrasena;
     private Button bt_registro_registrar;
     private TextView tv_registro_login;
 
@@ -35,15 +41,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         progreso = new ProgressDialog(this);
-        instancia= FirebaseAuth.getInstance();
+        instancia = FirebaseAuth.getInstance();
 
-        et_registro_nombre=(EditText)findViewById(R.id.et_registro_nombre);
-        et_registro_correo=(EditText)findViewById(R.id.et_registro_correo);
-        et_registro_contrasena=(EditText)findViewById(R.id.et_registro_contrasena);
-        bt_registro_registrar=(Button) findViewById(R.id.bt_registro_registrar);
-        tv_registro_login=(TextView) findViewById(R.id.tv_registro_login);
-
-
+        et_registro_nombre = (EditText) findViewById(R.id.et_registro_nombre);
+        et_registro_correo = (EditText) findViewById(R.id.et_registro_correo);
+        et_registro_contrasena = (EditText) findViewById(R.id.et_registro_contrasena);
+        bt_registro_registrar = (Button) findViewById(R.id.bt_registro_registrar);
+        tv_registro_login = (TextView) findViewById(R.id.tv_registro_login);
 
 
         tv_registro_login.setOnClickListener(new View.OnClickListener() {
@@ -63,16 +67,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registrarUsuario() {
-        final String nombre= et_registro_nombre.getText().toString();
-        String correo= et_registro_correo.getText().toString().trim();
-        String contrasena= et_registro_contrasena.getText().toString();
+        final String nombre = et_registro_nombre.getText().toString();
+        String correo = et_registro_correo.getText().toString().trim();
+        String contrasena = et_registro_contrasena.getText().toString();
 
         if (nombre.isEmpty()) {
             Toast.makeText(this, "Nombre requerido", Toast.LENGTH_LONG).show();
             et_registro_nombre.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             Toast.makeText(this, "Correo no valido", Toast.LENGTH_LONG).show();
             et_registro_correo.requestFocus();
             return;
@@ -81,21 +85,22 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Contraseña requerida", Toast.LENGTH_LONG).show();
             et_registro_contrasena.requestFocus();
             return;
-        }if (contrasena.length()<6) {
+        }
+        if (contrasena.length() < 6) {
             Toast.makeText(this, "Contraseña corta, mñinimo 6 caracteres", Toast.LENGTH_LONG).show();
             et_registro_contrasena.requestFocus();
             return;
         }
-        instancia.createUserWithEmailAndPassword(correo,contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        instancia.createUserWithEmailAndPassword(correo, contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progreso.show();
                 progreso.setMessage("Registrando usuario...");
 
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     UserProfileChangeRequest cambio_usuario = new UserProfileChangeRequest.Builder()
                             .setDisplayName(nombre).build();
-                    FirebaseUser usuario=FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
                     usuario.updateProfile(cambio_usuario).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -103,12 +108,12 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
 
-                }else{
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         progreso.cancel();
                         Toast.makeText(RegisterActivity.this, "Correo ya registrado", Toast.LENGTH_LONG).show();
                         et_registro_correo.requestFocus();
-                    }else{
+                    } else {
                         progreso.cancel();
                         Toast.makeText(RegisterActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
@@ -116,6 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void registroAnadirComunidad() {
         Intent intent = new Intent(RegisterActivity.this, AnadirComunidadActivity.class);

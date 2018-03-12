@@ -28,7 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class PerfilUsuarioActivity extends AppCompatActivity implements ConfirmarSalirAppDialog.AvisarSalirApp{
+public class PerfilUsuarioActivity extends AppCompatActivity implements ConfirmarSalirAppDialog.AvisarSalirApp {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private StorageReference storageReference;
@@ -53,13 +53,13 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         setContentView(R.layout.activity_perfil_usuario);
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        comunidadActual=getIntent().getStringExtra("comunidad");
-        iv_perfilUs_fotoUs1 = (ImageView)findViewById(R.id.iv_perfilUs_fotoUs1);
-        et_perfilUs_nombreUsuario = (TextView)findViewById(R.id.et_perfilUs_nombreUsuario1);
-        et_perfilUs_correoUsuario = (TextView)findViewById(R.id.et_perfilUs_correoUsuario1);
-        bt_perfilUs_modContrasena = (Button)findViewById(R.id.bt_perfilUs_modContrasena1);
-        bt_perfilUs_actualiarDatos = (Button)findViewById(R.id.bt_perfilUs_actualiarDatos1);
-        bt_perfilUs_cerrarSesion = (Button)findViewById(R.id.bt_perfilUs_cerrarSesion);
+        comunidadActual = getIntent().getStringExtra("comunidad");
+        iv_perfilUs_fotoUs1 = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs1);
+        et_perfilUs_nombreUsuario = (TextView) findViewById(R.id.et_perfilUs_nombreUsuario1);
+        et_perfilUs_correoUsuario = (TextView) findViewById(R.id.et_perfilUs_correoUsuario1);
+        bt_perfilUs_modContrasena = (Button) findViewById(R.id.bt_perfilUs_modContrasena1);
+        bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos1);
+        bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
 
 
         //metodo para acceder a la galetia
@@ -94,9 +94,9 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConfirmarSalirAppDialog df=new ConfirmarSalirAppDialog();
+                ConfirmarSalirAppDialog df = new ConfirmarSalirAppDialog();
                 df.show(getFragmentManager(), "Confirmar salir de la App");
-           }
+            }
         });
         cargarPerfil();
     }
@@ -106,10 +106,10 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String correo = "adri1@mail.com";
-        Log.v("Entra","1");
+        Log.v("Entra", "1");
         //verificamos si obtenemos la imagen de la galeria
         if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
-            Log.v("Entra","2");
+            Log.v("Entra", "2");
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
             uri = data.getData();
 
@@ -177,12 +177,11 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                             //lanzamos el metodo para subir la imagen
                             subirFoto();
 
-
                             Toast.makeText(PerfilUsuarioActivity.this, "Perfil actualizado con éxito", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("comunidad",comunidadActual);
+                            intent.putExtra("comunidad", comunidadActual);
                             startActivity(intent);
 
                         } else {
@@ -200,7 +199,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //descargar imagen de firebase
-                Log.v("Entra","3");
+                Log.v("Entra", "3");
 
                 Uri descargarFoto = taskSnapshot.getDownloadUrl();
                 Glide.with(PerfilUsuarioActivity.this)
@@ -213,13 +212,14 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     }
 
 
-    private void cancelarActualizacionPerfil(){
+    private void cancelarActualizacionPerfil() {
         Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("comunidad",comunidadActual);
+        intent.putExtra("comunidad", comunidadActual);
         startActivity(intent);
     }
+
     @Override
     public void aceptarSalirApp() {
         FirebaseAuth.getInstance().signOut();

@@ -39,43 +39,44 @@ public class BuscarComunidadFragment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private ProgressDialog progreso;
 
-    Button bt_anadir_crear,bt_anadirBuscar_continuar;
-    EditText et_anadirBuscar_nomcom,et_anadirBuscar_localidad,et_anadirBuscar_direccion;
+    Button bt_anadir_crear, bt_anadirBuscar_continuar;
+    EditText et_anadirBuscar_nomcom, et_anadirBuscar_localidad, et_anadirBuscar_direccion;
     String contenedor;
 
     public BuscarComunidadFragment() {
         // Required empty public constructor
     }
+
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         progreso = new ProgressDialog(getContext());
 
-        et_anadirBuscar_nomcom = (EditText)getView().findViewById(R.id.et_anadirBuscar_nomcom);
-        et_anadirBuscar_localidad = (EditText)getView().findViewById(R.id.et_anadirBuscar_localidad);
-        et_anadirBuscar_direccion = (EditText)getView().findViewById(R.id.et_anadirBuscar_direccion);
+        et_anadirBuscar_nomcom = (EditText) getView().findViewById(R.id.et_anadirBuscar_nomcom);
+        et_anadirBuscar_localidad = (EditText) getView().findViewById(R.id.et_anadirBuscar_localidad);
+        et_anadirBuscar_direccion = (EditText) getView().findViewById(R.id.et_anadirBuscar_direccion);
         bt_anadir_crear = (Button) getView().findViewById(R.id.bt_anadir_crear);
         bt_anadirBuscar_continuar = (Button) getView().findViewById(R.id.bt_anadirBuscar_continuar);
 
         bt_anadir_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (contenedor.equals("contenedorTablon")){
+                if (contenedor.equals("contenedorTablon")) {
                     Fragment crear = new CrearComunidadFragment();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.contenedorTablon,crear);
+                    ft.replace(R.id.contenedorTablon, crear);
                     ft.addToBackStack(null);
                     ft.commit();
-                    Bundle datos=new Bundle();
-                    datos.putString("contenedor","contenedorTablon");
+                    Bundle datos = new Bundle();
+                    datos.putString("contenedor", "contenedorTablon");
                     crear.setArguments(datos);
-                }else{
+                } else {
                     Fragment crear = new CrearComunidadFragment();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.contenedor_anadirComunidad,crear);
+                    ft.replace(R.id.contenedor_anadirComunidad, crear);
                     ft.addToBackStack(null);
                     ft.commit();
-                    Bundle datos=new Bundle();
-                    datos.putString("contenedor","contenedor_anadirComunidad");
+                    Bundle datos = new Bundle();
+                    datos.putString("contenedor", "contenedor_anadirComunidad");
                     crear.setArguments(datos);
                 }
 
@@ -95,23 +96,26 @@ public class BuscarComunidadFragment extends Fragment {
         String direccion = et_anadirBuscar_direccion.getText().toString().trim();
         String direc = direccion.trim();
         String local = localidad.trim();
-        if (localidad.isEmpty()&& direccion.isEmpty()&& nombreCom.isEmpty()){
-            Toast.makeText(getContext(),"Introduce el nombre de una comunidad a buscar", Toast.LENGTH_LONG).show();
+        if (localidad.isEmpty() && direccion.isEmpty() && nombreCom.isEmpty()) {
+            Toast.makeText(getContext(), "Introduce el nombre de una comunidad a buscar", Toast.LENGTH_LONG).show();
             et_anadirBuscar_nomcom.requestFocus();
             return;
-        }if (direccion.isEmpty()&& nombreCom.isEmpty()) {
+        }
+        if (direccion.isEmpty() && nombreCom.isEmpty()) {
             Toast.makeText(getContext(), "Direccion requerida", Toast.LENGTH_LONG).show();
             et_anadirBuscar_direccion.requestFocus();
             return;
-        }if (localidad.isEmpty()&& nombreCom.isEmpty()) {
+        }
+        if (localidad.isEmpty() && nombreCom.isEmpty()) {
             Toast.makeText(getContext(), "Localidad requerida", Toast.LENGTH_LONG).show();
             et_anadirBuscar_localidad.requestFocus();
             return;
-        }if (nombreCom.isEmpty()){
-            nombreCom = direc+local;
-            comprobarSiExiste(nombreCom,localidad,direccion);
         }
-        comprobarSiExiste(nombreCom,localidad,direccion);
+        if (nombreCom.isEmpty()) {
+            nombreCom = direc + local;
+            comprobarSiExiste(nombreCom, localidad, direccion);
+        }
+        comprobarSiExiste(nombreCom, localidad, direccion);
 
 
     }
@@ -123,17 +127,18 @@ public class BuscarComunidadFragment extends Fragment {
         referencia.child(nombreCom).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Comunidad c=dataSnapshot.getValue(Comunidad.class);
-                if (c!=null){
+                Comunidad c = dataSnapshot.getValue(Comunidad.class);
+                if (c != null) {
                     progreso.cancel();
-                    mirarSiPertenece(nombreCom,localidad,direccion);
+                    mirarSiPertenece(nombreCom, localidad, direccion);
                     progreso.cancel();
-                }else{
-                    Toast.makeText(getContext(), "No existe una comunidad con el nombre "+nombreCom, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "No existe una comunidad con el nombre " + nombreCom, Toast.LENGTH_LONG).show();
                     progreso.cancel();
                     return;
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -142,23 +147,24 @@ public class BuscarComunidadFragment extends Fragment {
     }
 
     private void mirarSiPertenece(final String nombreCom, final String localidad, final String direccion) {
-        final String correo=user.getEmail();
+        final String correo = user.getEmail();
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(nombreCom).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Vecino aV = dato.getValue(Vecino.class);
-                    String corre=aV.getMail();
+                    String corre = aV.getMail();
                     //te deja entrar si munidad hay mucha gente, ya que tarda en comparar los correos
                     //crear un metodo boolean para ver esto
-                    if(comprobarUser(corre,correo)){
-                        Toast.makeText(getContext(), "Ya estás en la comunidad "+nombreCom, Toast.LENGTH_LONG).show();
+                    if (correo.equals(correo)) {
+                        Toast.makeText(getContext(), "Ya estás en la comunidad " + nombreCom, Toast.LENGTH_LONG).show();
                         progreso.cancel();
                         return;
-                    }else{
 
-                        anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
+                    } else {
+
+                        anadirBuscarMiDomicilio(nombreCom, localidad, direccion);
                     }
                 }
 
@@ -172,45 +178,33 @@ public class BuscarComunidadFragment extends Fragment {
     }
 
 
-
-    private boolean comprobarUser(String corre, String correo) {
-        if (corre.equals(correo)){
-            return false;
-        }else{
-            return true;
-        }
-
-
-
-    }
-
     //Cuando se compruebe si esa comunidad realmente existe, pasamos a añadir el domicilio
-    private void anadirBuscarMiDomicilio(String n,String l,String d){
-        if (contenedor.equals("contenedorTablon")){
+    private void anadirBuscarMiDomicilio(String n, String l, String d) {
+        if (contenedor.equals("contenedorTablon")) {
             Fragment crear = new AnadirDomicilioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.contenedorTablon,crear);
+            ft.replace(R.id.contenedorTablon, crear);
             ft.addToBackStack(null);
             ft.commit();
             Bundle datos = new Bundle();
-            datos.putString("nombreCom",n);
-            datos.putString("localidad",l);
-            datos.putString("direccion",d);
-            datos.putString("ventana","buscar");
-            datos.putString("contenedor","contenedorTablon");
+            datos.putString("nombreCom", n);
+            datos.putString("localidad", l);
+            datos.putString("direccion", d);
+            datos.putString("ventana", "buscar");
+            datos.putString("contenedor", "contenedorTablon");
             crear.setArguments(datos);
-        }else{
+        } else {
             Fragment crear = new AnadirDomicilioFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.contenedor_anadirComunidad,crear);
+            ft.replace(R.id.contenedor_anadirComunidad, crear);
             ft.addToBackStack(null);
             ft.commit();
             Bundle datos = new Bundle();
-            datos.putString("nombreCom",n);
-            datos.putString("localidad",l);
-            datos.putString("direccion",d);
-            datos.putString("ventana","buscar");
-            datos.putString("contenedor","contenedor_anadirComunidad");
+            datos.putString("nombreCom", n);
+            datos.putString("localidad", l);
+            datos.putString("direccion", d);
+            datos.putString("ventana", "buscar");
+            datos.putString("contenedor", "contenedor_anadirComunidad");
             crear.setArguments(datos);
         }
 

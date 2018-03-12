@@ -9,16 +9,15 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/bt_tablon_izquierdo"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_segment_left"
             android:fontFamily="@font/lato_bold"
             android:text="Ofrecen"
             android:textAllCaps="false"
@@ -27,40 +26,42 @@
 
         <Button
             android:id="@+id/bt_tablon_derecho"
-            android:background="@drawable/bg_btn_segment_right"
-            android:textColor="@color/marron"
+
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:textAllCaps="false"
             android:fontFamily="@font/lato_bold"
-            android:textSize="17sp"
-            android:text="Necesitan"/>
+            android:text="Necesitan"
+            android:textAllCaps="false"
+            android:textColor="@color/marron"
+            android:textSize="17sp" />
 
     </LinearLayout>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_tablon_listatablon"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tablon_listatablon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_listar_anandir_anuncio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="25dp"
-        android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/colorAccent" />
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_listar_anandir_anuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="25dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/colorAccent" />
 
 
-</FrameLayout>
+    </FrameLayout>
 
 
 </LinearLayout>

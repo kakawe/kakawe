@@ -24,6 +24,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Adaptadores.LVAdapter;
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
@@ -33,6 +35,7 @@ import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.LoginActivity;
 import com.example.admin.kakawev2.PerfilUsuarioActivity;
 import com.example.admin.kakawev2.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +43,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
