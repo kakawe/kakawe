@@ -1,43 +1,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Tablon.ListaAnuncioFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"
-        android:orientation="horizontal">
+        android:layout_margin="15dp">
 
         <Button
             android:id="@+id/bt_tablon_izquierdo"
+            android:background="@drawable/selector_segment_left"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:fontFamily="@font/lato_bold"
-            android:text="Ofrecen"
             android:textAllCaps="false"
-            android:textColor="@color/blanco"
-            android:textSize="17sp" />
+            android:fontFamily="@font/lato_bold"
+            android:textSize="17sp"
+            android:text="Ofrecen"/>
 
         <Button
             android:id="@+id/bt_tablon_derecho"
-
+            android:background="@drawable/selector_segment_right"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:fontFamily="@font/lato_bold"
-            android:text="Necesitan"
             android:textAllCaps="false"
-            android:textColor="@color/marron"
-            android:textSize="17sp" />
+            android:fontFamily="@font/lato_bold"
+            android:textSize="17sp"
+            android:text="Necesitan"/>
 
     </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -62,6 +62,5 @@
 
 
     </FrameLayout>
-
 
 </LinearLayout>
