@@ -1,61 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/marron"
+    android:background="@color/gris"
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Tablon.MenuComunidadesFragment">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/menu_comunidades"
+    <include
+        layout="@layout/header_menu_comunidades"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="@color/marron"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_menu_comunidades"
-        app:itemTextColor="@color/blanco"></android.support.design.widget.NavigationView>
-
+        android:layout_height="170dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blancoTransparente"
-        android:fontFamily="@font/lato_black"
-        android:paddingVertical="10dp"
-        android:text="MIS COMUNIDADES"
-        android:textAlignment="center"
-        android:textColor="@color/marron"
-        android:textSize="20sp" />
+        style="@style/menu_subheader"
+        android:text="Mis comunidades"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btn_menu_comunidades_anadir"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/marron"
+        android:background="@color/gris"
         android:fontFamily="@font/lato_black"
         android:text="Añadir"
         android:textAllCaps="false"
         android:textColor="@color/blanco"
         android:textSize="17sp" />
 
-
-    <!--<android.support.design.widget.NavigationView
-        android:id="@+id/menu_comunidades2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/marron"
-        android:fitsSystemWindows="true"
-        app:itemTextColor="@color/blanco"
-        app:menu="@menu/menu_comunidades">
-
-    </android.support.design.widget.NavigationView>-->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="35dp"
         android:fillViewport="true">
 
         <ListView

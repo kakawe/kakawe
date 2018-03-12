@@ -1,20 +1,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gris"
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Tablon.MenuPrincipalFragment">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/menu_principal"
+    <include
+        layout="@layout/header_menu_principal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/marron"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_menu_principal"
-        app:itemTextColor="@color/blanco"
-        app:menu="@menu/menu_principal" />
+        android:layout_height="130dp" />
+
+    <TextView
+        style="@style/menu_subheader"
+        android:paddingLeft="25dp"
+        android:text="Tablón" />
+
+    <Button
+        android:id="@+id/btn_menu_tablon_ofrecen"
+        style="@style/menu_item"
+        android:text="Ofrecen" />
+
+    <Button
+        android:id="@+id/btn_menu_tablon_necesitan"
+        style="@style/menu_item"
+        android:text="Necesitan" />
+
+    <TextView
+        style="@style/menu_subheader"
+        android:paddingLeft="25dp"
+        android:text="Mis anuncios" />
+
+    <Button
+        android:id="@+id/btn_menu_misAnuncios_actuales"
+        style="@style/menu_item"
+        android:text="Actuales" />
+
+    <Button
+        android:id="@+id/btn_menu_misAnuncios_historial"
+        style="@style/menu_item"
+        android:text="Historial" />
 
 </LinearLayout>
