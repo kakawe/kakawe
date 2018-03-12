@@ -10,9 +10,6 @@
     android:weightSum="10"
     tools:context="com.example.admin.kakawev2.Tablon.PerfilUsuarioFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

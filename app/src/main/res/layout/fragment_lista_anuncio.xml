@@ -14,8 +14,8 @@
 
         <Button
             android:id="@+id/bt__tablon_izquierdo"
-            android:background="@drawable/bg_btn_segment_left"
-            android:textColor="@color/blanco"
+            android:background="@drawable/selector_segment_left"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
@@ -26,8 +26,8 @@
 
         <Button
             android:id="@+id/bt_tablon_derecho"
-            android:background="@drawable/bg_btn_segment_right"
-            android:textColor="@color/marron"
+            android:background="@drawable/selector_segment_right"
+            android:textColor="@color/gris"
             android:layout_width="125dp"
             android:layout_height="45dp"
             android:layout_weight="1"
