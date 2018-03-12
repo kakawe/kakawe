@@ -17,9 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Dialogs.ConfirmarSalirAppDialog;
 import com.example.admin.kakawev2.Dialogs.PerfilUsuarioDialog;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -63,6 +65,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos);
         //bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
 
+        //traer imager al perfil usuario
+        cargarImagenPerfilUsuario();
 
         //metodo para acceder a la galetia
         iv_perfilUs_fotoUs1.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +105,19 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             }
         });*/
         cargarPerfil();
+    }
+
+    //traer imagen menu comunidad
+    private void cargarImagenPerfilUsuario() {
+        FirebaseAuth au = FirebaseAuth.getInstance();
+        String correo = au.getCurrentUser().getEmail();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(correo);
+        Glide.with(PerfilUsuarioActivity.this).using(new FirebaseImageLoader())
+                .load(refGuardar)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(iv_perfilUs_fotoUs1);
     }
 
     //cargamos la imagen desde firebase

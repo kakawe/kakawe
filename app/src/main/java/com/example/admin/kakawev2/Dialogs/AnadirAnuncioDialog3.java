@@ -44,7 +44,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
     FirebaseStorage storage;
     FirebaseAuth user;
     View vista;
-    String fechaCaducidad,horaCaducidad,nomComunidad,piso,puerta;
+    String fechaCaducidad,horaCaducidad,nomComunidad,piso,puerta,key;
     private String tipo, titulo, ruta_imagen, descripcion, categoria;
     TextView tv_anadir_anuncio3_etiquetaFC, tv_anadir_anuncio3_etiquetaHC;
     ImageView iv_anuncio3_cerrar;
@@ -67,6 +67,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         descripcion = getArguments().getString("descripcionAnuncio2");
         categoria = getArguments().getString("categoria2");
         nomComunidad = getArguments().getString("nomComunidad");
+        key = getArguments().getString("key");
 
 
         //imagen X para cerrar
@@ -184,7 +185,6 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         String alias = user.getCurrentUser().getDisplayName();
 
         reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
-        String key = reference.push().getKey();
         Anuncio2 a2 = new Anuncio2(key,correo,alias,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);
         reference.child(nomComunidad).child("Anuncios").child(tipo).child(key).setValue(a2);
 

@@ -15,8 +15,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.admin.kakawev2.PerfilUsuarioActivity;
 import com.example.admin.kakawev2.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -24,13 +35,18 @@ import static android.app.Activity.RESULT_OK;
  * Created by jose on 19/02/2018.
  */
 
-public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener,AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada{
-
-    String nomComunidad;
+public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClickListener, AnadirAnuncioCategoriaDialog2.CategoriaSeleccionada {
+    DatabaseReference reference;
+    String nomComunidad,key;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private StorageReference storageReference ;
+    Intent intent;
+    Uri uri;
+    private static final int GALERY_INTENT = 1;
     View vista;
     TextView tv_anadir_anuncio2_tipo;
-    EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion,ed_anadir_anuncio2_categoria;
-    ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria,iv_anuncio2_cerrar;
+    EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion, ed_anadir_anuncio2_categoria;
+    ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria, iv_anuncio2_cerrar;
     Button bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
     private String tv_ruta_imagen;
     private String tipo, tipo1;
@@ -48,7 +64,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         vista = inflater.inflate(R.layout.dialog_anadir_anuncio2, null);
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         nomComunidad = getArguments().getString("nomComunidad");
         tipo = getArguments().getString("tipo") + " ...";
         tipo1 = getArguments().getString("tipo");
@@ -85,7 +101,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         if (v.getId() == R.id.iv_anadir_anuncio2_imagen) {
             obtenerImagen();
-        } else if (v.getId() == R.id.ed_anadir_anuncio2_categoria ) {//|| v.getId() == R.id.iv_anadir_anuncio2_imgen_categoria
+        } else if (v.getId() == R.id.ed_anadir_anuncio2_categoria) {//|| v.getId() == R.id.iv_anadir_anuncio2_imgen_categoria
             obtenerCategoria();
         } else if (v.getId() == R.id.bt_anadir_anuncio2_atras) {
             atrasDialog();
@@ -96,7 +112,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         }
     }
 
-
+    //cargamos la imagen desde firebase
     //eventos
     private void obtenerImagen() {
         Intent i = new Intent();
@@ -107,18 +123,40 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         Log.v("Añadir", "funciona");
     }
 
-    //ESTE MÉTODO SERÁ LLAMADO CUANDO SE HAYA ELEGIDO UNA IMAGEN Y HAYA UN RESULTADO
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {//Para recuperar los datos de llamar a la galeria
-
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String correo = "adri1@mail.com";
+        Log.v("Entra", "1");
+        //verificamos si obtenemos la imagen de la galeria
+        if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
+            Log.v("Entra", "2");
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
-            Uri path = data.getData();
-            tv_ruta_imagen = (path.toString());
-            iv_anadir_anuncio2_imagen.setImageURI(path);
-            Log.v("ruta", tv_ruta_imagen.toString());
-
+            uri = data.getData();
+            subirFoto();
         }
+
+    }
+
+    private void subirFoto() {
+        reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
+        key = reference.push().getKey();
+        StorageReference rutaCarpetaImg = storageReference.child("ImagenesAnuncios").child(key);
+        //subimos la imagen y verificamos mediante un toast que se subio la foto
+        rutaCarpetaImg.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //descargar imagen de firebase
+                Log.v("Entra", "3");
+
+                Uri descargarFoto = taskSnapshot.getDownloadUrl();
+                Glide.with(AnadirAnuncioDialog2.this)
+                        .load(descargarFoto)
+                        .into(iv_anadir_anuncio2_imagen);
+
+            }
+        });
     }
 
     private void adelanteDialog() {
@@ -127,12 +165,13 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         String descripcionAnuncio = ed_anadir_anuncio2_descripcion.getText().toString();
         String categoria = ed_anadir_anuncio2_categoria.getText().toString();
         Bundle bundle = new Bundle();
-        bundle.putString("nomComunidad",nomComunidad);
+        bundle.putString("nomComunidad", nomComunidad);
         bundle.putString("tipo2", tipo1);
         bundle.putString("titulo2", titulo);
         bundle.putString("ruta_imagen2", tv_ruta_imagen);
         bundle.putString("descripcionAnuncio2", descripcionAnuncio);
         bundle.putString("categoria2", categoria);
+        bundle.putString("key", key);
 
         AnadirAnuncioDialog3 ad3 = new AnadirAnuncioDialog3();
         ad3.show(getFragmentManager(), "ad3");
@@ -165,9 +204,9 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     //metodo para obtener la imagen y el texto de la catgoria
     private void obtenerCategoria() {
         AnadirAnuncioCategoriaDialog2 adc2 = new AnadirAnuncioCategoriaDialog2();
-        Bundle datos= new Bundle();
-        categoria=ed_anadir_anuncio2_categoria.getText().toString();
-        datos.putString("categoria2",categoria);
+        Bundle datos = new Bundle();
+        categoria = ed_anadir_anuncio2_categoria.getText().toString();
+        datos.putString("categoria2", categoria);
         adc2.show(getFragmentManager(), "adc2");
         adc2.setArguments(datos);
 
@@ -178,7 +217,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     @Override
     public void seleccionada(String categoria) {
         String cat = categoria;
-        Log.v("clicado","estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        Log.v("clicado", "estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getActivity().getFragmentManager().findFragmentByTag("ad2");
         a.setearCategoria(categoria);
     }
