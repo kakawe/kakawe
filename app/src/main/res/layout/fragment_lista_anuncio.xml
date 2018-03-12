@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Tablon.ListaAnuncioFragment">
 
@@ -13,7 +14,7 @@
         android:layout_margin="15dp">
 
         <Button
-            android:id="@+id/bt__tablon_izquierdo"
+            android:id="@+id/bt_tablon_izquierdo"
             android:background="@drawable/selector_segment_left"
             android:textColor="@color/gris"
             android:layout_width="125dp"
@@ -37,11 +38,29 @@
             android:text="Necesitan"/>
 
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_tablon_listatablon"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_tablon_listatablon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_listar_anandir_anuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="25dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="@color/colorAccent" />
+
+
+    </FrameLayout>
 
 </LinearLayout>

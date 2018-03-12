@@ -74,7 +74,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         //creamos la referencia a firebaseStorage para poder interactuar con el storage
         storageReference = FirebaseStorage.getInstance().getReference();
         //instanciar imagen para proceder a obtenerla y lanzarla a firebase
-        iv_perfilCom_fotoCom = (ImageView) getView().findViewById(R.id.iv_perfilCom_fotoCom);
+        iv_perfilCom_fotoCom = (ImageView) getView().findViewById(R.id.iv_menuPrincipal_fotoCom);
         //metodo para clicar en la imagen
         iv_perfilCom_fotoCom.setOnClickListener(this);
 
