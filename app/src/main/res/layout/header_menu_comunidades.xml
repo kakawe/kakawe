@@ -2,9 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:background="@color/marron"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:layout_height="170dp"
+    android:background="@color/gris">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,7 +12,7 @@
         android:orientation="vertical">
 
         <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/iv_menuComunidades_foto"
+            android:id="@+id/tv_menuComunidades_foto"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_gravity="center_horizontal"
@@ -28,12 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:text="Fulanito Martínez"
             android:fontFamily="@font/lato_black"
+            android:text="Fulanito Martínez"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-
-
     </LinearLayout>
 
 

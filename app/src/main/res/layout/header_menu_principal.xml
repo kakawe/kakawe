@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="@color/gris"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:layout_height="130dp">
+    
+    <ImageView
+        android:id="@+id/iv_menuPrincipal_comunidad_foto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logotipo_kakawe" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/scrim" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,30 +23,24 @@
         android:gravity="end"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/tv_menuPrincipal_comunidad"
+            android:id="@+id/tv_menuPrincipal_comunidad_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:fontFamily="@font/lato_black"
             android:text="Nogales"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
-
         <TextView
-            android:id="@+id/tv_menuPrincipal_domicilio"
+            android:id="@+id/tv_menuPrincipal_comunidad_domicilio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:fontFamily="@font/lato_bold"
             android:text="1º A"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 
-
     </LinearLayout>
-
 
 </FrameLayout>
