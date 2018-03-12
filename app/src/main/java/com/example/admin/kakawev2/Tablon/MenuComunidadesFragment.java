@@ -76,6 +76,7 @@ public class MenuComunidadesFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         vista = inflater.inflate(R.layout.fragment_menu_comunidades,null);
         btn_menu_comunidades_anadir = (Button)vista.findViewById(R.id.btn_menu_comunidades_anadir);
         comunidadActual=getArguments().getString("nombreCom");

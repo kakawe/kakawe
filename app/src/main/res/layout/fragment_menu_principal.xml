@@ -32,11 +32,6 @@
         android:text="Mis anuncios" />
 
     <Button
-        android:id="@+id/btn_menu_misAnuncios_actuales"
-        style="@style/menu_item"
-        android:text="Actuales" />
-
-    <Button
         android:id="@+id/btn_menu_misAnuncios_historial"
         style="@style/menu_item"
         android:text="Historial" />

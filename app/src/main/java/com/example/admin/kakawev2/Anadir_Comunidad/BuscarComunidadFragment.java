@@ -152,12 +152,11 @@ public class BuscarComunidadFragment extends Fragment {
                     String corre=aV.getMail();
                     //te deja entrar si munidad hay mucha gente, ya que tarda en comparar los correos
                     //crear un metodo boolean para ver esto
-                    if(comprobarUser(corre,correo)){
+                    if(corre.equals(correo)){
                         Toast.makeText(getContext(), "Ya estás en la comunidad "+nombreCom, Toast.LENGTH_LONG).show();
                         progreso.cancel();
                         return;
                     }else{
-
                         anadirBuscarMiDomicilio(nombreCom,localidad,direccion);
                     }
                 }
@@ -169,19 +168,6 @@ public class BuscarComunidadFragment extends Fragment {
 
             }
         });
-    }
-
-
-
-    private boolean comprobarUser(String corre, String correo) {
-        if (corre.equals(correo)){
-            return false;
-        }else{
-            return true;
-        }
-
-
-
     }
 
     //Cuando se compruebe si esa comunidad realmente existe, pasamos a añadir el domicilio
