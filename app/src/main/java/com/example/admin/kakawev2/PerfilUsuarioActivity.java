@@ -11,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.admin.kakawev2.Dialogs.ConfirmarSalirAppDialog;
 import com.example.admin.kakawev2.Dialogs.PerfilUsuarioDialog;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,7 +44,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     private String actuContra = user.getEmail();
     Uri uri;
 
-    private ImageView iv_perfilUs_fotoUs1;
+
+    private ImageView iv_perfilUs_fotoUs;
     private TextView et_perfilUs_nombreUsuario;
     private TextView et_perfilUs_correoUsuario;
     private Button bt_perfilUs_modContrasena, bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
@@ -54,16 +57,16 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         storageReference = FirebaseStorage.getInstance().getReference();
 
         comunidadActual = getIntent().getStringExtra("comunidad");
-        iv_perfilUs_fotoUs1 = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs1);
-        et_perfilUs_nombreUsuario = (TextView) findViewById(R.id.et_perfilUs_nombreUsuario1);
-        et_perfilUs_correoUsuario = (TextView) findViewById(R.id.et_perfilUs_correoUsuario1);
+        iv_perfilUs_fotoUs = (ImageView) findViewById(R.id.iv_perfilUs_fotoUs);
+        et_perfilUs_nombreUsuario = (EditText) findViewById(R.id.et_perfilUs_nombreUsuario1);
+        et_perfilUs_correoUsuario = (EditText) findViewById(R.id.et_perfilUs_correoUsuario1);
         bt_perfilUs_modContrasena = (Button) findViewById(R.id.bt_perfilUs_modContrasena1);
         bt_perfilUs_actualiarDatos = (Button) findViewById(R.id.bt_perfilUs_actualiarDatos1);
         bt_perfilUs_cerrarSesion = (Button) findViewById(R.id.bt_perfilUs_cerrarSesion);
 
 
         //metodo para acceder a la galetia
-        iv_perfilUs_fotoUs1.setOnClickListener(new View.OnClickListener() {
+        iv_perfilUs_fotoUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(Intent.ACTION_PICK);
