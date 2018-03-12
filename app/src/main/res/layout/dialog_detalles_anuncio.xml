@@ -53,11 +53,11 @@
             </LinearLayout>
 
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/iv_detallesAnuncio_autor_foto"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_social" />
+                />
 
         </LinearLayout>
     </FrameLayout>

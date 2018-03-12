@@ -138,7 +138,7 @@ public class MenuComunidadesFragment extends Fragment{
         return vista;
     }
 
-    //cargar imagen menu comunidad
+    //Traer imagen menu comunidad
     private void cargarImagenMenuComunidad() {
         FirebaseAuth au = FirebaseAuth.getInstance();
         String correo = au.getCurrentUser().getEmail();
