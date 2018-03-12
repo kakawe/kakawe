@@ -141,14 +141,13 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
             Toast.makeText(getContext(), "Introduce una puerta", Toast.LENGTH_LONG).show();
             return;
         }
-        startActivityForResult(intent, GALERY_INTENT);
         FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
         String correoUsuario = usuarioActual.getEmail();
         String mail = correoUsuario;
         Vecino vecino = new Vecino(correo, mail, pisoAct, puertaAct);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").child(ruta).setValue(vecino);
-        subirFoto();
+
     }
 
     //cuando se actualizan los datos lanza la foto a firebase
@@ -186,16 +185,6 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
 
         if (refGuardar.getName().isEmpty()) {
 
-            Log.v("imagen", "null");
-        /*
-            Log.v("Entrada",refGuardar.toString());
-            StorageReference refGuardarDeFecto = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child("fotoPorDefecto.jpg");
-            Glide.with(getActivity()).using(new FirebaseImageLoader())
-                    .load(refGuardarDeFecto)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
-                    .into(iv_perfilCom_fotoCom);
-        */
         } else {
 
             Log.v("Entrada", "2");
@@ -219,6 +208,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, GALERY_INTENT);
+
     }
 
     @Override
@@ -228,7 +218,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
             uri = data.getData();
-
+            subirFoto();
         }
 
     }

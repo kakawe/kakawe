@@ -75,7 +75,6 @@ public class LVAdapter implements ListAdapter {
         TextView tv_vistaCom_nomCom = (TextView)vista.findViewById(R.id.tv_vistaCom_nomCom);
         TextView tv_vistaCom_domCom = (TextView)vista.findViewById(R.id.tv_vistaCom_domCom);
 
-
         tv_vistaCom_nomCom.setText(listaComunidades.get(position).toString());
 
         return vista;

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
@@ -46,6 +47,7 @@ public class MenuPrincipalFragment extends Fragment{
     Button btn_menu_tablon_ofrecen,btn_menu_tablon_necesitan,btn_menu_misAnuncios_historial;
     String comActual;
     CierraDrawer c;
+    ImageView iv_menuPrincipal_fotoCom;
 
     public interface CierraDrawer {
         public void cerrarDrawer();
@@ -70,6 +72,7 @@ public class MenuPrincipalFragment extends Fragment{
         String nombreUser = user.getDisplayName();
         tv_menuPrincipal_comunidad = (TextView) vista.findViewById(R.id.tv_menuPrincipal_comunidad_nombre);
         tv_menuPrincipal_domicilio=(TextView) vista.findViewById(R.id.tv_menuPrincipal_comunidad_domicilio);
+        iv_menuPrincipal_fotoCom=(ImageView) vista.findViewById(R.id.iv_menuPrincipal_fotoCom);
 
         btn_menu_tablon_ofrecen=(Button) vista.findViewById(R.id.btn_menu_tablon_ofrecen);
         btn_menu_tablon_necesitan=(Button) vista.findViewById(R.id.btn_menu_tablon_necesitan);
