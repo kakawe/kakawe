@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,10 +33,10 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
     private String comunidadActual;
     private String actuContra = user.getEmail();
 
-    private ImageView iv_perfilUs_fotoUs;
+    private ImageView iv_perfilUs_fotoUs,bt_perfilUs_cerrarSesion;
     private TextView et_perfilUs_nombreUsuario;
-    private TextView et_perfilUs_correoUsuario;
-    private Button bt_perfilUs_modContrasena, bt_perfilUs_actualiarDatos, bt_perfilUs_cerrarSesion;
+    private TextView et_perfilUs_correoUsuario,bt_perfilUs_modContrasena;
+    private Button bt_perfilUs_actualiarDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +44,12 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         setContentView(R.layout.activity_perfil_usuario);
 
         comunidadActual=getIntent().getStringExtra("comunidad");
-        iv_perfilUs_fotoUs = (ImageView)findViewById(R.id.iv_perfilUs_fotoUs1);
-        et_perfilUs_nombreUsuario = (TextView)findViewById(R.id.et_perfilUs_nombreUsuario1);
-        et_perfilUs_correoUsuario = (TextView)findViewById(R.id.et_perfilUs_correoUsuario1);
-        bt_perfilUs_modContrasena = (Button)findViewById(R.id.bt_perfilUs_modContrasena1);
-        bt_perfilUs_actualiarDatos = (Button)findViewById(R.id.bt_perfilUs_actualiarDatos1);
-        bt_perfilUs_cerrarSesion = (Button)findViewById(R.id.bt_perfilUs_cerrarSesion);
+        iv_perfilUs_fotoUs = (ImageView)findViewById(R.id.iv_perfilUs_fotoUs);
+        et_perfilUs_nombreUsuario = (TextView)findViewById(R.id.et_perfilUs_nombre);
+        et_perfilUs_correoUsuario = (TextView)findViewById(R.id.et_perfilUs_email);
+        bt_perfilUs_modContrasena = (TextView)findViewById(R.id.bt_perfilUs_modContrasena);
+        bt_perfilUs_actualiarDatos = (Button)findViewById(R.id.bt_perfilUs_actualiarDatos);
+        bt_perfilUs_cerrarSesion = (ImageView)findViewById(R.id.iv_perfilUs_cerrar);
 
         bt_perfilUs_modContrasena.setOnClickListener(new View.OnClickListener() {
             @Override

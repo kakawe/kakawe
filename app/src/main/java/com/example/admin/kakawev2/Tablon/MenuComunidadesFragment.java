@@ -82,11 +82,10 @@ public class MenuComunidadesFragment extends Fragment{
         //Log.v("nombrecomunidadmenu",comunidadActual);
         lv_listaCom =(ListView)vista.findViewById(R.id.lv_listaCom);
         lv_listaCom.setClickable(true);
-        NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
-        //NavigationView navegadorCom2 = (NavigationView)vista.findViewById(R.id.menu_comunidades2);
-        vistaComunidad=navegadorCom.getHeaderView(0);
-        tv_menuComunidades_nombre = (TextView) vistaComunidad.findViewById(R.id.tv_menuComunidades_nombre);
-        iv_menuComunidades_foto = (ImageView)vistaComunidad.findViewById(R.id.iv_menuComunidades_foto);
+        //NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_comunidades);
+        //vistaComunidad=navegadorCom.getHeaderView(0);
+        tv_menuComunidades_nombre = (TextView) vista.findViewById(R.id.tv_menuComunidades_nombre);
+        iv_menuComunidades_foto = (ImageView)vista.findViewById(R.id.iv_menuComunidades_foto);
         tv_menuComunidades_nombre.setText(user.getDisplayName());
         //navegadorCom2.setNavigationItemSelectedListener(this);
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +124,7 @@ public class MenuComunidadesFragment extends Fragment{
             }
         });
         lv_listaCom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView comunidad = view.findViewById(R.id.tv_vistaCom_nomCom);
                 comunidadActual = comunidad.getText().toString();

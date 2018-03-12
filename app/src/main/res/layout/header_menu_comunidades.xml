@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/tv_menuComunidades_foto"
+            android:id="@+id/iv_menuComunidades_foto"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_gravity="center_horizontal"

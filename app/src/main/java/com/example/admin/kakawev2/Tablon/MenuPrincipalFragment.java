@@ -67,13 +67,8 @@ public class MenuPrincipalFragment extends Fragment implements NavigationView.On
 
         comActual=getArguments().getString("nombreCom");
         String nombreUser = user.getDisplayName();
-
-        NavigationView navegadorCom = (NavigationView)vista.findViewById(R.id.menu_principal);
-        vistaPrincipal = navegadorCom.getHeaderView(0);
-        vistaPrincipal1= navegadorCom.getHeaderView(1);
-        navegadorCom.setNavigationItemSelectedListener(this);
-        tv_menuPrincipal_comunidad = (TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_comunidad);
-        tv_menuPrincipal_domicilio=(TextView) vistaPrincipal.findViewById(R.id.tv_menuPrincipal_domicilio);
+        tv_menuPrincipal_comunidad = (TextView) vista.findViewById(R.id.tv_menuPrincipal_comunidad_nombre);
+        tv_menuPrincipal_domicilio=(TextView) vista.findViewById(R.id.tv_menuPrincipal_comunidad_domicilio);
         tv_menuPrincipal_comunidad.setText(comActual);
 
         //tv_menuPrincipal_domicilio.setText("Primero, "+"derecha");
