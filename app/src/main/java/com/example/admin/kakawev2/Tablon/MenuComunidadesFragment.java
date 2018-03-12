@@ -72,6 +72,7 @@ public class MenuComunidadesFragment extends Fragment implements NavigationView.
         public void cerrarDrawer();
     }
     public MenuComunidadesFragment() {
+
         // Required empty public constructor
     }
 
