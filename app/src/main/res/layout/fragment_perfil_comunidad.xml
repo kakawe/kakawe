@@ -41,7 +41,7 @@
 
 
         <TextView
-            style="@style/tv_anadir_anuncio"
+            style="@style/tv_label_main"
             android:layout_marginBottom="5dp"
             android:text="Comunidad" />
 
@@ -55,21 +55,19 @@
             android:textSize="20sp" />
 
         <TextView
-            style="@style/tv_anadir_anuncio"
+            style="@style/tv_label_main"
             android:layout_marginBottom="5dp"
             android:text="Mi domicilio" />
 
         <EditText
             android:id="@+id/et_perfilCom_piso"
-            style="@style/et_registro"
-            android:layout_marginBottom="12dp"
+            style="@style/et_main"
             android:hint="Piso"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/et_perfilCom_puerta"
-            style="@style/et_registro"
-            android:layout_marginBottom="12dp"
+            style="@style/et_main"
             android:hint="Puerta"
             android:inputType="text" />
 

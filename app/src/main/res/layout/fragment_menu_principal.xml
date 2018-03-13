@@ -28,6 +28,7 @@
 
     <TextView
         style="@style/menu_subheader"
+        android:layout_height="55dp"
         android:paddingLeft="25dp"
         android:text="Mis anuncios" />
 

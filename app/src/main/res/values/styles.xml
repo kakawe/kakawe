@@ -14,24 +14,52 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="et_registro">
+    <style name="et_main">
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
         <item name="android:fontFamily">@font/lato</item>
         <item name="android:paddingLeft">20dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:background">@drawable/bg_border_et_registro</item>
+        <item name="android:background">@drawable/bg_border_et_main</item>
     </style>
 
     <style name="bt_main">
         <item name="android:layout_width">265dp</item>
         <item name="android:layout_height">57dp</item>
-        <item name="android:background">@drawable/bg_border_btn</item>
+        <item name="android:background">@drawable/bg_border_btn_main</item>
         <item name="android:fontFamily">@font/lato_black</item>
         <item name="android:textColor">@color/blanco</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="tv_label_main">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="app_bar">
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:textColor">@color/marron</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="tv_titulo_anuncio">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">45dp</item>
+        <item name="android:layout_marginRight">45dp</item>
+        <item name="android:fontFamily">@font/lato_black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/marron</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
     <style name="et_login">
@@ -42,30 +70,12 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="tv_anadir_anuncio">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/lato_black</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="tv_titulo_anuncio">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">45dp</item>
-        <item name="android:layout_marginRight">45dp</item>
-        <item name="android:fontFamily">@font/lato_black</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/marron</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
     <style name="menu_subheader">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:background">@color/blancoTransparente</item>
         <item name="android:fontFamily">@font/lato_black</item>
-        <item name="android:paddingVertical">15dp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/marron</item>
         <item name="android:textSize">20sp</item>
@@ -81,6 +91,28 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/blanco</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="segment_left">
+        <item name="android:layout_width">125dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/selector_segment_left</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/selector_segment</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="segment_right">
+        <item name="android:layout_width">125dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/selector_segment_right</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/selector_segment</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
 

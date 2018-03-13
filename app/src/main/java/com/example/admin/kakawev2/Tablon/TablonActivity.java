@@ -41,7 +41,7 @@ import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
 
-public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer,MenuPrincipalFragment.CierraDrawer{
+public class TablonActivity extends AppCompatActivity implements MenuComunidadesFragment.CierraDrawer, MenuPrincipalFragment.CierraDrawer {
 
     DrawerLayout menu;
     String nombrecom;
@@ -64,8 +64,8 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         FragmentTransaction t2 = fm2.beginTransaction();
         t2.replace(R.id.contenedorTablon, fragmentoSeleccionado2);
         Bundle datos = new Bundle();
-        datos.putString("nombreCom",nombrecom);
-        datos.putString("tipo","Ofrezco");
+        datos.putString("nombreCom", nombrecom);
+        datos.putString("tipo", "Ofrezco");
         fragmentoSeleccionado2.setArguments(datos);
         t2.commit();
 
@@ -74,6 +74,7 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Tablón de anuncios");
         setSupportActionBar(toolbar);
 
         ViewPager vp_menu = (ViewPager) findViewById(R.id.vp_menu);
@@ -122,7 +123,6 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
         });
         toggle.syncState();
     }
-
 
 
     @Override
