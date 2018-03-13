@@ -133,7 +133,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             uri = data.getData();
             subirFoto();
         }
-
     }
 
 
