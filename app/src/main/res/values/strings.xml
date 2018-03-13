@@ -33,6 +33,9 @@
 
     <string name="ofrecen">Give</string>
     <string name="necesitan">Require</string>
+    <string name="registrandoUsuario">Registering user</string>
+    <string name="correoYaRegistrado">Registered mail</string>
+    <string name="comprobandoDisponibilidad">Checking availability</string>
 
     <string name="tablon">Board</string>
     <string name="misAnuncios">My ads</string>
@@ -80,6 +83,7 @@
     <string name="publicar">Post</string>
     <string name="actualizar">Update</string>
     <string name="defineTuDomicilio">Your address within the community</string>
+    <string name="laComunidadYaExiste">The community already exists</string>
 
 
 </resources>

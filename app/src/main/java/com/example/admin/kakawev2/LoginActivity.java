@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }else{
                     progreso.cancel();
-                    String a= getResources().getString(R.string.correoEnv);
+                    String a= getResources().getString(R.string.correoEnvFallo);
                     Toast.makeText(LoginActivity.this,a, Toast.LENGTH_LONG).show();
 
                 }
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         String correo = et_login_correo.getText().toString().trim();
         String contrasena = et_login_contrasena.getText().toString();
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
-            String a= getResources().getString(R.string.correoEnv);
+            String a= getResources().getString(R.string.correoreg);
             Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_login_correo.requestFocus();
             return;

@@ -117,7 +117,6 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
                 int y = year;
                 int m = month + 1;
                 int d = dayOfMonth;
-                Log.v("year2", String.valueOf(year));
                 et_anadir_anuncio3_fecha_caducidad.setText(d + "/" + m + "/" + y);
 
             }
@@ -188,7 +187,6 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         String correo = user.getCurrentUser().getEmail().toString();
         String alias = user.getCurrentUser().getDisplayName();
 
-
         reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
         Anuncio2 a2 = new Anuncio2(key,correo,alias,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);
         reference.child(nomComunidad).child("Anuncios").child(tipo).child(key).setValue(a2);
@@ -212,7 +210,6 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
 
     private void obtenerFechaCaducidad() {
-        Log.v("funciona", "funciona");
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);

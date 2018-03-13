@@ -69,33 +69,42 @@ public class RegisterActivity extends AppCompatActivity {
         final String nombre = et_registro_nombre.getText().toString();
         String correo = et_registro_correo.getText().toString().trim();
         String contrasena = et_registro_contrasena.getText().toString();
-
+        String a;
+        progreso.show();
         if (nombre.isEmpty()) {
-
-            Toast.makeText(this, "Nombre requerido", Toast.LENGTH_LONG).show();
+            a= getResources().getString(R.string.nombreRequerido);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_registro_nombre.requestFocus();
+            progreso.cancel();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-            Toast.makeText(this, "Correo no valido", Toast.LENGTH_LONG).show();
+            a= getResources().getString(R.string.correoNoValido);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_registro_correo.requestFocus();
+            progreso.cancel();
             return;
         }
         if (contrasena.isEmpty()) {
+            a= getResources().getString(R.string.contraseñaRequerida);
             Toast.makeText(this, "Contraseña requerida", Toast.LENGTH_LONG).show();
             et_registro_contrasena.requestFocus();
+            progreso.cancel();
             return;
         }
         if (contrasena.length() < 6) {
-            Toast.makeText(this, "Contraseña corta, mñinimo 6 caracteres", Toast.LENGTH_LONG).show();
+            a= getResources().getString(R.string.contraseñaCorta);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_registro_contrasena.requestFocus();
+            progreso.cancel();
             return;
         }
         instancia.createUserWithEmailAndPassword(correo, contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progreso.show();
-                progreso.setMessage("Registrando usuario...");
+                String a= getResources().getString(R.string.registrandoUsuario);
+
+                progreso.setMessage(a+"...");
 
                 if (task.isSuccessful()) {
                     UserProfileChangeRequest cambio_usuario = new UserProfileChangeRequest.Builder()
@@ -111,7 +120,8 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         progreso.cancel();
-                        Toast.makeText(RegisterActivity.this, "Correo ya registrado", Toast.LENGTH_LONG).show();
+                        String b= getResources().getString(R.string.correoYaRegistrado);
+                        Toast.makeText(RegisterActivity.this, b, Toast.LENGTH_LONG).show();
                         et_registro_correo.requestFocus();
                     } else {
                         progreso.cancel();

@@ -21,6 +21,8 @@
     <string name="miDomicilio">Mi domicilio</string>
     <string name="ofrecen">Ofrecen</string>
     <string name="necesitan">Necesitan</string>
+    <string name="registrandoUsuario">Registrando usuario</string>
+    <string name="correoYaRegistrado">Correo ya registrado</string>
 
     <string name="correoreg">Escribe el correo con el que te registraste</string>
     <string name="correoNuev">Enviando correo de reseteo de contraseña</string>
@@ -49,6 +51,7 @@
     <string name="pisoRequerido">Añada su piso</string>
     <string name="puertarequerida">Añada su puerta</string>
     <string name="yaestasEnLaComunidad">Ya estás en la comunidad </string>
+    <string name="comprobandoDisponibilidad">Comprobando disponibilidad</string>
 
     <string name="miCuenta">Mi cuenta</string>
     <string name="datosPersonales">Datos personales</string>
@@ -73,4 +76,5 @@
     <string name="modificaNombreComunidad2">se genera por defecto con dirección y localidad.</string>
     <string name="actualizar">Actualizar</string>
     <string name="defineTuDomicilio">Define tu domicilio \n dentro de la comunidad</string>
+    <string name="laComunidadYaExiste">La comunidad ya existe</string>
 </resources>

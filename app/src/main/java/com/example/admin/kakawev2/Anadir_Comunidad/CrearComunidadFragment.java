@@ -98,11 +98,13 @@ public class CrearComunidadFragment extends Fragment {
         String direc = direccion.trim();
         String local = localidad.trim();
         if (localidad.isEmpty()){
-            Toast.makeText(getContext(),"Localidad requerida", Toast.LENGTH_LONG).show();
+            String a= getResources().getString(R.string.localidadRequerida);
+            Toast.makeText(getContext(),a, Toast.LENGTH_LONG).show();
             et_anadirCrear_localidad.requestFocus();
             return;
         }if (direccion.isEmpty()) {
-            Toast.makeText(getContext(), "Direccion requerida", Toast.LENGTH_LONG).show();
+            String a= getResources().getString(R.string.direccionRequerida);
+            Toast.makeText(getContext(), a, Toast.LENGTH_LONG).show();
             et_anadirCrear_direccion.requestFocus();
             return;
         }if (nombreCom.isEmpty()){
@@ -117,19 +119,19 @@ public class CrearComunidadFragment extends Fragment {
     //comprobamos si la comunidad existe o no
     private void comprobarSiExiste(final String nombreCom, final String localidad, final String direccion) {
         progreso.show();
-        progreso.setMessage("Comprobando disponibilidad");
+        String a= getResources().getString(R.string.comprobandoDisponibilidad);
+        progreso.setMessage(a);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(nombreCom).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Comunidad c=dataSnapshot.getValue(Comunidad.class);
                 if (c!=null){
-                    Log.v("datosc",c.getNombre());
-                    Toast.makeText(getContext(), "La comunidad ya existe", Toast.LENGTH_LONG).show();
+                    String a= getResources().getString(R.string.laComunidadYaExiste);
+                    Toast.makeText(getContext(), a, Toast.LENGTH_LONG).show();
                     progreso.cancel();
                     return;
                 }else{
-                    Log.v("datosc","no existe");
                     progreso.cancel();
                     anadirCrearMiDomicilio(nombreCom,localidad,direccion);
                 }
