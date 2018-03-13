@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,12 +16,12 @@
 
         <ImageView
             android:id="@+id/iv_login_registro"
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:layout_gravity="top|left"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_atras"/>
+            android:src="@drawable/ic_atras" />
 
         <ImageView
             android:id="@+id/logo_kakawe"
@@ -52,25 +51,27 @@
             <EditText
                 android:id="@+id/et_login_correo"
                 style="@style/et_login"
-                android:textAlignment="center"
                 android:hint="Email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:text="adri1@mail.com"
+                android:textAlignment="center" />
 
             <EditText
                 android:id="@+id/et_login_contrasena"
                 style="@style/et_login"
-                android:textAlignment="center"
+                android:layout_marginTop="25dp"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:layout_marginTop="25dp"/>
+                android:text="123456"
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/bt_login_entrar"
                 style="@style/bt_main"
-                android:elevation= "10dp"
-                android:text="ENTRAR"
+                android:layout_marginTop="60dp"
                 android:backgroundTint="@color/rojo"
-                android:layout_marginTop="60dp"/>
+                android:elevation="10dp"
+                android:text="ENTRAR" />
 
             <TextView
                 android:id="@+id/tv_login_recordarcontra"

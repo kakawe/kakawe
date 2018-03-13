@@ -14,14 +14,15 @@
             android:id="@+id/iv_detallesAnuncio_cerrar"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_margin="15dp"
+            android:layout_margin="20dp"
             android:src="@drawable/ic_cerrar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
-            android:layout_margin="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginVertical="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -36,9 +37,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginBottom="-3dp"
                     android:fontFamily="@font/lato"
                     android:text="Adrián Marcos"
-                    android:textSize="15sp" />
+                    android:textColor="@color/gris"
+                    android:textSize="16sp" />
 
 
                 <TextView
@@ -46,9 +49,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+
                     android:fontFamily="@font/lato_bold"
                     android:text="1º A"
-                    android:textSize="15sp" />
+                    android:textColor="@color/gris"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -61,6 +66,12 @@
 
         </LinearLayout>
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/gris" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -77,11 +88,12 @@
                 android:id="@+id/tv_detallesAnuncio_tituloAnuncio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_marginBottom="10dp"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="10dp"
                 android:fontFamily="@font/lato_black"
+                android:gravity="right"
                 android:text="Ofrezco verduras frescas"
+                android:textColor="@color/gris"
                 android:textSize="35sp" />
 
             <FrameLayout
@@ -116,10 +128,17 @@
                 android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in "
                 android:textSize="15sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gris" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
+                android:layout_margin="20dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -155,7 +174,7 @@
             </LinearLayout>
 
         </LinearLayout>
-        
+
     </ScrollView>
 
 </LinearLayout>

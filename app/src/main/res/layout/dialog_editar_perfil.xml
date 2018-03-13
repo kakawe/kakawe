@@ -8,27 +8,27 @@
     android:orientation="vertical">
 
     <TextView
-        style="@style/tv_anadir_anuncio"
+        style="@style/tv_label_main"
         android:layout_marginBottom="5dp"
-        android:text="Modifica tu contraseña" />
+        android:text="Modificar contraseña" />
 
     <EditText
         android:id="@+id/et_editarPerfil_contraseñaActual"
-        style="@style/et_registro"
-        android:layout_marginBottom="20dp"
+        style="@style/et_main"
+        android:layout_marginBottom="25dp"
         android:hint="Contraseña Actual"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/et_editarPerfil_contraseñaNueva"
-        style="@style/et_registro"
+        style="@style/et_main"
         android:layout_marginBottom="12dp"
         android:hint="Contraeña nueva"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/et_editarPerfil_contraseñaRepetir"
-        style="@style/et_registro"
+        style="@style/et_main"
         android:layout_marginBottom="12dp"
         android:hint="Repite contraseña"
         android:inputType="textPassword" />

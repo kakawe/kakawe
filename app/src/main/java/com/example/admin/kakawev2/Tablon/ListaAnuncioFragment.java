@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.DetallesAnuncio;
@@ -43,7 +44,7 @@ public class ListaAnuncioFragment extends Fragment{
 
     private RecyclerView rv_tablon_listatablon;
     private FloatingActionButton fb_listar_anadirAnuncio;
-    private Button bt_tablon_izquierdo, bt_tablon_derecho;
+    private ToggleButton bt_tablon_izquierdo, bt_tablon_derecho;
     private RVAdapter rvAdapter;
     LinearLayout contComu;
     private String nombreCom;
@@ -67,16 +68,18 @@ public class ListaAnuncioFragment extends Fragment{
         rv_tablon_listatablon = (RecyclerView) vista.findViewById(R.id.rv_tablon_listatablon);
         rv_tablon_listatablon.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        bt_tablon_izquierdo = (Button) vista.findViewById(R.id.bt_tablon_izquierdo);
-        bt_tablon_derecho = (Button) vista.findViewById(R.id.bt_tablon_derecho);
+        bt_tablon_izquierdo = (ToggleButton) vista.findViewById(R.id.bt_tablon_izquierdo);
+        bt_tablon_derecho = (ToggleButton) vista.findViewById(R.id.bt_tablon_derecho);
 
 
         if (tipo.equals("Ofrezco")) {
             Log.v("situacion","salto en ofrecen");
             obtenerOfertas();
+            bt_tablon_izquierdo.setChecked(true);
             pestana="Ofrezco";
         } else {
             obtenerDemandas();
+            bt_tablon_derecho.setChecked(true);
             pestana="Necesito";
         }
 
@@ -84,6 +87,7 @@ public class ListaAnuncioFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 obtenerOfertas();
+                bt_tablon_derecho.setChecked(false);
                 pestana = "Ofrezco";
             }
         });
@@ -91,6 +95,7 @@ public class ListaAnuncioFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 obtenerDemandas();
+                bt_tablon_izquierdo.setChecked(false);
                 pestana = "Necesito";
             }
         });

@@ -2,13 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_anuncio2_cerrar"
@@ -43,18 +41,19 @@
 
                 <TextView
                     android:id="@+id/tv_anadir_anuncio2_tipo"
-                    style="@style/tv_anadir_anuncio"
+                    style="@style/tv_label_main"
+                    android:layout_marginBottom="5dp"
                     android:text="Necesito..." />
 
                 <EditText
                     android:id="@+id/et_anadir_anuncio2_titulo"
-                    style="@style/et_registro"
+                    style="@style/et_main"
                     android:hint="Titulo"
                     android:inputType="text" />
 
                 <TextView
-                    style="@style/tv_anadir_anuncio"
-                    android:text="Fotos" />
+                    style="@style/tv_label_main"
+                    android:text="Foto" />
             </LinearLayout>
 
 
@@ -72,14 +71,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/tv_anadir_anuncio"
+                    style="@style/tv_label_main"
                     android:text="Descripción" />
 
                 <EditText
                     android:id="@+id/ed_anadir_anuncio2_descripcion"
-                    style="@style/et_registro"
-                    android:hint="Descripción"
-                    android:inputType="textMultiLine" />
+                    style="@style/et_main"
+                    android:hint="Detalles del anucio"
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,34 +88,41 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/tv_anadir_anuncio"
+                    style="@style/tv_label_main"
                     android:text="Categoria" />
 
                 <EditText
                     android:id="@+id/ed_anadir_anuncio2_categoria"
-                    style="@style/et_registro"
+                    style="@style/et_main"
                     android:hint="Categoría"
                     android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/bt_anadir_anuncio2_atras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="atras" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/bg_btn_circular"
+                    android:fontFamily="@font/lato"
+                    android:text="<"
+                    android:textColor="@color/blanco"
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/bt_anadir_anuncio2_adelante"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="adelante" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_btn_circular"
+                    android:fontFamily="@font/lato"
+                    android:text=">"
+                    android:textColor="@color/blanco"
+                    android:textSize="30sp" />
             </LinearLayout>
         </LinearLayout>
 

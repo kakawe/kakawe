@@ -2,94 +2,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:focusableInTouchMode="true"
     android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment">
 
+    <TextView
+        style="@style/tv_titulo_anuncio"
+        android:layout_margin="10dp"
+        android:text="Añadir comunidad"
+        android:textColor="@color/gris_medio" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center"
-        android:orientation="horizontal"
-        android:paddingTop="20dp">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Buscar" />
 
-        <Button
+        <ToggleButton
+            android:id="@+id/bt_anadir_buscar"
+            style="@style/segment_left"
+            android:textOff="Buscar"
+            android:textOn="Buscar" />
+
+        <ToggleButton
             android:id="@+id/bt_anadir_crear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Crear" />
-    </LinearLayout>
+            style="@style/segment_right"
+            android:textOff="Crear"
+            android:textOn="Crear" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_nom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-        <EditText
-            android:id="@+id/et_anadirBuscar_nomcom"
-            style="@style/et_registro"
-            android:hint="Nombre comunidad" />
-        </android.support.design.widget.TextInputLayout>
-
-        <TextView
-            style="@style/et_registro"
-            android:padding="5dp"
-            android:text="O"
-            android:textSize="20sp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_loca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-        <EditText
-            android:id="@+id/et_anadirBuscar_localidad"
-            style="@style/et_registro"
-            android:hint="Localidad" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_dire"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-        <EditText
-            android:id="@+id/et_anadirBuscar_direccion"
-            style="@style/et_registro"
-            android:hint="Direccion"
-            android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
-        android:paddingBottom="40dp">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/lato"
+            android:text="Busca una comunidad ya creada para unirte"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_nomcom"
+            style="@style/et_main"
+            android:hint="Nombre comunidad"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/lato"
+            android:text="También puedes buscar por dirección"
+            android:textSize="15sp" />
+
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_localidad"
+            style="@style/et_main"
+            android:hint="Localidad"
+            android:inputType="text" />
+
+
+        <EditText
+            android:id="@+id/et_anadirBuscar_direccion"
+            style="@style/et_main"
+            android:hint="Direccion"
+            android:inputType="textPostalAddress" />
+
 
         <Button
             android:id="@+id/bt_anadirBuscar_continuar"
             style="@style/bt_main"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/rojo"
             android:text="Continuar" />
     </LinearLayout>
-
 </LinearLayout>
+

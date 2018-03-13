@@ -1,89 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.RegisterActivity">
-
-    <ImageView
-        android:id="@+id/logo_kakawe"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logotipo_kakawe" />
-
-    <EditText
-        android:id="@+id/et_registro_nombre"
-        style="@style/et_registro"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        android:layout_marginTop="20dp"/>
-
-    <EditText
-        android:id="@+id/et_registro_correo"
-        style="@style/et_registro"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="20dp"/>
-
-    <EditText
-        android:id="@+id/et_registro_contrasena"
-        style="@style/et_registro"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:layout_marginTop="20dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/ib_registro_1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_twitter"
-            android:background="@drawable/bg_social"/>
 
-        <ImageButton
-            android:id="@+id/ib_registro_2"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_social"/>
+        <ImageView
+            android:id="@+id/logo_kakawe"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/logotipo_kakawe" />
 
-        <ImageButton
-            android:id="@+id/ib_registro_3"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_social"/>
+        <EditText
+            android:id="@+id/et_registro_nombre"
+            style="@style/et_main"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/et_registro_correo"
+            style="@style/et_main"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/et_registro_contrasena"
+            style="@style/et_main"
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/bt_registro_registrar"
+            style="@style/bt_main"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/marron"
+            android:text="CONTINUAR" />
+
+        <TextView
+            android:id="@+id/tv_registro_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="¿Tienes cuenta? Inicia sesión"
+            android:textAlignment="center"
+            android:textSize="15sp" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bt_registro_registrar"
-        style="@style/bt_main"
-        android:elevation= "10dp"
-        android:text="CONTINUAR"
-        android:backgroundTint="@color/marron"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/tv_registro_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="¿Tienes cuenta? Inicia sesión"
-        android:textAlignment="center"
-        android:textSize="15sp" />
-
-</LinearLayout>
+</FrameLayout>
