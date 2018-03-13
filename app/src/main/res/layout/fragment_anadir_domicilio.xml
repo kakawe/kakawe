@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.kakawe.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
+    tools:context="com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
 
 
     <FrameLayout
@@ -25,7 +25,7 @@
         <TextView
             style="@style/tv_titulo_anuncio"
             android:layout_margin="10dp"
-            android:text="@string/miDomicilio"
+            android:text="Mi domicilio"
             android:textColor="@color/gris_medio" />
 
     </FrameLayout>
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/lato"
-        android:text="@string/defineTuDomicilio"
+        android:text="Define tu domicilio \n dentro de la comunidad"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -44,13 +44,15 @@
     <EditText
         android:id="@+id/et_anadirDomicilio_piso"
         style="@style/et_main"
-        android:hint="@string/piso" />
+        android:hint="Piso"
+        android:inputType="text" />
 
 
     <EditText
         android:id="@+id/et_anadirDomicilio_puerta"
         style="@style/et_main"
-        android:hint="@string/puerta" />
+        android:hint="Puerta"
+        android:inputType="text" />
 
 
     <Button
@@ -58,6 +60,6 @@
         style="@style/bt_main"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/rojo"
-        android:text="@string/entrar" />
+        android:text="Entrar" />
 
 </LinearLayout>

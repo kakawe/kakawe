@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -7,13 +8,13 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_vista_anuncio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardElevation="20dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:elevation="20dp"
             android:orientation="vertical">
 
 
@@ -27,7 +28,8 @@
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_margin="15dp"
-                    android:background="@color/marron" />
+                    android:background="@color/gris"
+                    android:scaleType="centerCrop" />
 
                 <TextView
                     android:id="@+id/tv_vista_anuncio_titulo"
@@ -62,10 +64,11 @@
                     android:text="Nombre"
                     android:textSize="15sp" />
 
-                <com.mikhaellopez.circularimageview.CircularImageView
+                <ImageView
                     android:id="@+id/iv_vista_anuncio_autor_foto"
                     android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                    android:layout_height="25dp"
+                    android:background="@drawable/bg_social" />
 
             </LinearLayout>
 
@@ -76,15 +79,17 @@
                 android:layout_height="30dp"
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_disponibilidad_chincheta" />
 
             <ImageView
                 android:id="@+id/iv_vista_anuncio_categoria"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="top|start"
+                android:layout_marginLeft="7dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginLeft="7dp" />
+                android:background="@drawable/bg_social" />
 
         </FrameLayout>
     </android.support.v7.widget.CardView>

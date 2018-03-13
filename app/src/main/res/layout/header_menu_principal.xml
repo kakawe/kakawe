@@ -2,12 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="130dp">
-    
+
     <ImageView
         android:id="@+id/iv_menuPrincipal_comunidad_foto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/logotipo_kakawe" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/comunidad_kakawe_2" />
 
     <ImageView
         android:id="@+id/iv_menuPrincipal_fotoCom"
