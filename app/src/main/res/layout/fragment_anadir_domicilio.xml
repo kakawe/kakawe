@@ -25,7 +25,7 @@
         <TextView
             style="@style/tv_titulo_anuncio"
             android:layout_margin="10dp"
-            android:text="Mi domicilio"
+            android:text="@string/miDomicilio"
             android:textColor="@color/gris_medio" />
 
     </FrameLayout>
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/lato"
-        android:text="Define tu domicilio \n dentro de la comunidad"
+        android:text="@string/defineTuDomicilio"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -44,13 +44,13 @@
     <EditText
         android:id="@+id/et_anadirDomicilio_piso"
         style="@style/et_main"
-        android:hint="Piso" />
+        android:hint="@string/piso" />
 
 
     <EditText
         android:id="@+id/et_anadirDomicilio_puerta"
         style="@style/et_main"
-        android:hint="Puerta" />
+        android:hint="@string/puerta" />
 
 
     <Button
@@ -58,6 +58,6 @@
         style="@style/bt_main"
         android:layout_marginTop="80dp"
         android:backgroundTint="@color/rojo"
-        android:text="Entrar" />
+        android:text="@string/entrar" />
 
 </LinearLayout>

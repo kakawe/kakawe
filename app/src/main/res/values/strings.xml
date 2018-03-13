@@ -71,6 +71,7 @@
     <string name="horaCaducidad">Expiration time</string>
     <string name="publicar">Post</string>
     <string name="actualizar">Update</string>
+    <string name="defineTuDomicilio">Your address within the community</string>
 
 
 </resources>
