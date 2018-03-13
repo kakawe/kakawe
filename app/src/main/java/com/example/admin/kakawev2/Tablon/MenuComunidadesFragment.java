@@ -158,7 +158,7 @@ public class MenuComunidadesFragment extends Fragment{
                     Comunidad com= dato.getValue(Comunidad.class);
                     final String nombreComunidad= com.getNombre();
                     DatabaseReference referencia1 = FirebaseDatabase.getInstance().getReference("comunidades").child(nombreComunidad).child("usuarios");
-                    referencia1.addValueEventListener(new ValueEventListener() {
+                    referencia1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot1) {
                             for (DataSnapshot dato2 : dataSnapshot1.getChildren()) {{
