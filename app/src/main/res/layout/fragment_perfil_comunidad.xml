@@ -22,14 +22,6 @@
             android:layout_height="180dp"
             android:background="@color/gris" />
 
-        <ImageView
-            android:id="@+id/iv_perfilCom_cerrar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_cerrar" />
-
 
     </FrameLayout>
 
