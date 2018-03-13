@@ -193,8 +193,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                         Log.v("nombre2", nombre);
                         if (task.isSuccessful()) {
                             //lanzamos el metodo para subir la imagen
-
-
                             Toast.makeText(PerfilUsuarioActivity.this, "Perfil actualizado con éxito", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(PerfilUsuarioActivity.this, TablonActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -85,23 +85,27 @@ public class LoginActivity extends AppCompatActivity {
     private void recordarContraseña() {
         String correo = et_login_correo.getText().toString().trim();
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
-            Toast.makeText(this, "Escribe el correo con el que te registraste", Toast.LENGTH_LONG).show();
+            String a= getResources().getString(R.string.correoreg);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_login_correo.requestFocus();
             return;
         }
         progreso.show();
-        progreso.setMessage("Enviando correo de reseteo de contraseña");
+        String a= getResources().getString(R.string.correoNuev);
+        progreso.setMessage(a);
 
         instancia.sendPasswordResetEmail(correo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     progreso.cancel();
-                    Toast.makeText(LoginActivity.this,"Correo enviado", Toast.LENGTH_LONG).show();
+                    String a= getResources().getString(R.string.correoEnv);
+                    Toast.makeText(LoginActivity.this,a, Toast.LENGTH_LONG).show();
 
                 }else{
                     progreso.cancel();
-                    Toast.makeText(LoginActivity.this,"Error con el correo electrónico", Toast.LENGTH_LONG).show();
+                    String a= getResources().getString(R.string.correoEnv);
+                    Toast.makeText(LoginActivity.this,a, Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -113,37 +117,44 @@ public class LoginActivity extends AppCompatActivity {
         String correo = et_login_correo.getText().toString().trim();
         String contrasena = et_login_contrasena.getText().toString();
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
-            Toast.makeText(this, "Correo no valido", Toast.LENGTH_LONG).show();
+            String a= getResources().getString(R.string.correoEnv);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_login_correo.requestFocus();
             return;
         }
         if (contrasena.isEmpty()) {
-            Toast.makeText(this, "Contraseña requerida", Toast.LENGTH_LONG).show();
+            String a= getResources().getString(R.string.contraseñaRequerida);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_login_contrasena.requestFocus();
             return;
         }if (contrasena.length()<6) {
-            Toast.makeText(this, "Contraseña corta", Toast.LENGTH_LONG).show();
+
+            String a= getResources().getString(R.string.contraseñaCorta);
+            Toast.makeText(this, a, Toast.LENGTH_LONG).show();
             et_login_contrasena.requestFocus();
             return;
         }
         instancia.signInWithEmailAndPassword(correo,contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progreso.setMessage("Iniciando sesión...");
+                String a= getResources().getString(R.string.iniciandoSesion);
+                progreso.setMessage(a+"...");
                 progreso.show();
                 if (task.isSuccessful()){
                     cargaComunidades();
                 }else{
+                    String b= getResources().getString(R.string.credencialesInvalidas);
                     if (task.getException() instanceof FirebaseAuthInvalidUserException){
                         progreso.cancel();
-                        Toast.makeText(LoginActivity.this, "Credenciales invalidas", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(LoginActivity.this, b, Toast.LENGTH_SHORT).show();
                     }
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
                         progreso.cancel();
-                        Toast.makeText(LoginActivity.this, "Credenciales invalidas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, b, Toast.LENGTH_SHORT).show();
                     }else{
                         progreso.cancel();
-                        Toast.makeText(LoginActivity.this,"Error al intentar iniciar sesión", Toast.LENGTH_LONG).cancel();
+                        Toast.makeText(LoginActivity.this,b, Toast.LENGTH_LONG).cancel();
                     }
                 }
             }
@@ -171,8 +182,6 @@ public class LoginActivity extends AppCompatActivity {
                                     comus_usuario.add(nombreComunidad);
                                     String nombreCom=comus_usuario.get(0);
                                     loginLanzaTablon(nombreCom);
-                                    Log.v("nombreComunidad",nombreCom);
-
                                 }
                             }}
                         }

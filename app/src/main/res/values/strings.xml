@@ -22,6 +22,14 @@
     <string name="contraseñaRequerida">Password required</string>
     <string name="contraseñaCorta">Short password, minimum 6 characters</string>
     <string name="miDomicilio">My address</string>
+    <string name="credencialesInvalidas">Invalid credentials</string>
+
+    <string name="correoreg">Write the email with which you registered</string>
+    <string name="correoNuev">Send reset password mail</string>
+    <string name="correoEnv">Email sent</string>
+    <string name="correoEnvFallo">Error with email</string>
+
+
 
     <string name="ofrecen">Give</string>
     <string name="necesitan">Require</string>

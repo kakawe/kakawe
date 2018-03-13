@@ -1,11 +1,10 @@
-package com.example.admin.kakawev2.Tablon;
+package com.example.admin.kakawev2;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Entidades.Vecino;
-import com.example.admin.kakawev2.R;
+import com.example.admin.kakawev2.Tablon.TablonActivity;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,11 +34,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
-import static android.app.Activity.RESULT_OK;
-
-public class PerfilComunidadFragment extends Fragment implements View.OnClickListener {
-
-
+public class PerfilComunidadActivity extends AppCompatActivity implements View.OnClickListener{
     private static DatabaseReference referencia;
     private ProgressDialog progreso;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -47,7 +42,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
     Uri uri;
 
     //Subir imagen a FireBase
-    private ImageView iv_perfilCom_fotoCom;
+    private ImageView iv_perfilCom_fotoCom,iv_perfilCom_cerrar;
     private StorageReference storageReference;
     private static final int GALERY_INTENT = 1;
 
@@ -62,27 +57,36 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
     private EditText et_perfilCom_piso, et_perfilCom_puerta;
     private TextView tv_perfilCom_nombreCom;
 
-    public PerfilComunidadFragment() {
-
-    }
-
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        progreso = new ProgressDialog(getContext());
-        comActual = getArguments().getString("nombreCom");
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_perfil_comunidad);
+        progreso = new ProgressDialog(this);
+        comActual = getIntent().getStringExtra("nombreCom");
 
         //creamos la referencia a firebaseStorage para poder interactuar con el storage
         storageReference = FirebaseStorage.getInstance().getReference();
         //instanciar imagen para proceder a obtenerla y lanzarla a firebase
-        iv_perfilCom_fotoCom = (ImageView) getView().findViewById(R.id.iv_menuPrincipal_fotoCom);
+        iv_perfilCom_fotoCom = (ImageView)findViewById(R.id.iv_menuPrincipal_fotoCom);
+        iv_perfilCom_cerrar = (ImageView)findViewById(R.id.iv_perfilCom_cerrar);
         //metodo para clicar en la imagen
         iv_perfilCom_fotoCom.setOnClickListener(this);
 
+        iv_perfilCom_cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilComunidadActivity.this, TablonActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("comunidad", comActual);
+                startActivity(intent);
+            }
+        });
         correo = user.getEmail();
-        et_perfilCom_piso = (EditText) getView().findViewById(R.id.et_perfilCom_piso);
-        et_perfilCom_puerta = (EditText) getView().findViewById(R.id.et_perfilCom_puerta);
-        tv_perfilCom_nombreCom = (TextView) getView().findViewById(R.id.tv_perfilCom_nombreCom);
-        bt_perfilCom_actualiarDatos = (Button) getView().findViewById(R.id.bt_perfilCom_actualiarDatos);
+        et_perfilCom_piso = (EditText)findViewById(R.id.et_perfilCom_piso);
+        et_perfilCom_puerta = (EditText)findViewById(R.id.et_perfilCom_puerta);
+        tv_perfilCom_nombreCom = (TextView)findViewById(R.id.tv_perfilCom_nombreCom);
+        bt_perfilCom_actualiarDatos = (Button)findViewById(R.id.bt_perfilCom_actualiarDatos);
         bt_perfilCom_actualiarDatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +99,6 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         cargarFotoComunidd();
 
     }
-
 
     private void cargaComunidad() {
         //Buscamos en la comunidad el usuario con el mismo correo que el logueado, para coger sus datos de sesion
@@ -134,11 +137,11 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         String pisoAct = et_perfilCom_piso.getText().toString();
         String puertaAct = et_perfilCom_puerta.getText().toString();
         if (pisoAct.isEmpty()) {
-            Toast.makeText(getContext(), "Introduce un piso", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Introduce un piso", Toast.LENGTH_LONG).show();
             return;
         }
         if (puertaAct.isEmpty()) {
-            Toast.makeText(getContext(), "Introduce una puerta", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Introduce una puerta", Toast.LENGTH_LONG).show();
             return;
         }
         FirebaseUser usuarioActual = FirebaseAuth.getInstance().getCurrentUser();
@@ -147,7 +150,12 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         Vecino vecino = new Vecino(correo, mail, pisoAct, puertaAct);
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(comActual).child("usuarios").child(ruta).setValue(vecino);
-        Toast.makeText(getContext(), "Datos actualizados", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Datos comunidad actualizados", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(PerfilComunidadActivity.this, TablonActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("comunidad", comActual);
+        startActivity(intent);
 
     }
 
@@ -161,21 +169,13 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
                 //descargar imagen de firebase
 
                 Uri descargarFoto = taskSnapshot.getDownloadUrl();
-                Glide.with(getActivity())
+                Glide.with(PerfilComunidadActivity.this)
                         .load(descargarFoto)
                         .into(iv_perfilCom_fotoCom);
 
-                Toast.makeText(getContext(), "Se subio la foto", Toast.LENGTH_LONG).show();
+                Toast.makeText(PerfilComunidadActivity.this, "Se subio la foto", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil_comunidad, container, false);
     }
 
     private void cargarFotoComunidd() {
@@ -186,7 +186,7 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         if (refGuardar.getName().isEmpty()) {
         } else {
             Log.v("Entrada", "2");
-            Glide.with(getActivity()).using(new FirebaseImageLoader())
+            Glide.with(PerfilComunidadActivity.this).using(new FirebaseImageLoader())
                     .load(refGuardar)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)

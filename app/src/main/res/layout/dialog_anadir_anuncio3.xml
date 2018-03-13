@@ -65,6 +65,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/id_expiracion_dato"
                     style="@style/tv_label_main"
                     android:text="@string/fechaCaducidad" />
 
@@ -82,6 +83,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/id_expiracion_hora"
                     style="@style/tv_label_main"
                     android:text="@string/horaCaducidad" />
 

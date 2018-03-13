@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="iniciandoSesion">Iniciando sesión</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="fechaNacimiento">Fecha nacimiento</string>
+    <string name="telefono">Telefono</string>
+    <string name="Correo">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="continuar">Continuar</string>
+    <string name="iniciarSesion">¿Tienes cuenta? Inicia sesión</string>
+    <string name="entrar">Entrar</string>
+    <string name="contrasenaOlvidada">Olvidé la contraseña</string>
+    <string name="nombreRequerido">Nombre requerido</string>
+    <string name="correoNoValido">Correo no válido</string>
+    <string name="contraseñaRequerida">Contraseña requerida</string>
+    <string name="contraseñaCorta">Contraseña corta, mínimo 6 caracteres</string>
+    <string name="credencialesInvalidas">Credenciales invalidas</string>
+
+    <string name="miDomicilio">Mi domicilio</string>
+    <string name="ofrecen">Ofrecen</string>
+    <string name="necesitan">Necesitan</string>
+
+    <string name="correoreg">Escribe el correo con el que te registraste</string>
+    <string name="correoNuev">Enviando correo de reseteo de contraseña</string>
+    <string name="correoEnv">Correo enviado</string>
+    <string name="correoEnvFallo">Error con el correo electrónico</string>
+
+    <string name="tablon">Tablón</string>
+    <string name="misAnuncios">Mis anuncios</string>
+    <string name="historial">Historial</string>
+
+    <string name="anadirComunidad">Añadir comunidad</string>
+    <string name="misComunidades">Mis comunidades</string>
+
+    <string name="buscar">Buscar</string>
+    <string name="crear">Crear</string>
+    <string name="nombreComunidad">Nombre comunidad</string>
+    <string name="localidad">Localidad</string>
+    <string name="direccion">Direccion</string>
+    <string name="introduceNomCom">Introduce el nombre de la comunidad a buscar</string>
+    <string name="noExisteComBuscar">No existe una comunidad con el nombre </string>
+    <string name="localidadRequerida">Localidad requerida</string>
+    <string name="direccionRequerida">Dirección requerida</string>
+    <string name="existeComunidad">Ya existe una comunidad con ese nombre</string>
+    <string name="piso">Piso</string>
+    <string name="puerta">Puerta</string>
+    <string name="pisoRequerido">Añada su piso</string>
+    <string name="puertarequerida">Añada su puerta</string>
+    <string name="yaestasEnLaComunidad">Ya estás en la comunidad </string>
+
+    <string name="miCuenta">Mi cuenta</string>
+    <string name="datosPersonales">Datos personales</string>
+    <string name="datosDelContacto">Datos del contacto</string>
+    <string name="sobreMi">Sobre mí</string>
+    <string name="escribeSobreMi">Escribe algo sobre tí</string>
+
+    <string name="queDeseasAnunciar">¿Que deseas anunciar?</string>
+    <string name="nuevoAnuncio">Nuevo anuncio</string>
+    <string name="titulo">Título</string>
+    <string name="foto">Foto</string>
+    <string name="descripcion">Descripción</string>
+    <string name="detalleAnuncio">Detalle anuncio</string>
+    <string name="categoria">Categoría</string>
+    <string name="opcionesPublicacion">Opciones de publicación</string>
+    <string name="anuncioPermanente">Anuncio permanente</string>
+    <string name="fechaCaducidad">Fecha de caducidad</string>
+    <string name="horaCaducidad">Hora de caducidad</string>
+    <string name="publicar">Publicar</string>
+    <string name="buscarPorDireccion">También puedes buscar por dirección</string>
+    <string name="modificaNombreComunidad">Modifica el nombre de la comunidad si lo deseas,</string>
+    <string name="modificaNombreComunidad2">se genera por defecto con dirección y localidad.</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="defineTuDomicilio">Define tu domicilio \n dentro de la comunidad</string>
+</resources>

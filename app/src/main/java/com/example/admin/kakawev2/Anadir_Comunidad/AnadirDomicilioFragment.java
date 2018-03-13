@@ -58,9 +58,9 @@ public class AnadirDomicilioFragment extends Fragment {
         public void anadirComunidad(Comunidad comunidad, Vecino vecino);
     }
 
-    TextView tv_anadirDomicilio_crear;
     EditText et_anadirDomicilio_piso, et_anadirDomicilio_puerta;
     Button bt_anadirDomicilio_continuar;
+    ImageView tv_anadirDomicilio_crear;
 
     private String nombreCom, localidad, direccion, ventana, contenedor;
 
@@ -74,7 +74,7 @@ public class AnadirDomicilioFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
         et_anadirDomicilio_piso = (EditText) getView().findViewById(R.id.et_anadirDomicilio_piso);
         et_anadirDomicilio_puerta = (EditText) getView().findViewById(R.id.et_anadirDomicilio_puerta);
-        tv_anadirDomicilio_crear = (TextView) getView().findViewById(R.id.tv_anadirDomicilio_crear);
+        tv_anadirDomicilio_crear = (ImageView) getView().findViewById(R.id.tv_anadirDomicilio_crear);
         bt_anadirDomicilio_continuar = (Button) getView().findViewById(R.id.bt_anadirDomicilio_continuar);
 
         tv_anadirDomicilio_crear.setOnClickListener(new View.OnClickListener() {

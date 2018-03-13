@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +8,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.admin.kakawev2.Tablon.PerfilComunidadFragment">
+    tools:context="com.example.admin.kakawev2.PerfilComunidadActivity">
 
 
     <FrameLayout
@@ -20,7 +21,9 @@
             android:id="@+id/iv_menuPrincipal_fotoCom"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="@color/gris" />
+            android:background="@color/gris"
+            android:layout_marginRight="55dp"
+            android:layout_marginLeft="55dp"/>
 
         <ImageView
             android:id="@+id/iv_perfilCom_cerrar"

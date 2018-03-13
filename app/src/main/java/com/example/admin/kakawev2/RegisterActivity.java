@@ -60,7 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
         bt_registro_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //registroAnadirComunidad();
                 registrarUsuario();
             }
         });
@@ -72,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         String contrasena = et_registro_contrasena.getText().toString();
 
         if (nombre.isEmpty()) {
+
             Toast.makeText(this, "Nombre requerido", Toast.LENGTH_LONG).show();
             et_registro_nombre.requestFocus();
             return;

@@ -21,8 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
-            android:parentActivityName=".RegisterActivity"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".RegisterActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Tablon.TablonActivity" />
         <activity android:name=".Anadir_Comunidad.AnadirComunidadActivity" />
@@ -31,8 +32,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".PerfilUsuarioActivity"
-            android:parentActivityName=".Tablon.TablonActivity"></activity>
+        <activity
+            android:name=".PerfilUsuarioActivity"
+            android:parentActivityName=".Tablon.TablonActivity" />
+        <activity android:name=".PerfilComunidadActivity"></activity>
     </application>
 
 </manifest>

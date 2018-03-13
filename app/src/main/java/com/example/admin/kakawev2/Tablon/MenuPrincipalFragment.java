@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Tablon;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,8 @@ import com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment;
 import com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment;
 import com.example.admin.kakawev2.Entidades.Vecino;
 import com.example.admin.kakawev2.FragmentMisAnuncios;
+import com.example.admin.kakawev2.PerfilComunidadActivity;
+import com.example.admin.kakawev2.PerfilUsuarioActivity;
 import com.example.admin.kakawev2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -86,11 +89,9 @@ public class MenuPrincipalFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 cerrarDrawer();
-                final Fragment crear = new PerfilComunidadFragment();
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedorTablon,crear).commit();
-                datos.putString("nombreCom",comActual);
-                crear.setArguments(datos);
+                Intent intent = new Intent(getContext(), PerfilComunidadActivity.class);
+                intent.putExtra("nombreCom",comActual);
+                startActivity(intent);
             }
         });
         tv_menuPrincipal_domicilio.setOnClickListener(new View.OnClickListener() {
@@ -98,10 +99,9 @@ public class MenuPrincipalFragment extends Fragment{
             public void onClick(View v) {
                 cerrarDrawer();
                 final Fragment crear = new PerfilComunidadFragment();
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.contenedorTablon,crear).commit();
-                datos.putString("nombreCom",comActual);
-                crear.setArguments(datos);
+                Intent intent = new Intent(getContext(), PerfilComunidadActivity.class);
+                intent.putExtra("nombreCom",comActual);
+                startActivity(intent);
             }
         });
         btn_menu_tablon_ofrecen.setOnClickListener(new View.OnClickListener() {
