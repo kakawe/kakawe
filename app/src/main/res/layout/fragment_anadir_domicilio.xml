@@ -44,13 +44,15 @@
     <EditText
         android:id="@+id/et_anadirDomicilio_piso"
         style="@style/et_main"
-        android:hint="Piso" />
+        android:hint="Piso"
+        android:inputType="text" />
 
 
     <EditText
         android:id="@+id/et_anadirDomicilio_puerta"
         style="@style/et_main"
-        android:hint="Puerta" />
+        android:hint="Puerta"
+        android:inputType="text" />
 
 
     <Button
