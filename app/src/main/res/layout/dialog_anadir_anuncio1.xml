@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/tv_anuncio1_titulo"
                 style="@style/tv_titulo_anuncio"
-                android:text="¿Que deseas anunciar?" />
+                android:text="@string/queDeseasAnunciar" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_black"
-                    android:text="Necesito"
+                    android:text="@string/necesitan"
                     android:textSize="22sp" />
             </LinearLayout>
 
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_black"
-                    android:text="Ofrezco"
+                    android:text="@string/ofrecen"
                     android:textSize="22sp" />
             </LinearLayout>
 

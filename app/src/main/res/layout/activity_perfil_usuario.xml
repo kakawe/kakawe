@@ -51,12 +51,12 @@
             <TextView
                 style="@style/tv_label_main"
                 android:layout_marginBottom="5dp"
-                android:text="Mi cuenta" />
+                android:text="@string/miCuenta" />
 
             <EditText
                 android:id="@+id/et_perfilUs_email"
                 style="@style/et_main"
-                android:hint="Email"
+                android:hint="@string/Correo"
                 android:inputType="textEmailAddress" />
 
             <TextView
@@ -70,48 +70,48 @@
             <TextView
                 style="@style/tv_label_main"
                 android:layout_marginBottom="5dp"
-                android:text="Datos personales" />
+                android:text="@string/datosPersonales" />
 
             <EditText
                 android:id="@+id/et_perfilUs_nombre"
                 style="@style/et_main"
-                android:hint="Nombre"
+                android:hint="@string/nombre"
                 android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/et_perfilUs_apellidos"
                 style="@style/et_main"
-                android:hint="Apellidos"
+                android:hint="@string/apellidos"
                 android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/et_perfilUs_nacimiento"
                 style="@style/et_main"
-                android:hint="Fecha de nacimiento"
+                android:hint="@string/fechaNacimiento"
                 android:inputType="date" />
 
             <TextView
                 style="@style/tv_label_main"
                 android:layout_marginBottom="5dp"
-                android:text="Datos de contacto" />
+                android:text="@string/datosDelContacto" />
 
             <EditText
                 android:id="@+id/et_perfilUs_telefono"
                 style="@style/et_main"
-                android:hint="Teléfono"
+                android:hint="@string/telefono"
                 android:inputType="phone" />
 
             <TextView
                 style="@style/tv_label_main"
                 android:layout_marginBottom="5dp"
-                android:text="Sobre mí" />
+                android:text="@string/sobreMi" />
 
             <EditText
                 android:id="@+id/et_perfilUs_sobreMi"
                 style="@style/et_main"
                 android:layout_height="150dp"
                 android:gravity="top"
-                android:hint="Escribe algo sobre tí"
+                android:hint="@string/escribeSobreMi"
                 android:inputType="textMultiLine"
                 android:padding="20dp" />
 

@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_anuncio3_titulo"
             style="@style/tv_titulo_anuncio"
-            android:text="Nuevo anuncio" />
+            android:text="@string/nuevoAnuncio" />
     </FrameLayout>
 
     <FrameLayout
@@ -35,7 +35,7 @@
             <TextView
                 style="@style/tv_label_main"
                 android:layout_marginBottom="20dp"
-                android:text="Opciones de publicación" />
+                android:text="@string/opcionesPublicacion" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 <TextView
                     style="@style/tv_label_main"
                     android:layout_gravity="left"
-                    android:text="Anuncio permanente" />
+                    android:text="@string/anuncioPermanente" />
 
                 <Switch
                     android:id="@+id/sw_anadir_anuncio3_desabilitar"
@@ -66,7 +66,7 @@
 
                 <TextView
                     style="@style/tv_label_main"
-                    android:text="Fecha de caducidad" />
+                    android:text="@string/fechaCaducidad" />
 
                 <EditText
                     android:id="@+id/et_anadir_anuncio3_fecha_caducidad"
@@ -83,7 +83,7 @@
 
                 <TextView
                     style="@style/tv_label_main"
-                    android:text="Hora de caducidad" />
+                    android:text="@string/horaCaducidad" />
 
                 <EditText
                     android:id="@+id/et_anadir_anuncio3_hora_caducidad"
@@ -98,7 +98,7 @@
                 android:layout_marginTop="60dp"
                 android:backgroundTint="@color/marron"
                 android:elevation="10dp"
-                android:text="PUBLICAR" />
+                android:text="@string/publicar" />
 
         </LinearLayout>
 

@@ -11,7 +11,7 @@
     <TextView
         style="@style/tv_titulo_anuncio"
         android:layout_margin="10dp"
-        android:text="Añadir comunidad"
+        android:text="@string/anadirComunidad"
         android:textColor="@color/gris_medio" />
 
     <LinearLayout
@@ -25,14 +25,14 @@
         <ToggleButton
             android:id="@+id/bt_anadir_buscar"
             style="@style/segment_left"
-            android:textOff="Buscar"
-            android:textOn="Buscar" />
+            android:textOff="@string/buscar"
+            android:textOn="@string/buscar" />
 
         <ToggleButton
             android:id="@+id/bt_anadir_crear"
             style="@style/segment_right"
-            android:textOff="Crear"
-            android:textOn="Crear" />
+            android:textOff="@string/crear"
+            android:textOn="@string/crear" />
 
     </LinearLayout>
 
@@ -47,13 +47,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/lato"
-            android:text="Busca una comunidad ya creada para unirte"
+            android:text="@string/introduceNomCom"
             android:textSize="15sp" />
 
         <EditText
             android:id="@+id/et_anadirBuscar_nomcom"
             style="@style/et_main"
-            android:hint="Nombre comunidad"
+            android:hint="@string/nombreComunidad"
             android:inputType="text" />
 
         <TextView
@@ -61,21 +61,21 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/lato"
-            android:text="También puedes buscar por dirección"
+            android:text="@string/buscarPorDireccion"
             android:textSize="15sp" />
 
 
         <EditText
             android:id="@+id/et_anadirBuscar_localidad"
             style="@style/et_main"
-            android:hint="Localidad"
+            android:hint="@string/localidad"
             android:inputType="text" />
 
 
         <EditText
             android:id="@+id/et_anadirBuscar_direccion"
             style="@style/et_main"
-            android:hint="Direccion"
+            android:hint="@string/direccion"
             android:inputType="textPostalAddress" />
 
 
@@ -84,7 +84,7 @@
             style="@style/bt_main"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/rojo"
-            android:text="Continuar" />
+            android:text="@string/continuar" />
     </LinearLayout>
 </LinearLayout>
 

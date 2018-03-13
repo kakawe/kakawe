@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_anuncio2_titulo"
             style="@style/tv_titulo_anuncio"
-            android:text="Nuevo anuncio" />
+            android:text="@string/nuevoAnuncio" />
 
     </FrameLayout>
 
@@ -48,12 +48,12 @@
                 <EditText
                     android:id="@+id/et_anadir_anuncio2_titulo"
                     style="@style/et_main"
-                    android:hint="Titulo"
+                    android:hint="@string/titulo"
                     android:inputType="text" />
 
                 <TextView
                     style="@style/tv_label_main"
-                    android:text="Foto" />
+                    android:text="@string/foto" />
             </LinearLayout>
 
 
@@ -72,12 +72,12 @@
 
                 <TextView
                     style="@style/tv_label_main"
-                    android:text="Descripción" />
+                    android:text="@string/descripcion" />
 
                 <EditText
                     android:id="@+id/ed_anadir_anuncio2_descripcion"
                     style="@style/et_main"
-                    android:hint="Detalles del anucio"
+                    android:hint="@string/detalleAnuncio"
                     android:inputType="text" />
             </LinearLayout>
 
@@ -89,12 +89,12 @@
 
                 <TextView
                     style="@style/tv_label_main"
-                    android:text="Categoria" />
+                    android:text="@string/categoria" />
 
                 <EditText
                     android:id="@+id/ed_anadir_anuncio2_categoria"
                     style="@style/et_main"
-                    android:hint="Categoría"
+                    android:hint="@string/categoria"
                     android:inputType="text" />
             </LinearLayout>
 

@@ -25,19 +25,19 @@
         <EditText
             android:id="@+id/et_registro_nombre"
             style="@style/et_main"
-            android:hint="Nombre"
+            android:hint="@string/nombre"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/et_registro_correo"
             style="@style/et_main"
-            android:hint="Email"
+            android:hint="@string/Correo"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/et_registro_contrasena"
             style="@style/et_main"
-            android:hint="Contraseña"
+            android:hint="@string/contrasena"
             android:inputType="textPassword" />
 
         <Button
@@ -45,7 +45,7 @@
             style="@style/bt_main"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/marron"
-            android:text="CONTINUAR" />
+            android:text="@string/continuar" />
 
         <TextView
             android:id="@+id/tv_registro_login"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/lato_bold"
-            android:text="¿Tienes cuenta? Inicia sesión"
+            android:text="@string/iniciarSesion"
             android:textAlignment="center"
             android:textSize="15sp" />
 

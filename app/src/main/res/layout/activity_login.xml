@@ -51,16 +51,16 @@
             <EditText
                 android:id="@+id/et_login_correo"
                 style="@style/et_login"
-                android:hint="Email"
+                android:hint="@string/Correo"
                 android:inputType="textEmailAddress"
-                android:text="adri1@mail.com"
+                android:text="adri@mail.com"
                 android:textAlignment="center" />
 
             <EditText
                 android:id="@+id/et_login_contrasena"
                 style="@style/et_login"
                 android:layout_marginTop="25dp"
-                android:hint="Contraseña"
+                android:hint="@string/contrasena"
                 android:inputType="textPassword"
                 android:text="123456"
                 android:textAlignment="center" />
@@ -71,7 +71,7 @@
                 android:layout_marginTop="60dp"
                 android:backgroundTint="@color/rojo"
                 android:elevation="10dp"
-                android:text="ENTRAR" />
+                android:text="@string/entrar" />
 
             <TextView
                 android:id="@+id/tv_login_recordarcontra"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="Olvide la contraseña"
+                android:text="@string/contrasenaOlvidada"
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="15sp" />
