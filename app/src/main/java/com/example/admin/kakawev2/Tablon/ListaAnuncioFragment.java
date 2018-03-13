@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Adaptadores.RVAdapter;
 import com.example.admin.kakawev2.DetallesAnuncio;
 import com.example.admin.kakawev2.Dialogs.AnadirAnuncioCategoriaDialog2;
@@ -23,6 +25,7 @@ import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog1;
 import com.example.admin.kakawev2.Dialogs.AnadirAnuncioDialog2;
 import com.example.admin.kakawev2.Entidades.Anuncio2;
 import com.example.admin.kakawev2.R;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +33,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -58,6 +63,7 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         View vista =  inflater.inflate(R.layout.fragment_lista_anuncio, container, false);
         nombreCom = getArguments().getString("nombreCom");
@@ -145,8 +151,12 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
             }
         });
 
+
+
         return vista;
     }
+
+
 
 
     private void selectorAnuncio(String pestana, final int position) {
@@ -172,6 +182,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     String anunciante= anuncio_oferta.get(position).getNombreAnunciante();
                     String categoria=anuncio_oferta.get(position).getCategoria();
                     String fechaCad = anuncio_oferta.get(position).getFechaCaducidad();
+                    String key = anuncio_oferta.get(position).getKey();
+                    String anuncianteCorreo= anuncio_oferta.get(position).getCorreoAnunciante();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
@@ -184,6 +196,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     b.putString("PuertaAnuncio", puerta);
                     b.putString("Anunciante",anunciante);
                     b.putString("fechaCad",fechaCad);
+                    b.putString("key",key);
+                    b.putString("CorreoAnunciante",anuncianteCorreo);
 
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
@@ -217,6 +231,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     String anunciante= anuncio_demanda.get(position).getNombreAnunciante();
                     String categoria=anuncio_demanda.get(position).getCategoria();
                     String fechaCad = anuncio_demanda.get(position).getFechaCaducidad();
+                    String key = anuncio_demanda.get(position).getKey();
+                    String anuncianteCorreo= anuncio_demanda.get(position).getCorreoAnunciante();
 
                     DetallesAnuncio detallesAnuncio = new DetallesAnuncio();
                     Bundle b = new Bundle();
@@ -229,6 +245,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     b.putString("PuertaAnuncio", puerta);
                     b.putString("Anunciante",anunciante);
                     b.putString("fechaCad",fechaCad);
+                    b.putString("key",key);
+                    b.putString("CorreoAnunciante",anuncianteCorreo);
                     //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");
@@ -255,7 +273,7 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     Log.v("baseDatos",String.valueOf(anuncio_oferta.size()));
                     anuncio_oferta.add(aO);
                 }
-                rvAdapter = new RVAdapter(anuncio_oferta);
+                rvAdapter = new RVAdapter(anuncio_oferta, getActivity());
                 rv_tablon_listatablon.setAdapter(rvAdapter);
             }
 
@@ -276,7 +294,7 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     Anuncio2 aO = dato.getValue(Anuncio2.class);
                     anuncio_demanda.add(aO);
                 }
-                rvAdapter = new RVAdapter(anuncio_demanda);
+                rvAdapter = new RVAdapter(anuncio_demanda, getActivity());
                 rv_tablon_listatablon.setAdapter(rvAdapter);
             }
 

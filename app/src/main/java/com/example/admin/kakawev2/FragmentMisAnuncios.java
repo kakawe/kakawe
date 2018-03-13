@@ -59,7 +59,7 @@ public class FragmentMisAnuncios extends Fragment {
                     anuncios.add(aO);
                     Log.v("datosUsuarios",aO.toString());
                 }
-                rvAdapter = new RVAdapter(anuncios);
+                rvAdapter = new RVAdapter(anuncios, getActivity());
                 rv_tablon_misAnuncios.setAdapter(rvAdapter);
             }
 

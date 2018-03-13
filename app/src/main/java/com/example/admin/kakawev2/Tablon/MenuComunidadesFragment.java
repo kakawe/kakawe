@@ -92,7 +92,7 @@ public class MenuComunidadesFragment extends Fragment{
         tv_menuComunidades_nombre = (TextView) vista.findViewById(R.id.tv_menuComunidades_nombre);
         iv_menuComunidades_foto = (ImageView)vista.findViewById(R.id.iv_menuComunidades_foto);
         tv_menuComunidades_nombre.setText(user.getDisplayName());
-
+        cargarImagenMenuComunidad();
         tv_menuComunidades_nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +136,19 @@ public class MenuComunidadesFragment extends Fragment{
         cargaComunidadesMenuLateral();
         // Retornamos la vista nueva creada
         return vista;
+    }
+
+    //Traer imagen menu comunidad
+    private void cargarImagenMenuComunidad() {
+        FirebaseAuth au = FirebaseAuth.getInstance();
+        String correo = au.getCurrentUser().getEmail();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(correo);
+        Glide.with(getContext()).using(new FirebaseImageLoader())
+                .load(refGuardar)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(iv_menuComunidades_foto);
     }
 
     private void recargarTablon() {
