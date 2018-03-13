@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+      /*  AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
         AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(),R.drawable.animated_logo_kakawe);
         //AnimatedVectorDrawableCompat splash = AnimatedVectorDrawableCompat.create(getApplicationContext(), R.drawable.vector_anim_kakawe);
