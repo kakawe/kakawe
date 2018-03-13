@@ -95,9 +95,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         }
         String caducidad = anuncioTablon.get(position).getHoraCaducidad();
         if (caducidad.equals("Permanente")){
-            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.logo_kakawe);
+            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.ic_disponibilidad_chincheta);
         }else{
-            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.stewie);
+            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.ic_disponibilidad_reloj);
         }
 
 

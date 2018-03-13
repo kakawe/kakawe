@@ -144,11 +144,11 @@ public class DetallesAnuncio extends DialogFragment{
             iv_detallesAnuncio_categoria.setImageResource(R.drawable.ic_categoria_social);
         }
         if (fechaCad.equals("Permanente")){
-            iv_detallesAnuncio_disponibilidad.setImageResource(R.drawable.logo_kakawe);
+            iv_detallesAnuncio_disponibilidad.setImageResource(R.drawable.ic_disponibilidad_chincheta);
             tv_detallesAnuncio_disponibilidad2.setText("Anuncio disponible");
             tv_detallesAnuncio_disponibilidad.setText("permanentemente");
         }else{
-            iv_detallesAnuncio_disponibilidad.setImageResource(R.drawable.stewie);
+            iv_detallesAnuncio_disponibilidad.setImageResource(R.drawable.ic_disponibilidad_reloj);
             tv_detallesAnuncio_disponibilidad2.setText("Anuncio disponible hasta el");
             tv_detallesAnuncio_disponibilidad.setText(fechaCad);
         }
