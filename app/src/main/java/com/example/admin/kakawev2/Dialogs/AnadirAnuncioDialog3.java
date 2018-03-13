@@ -174,7 +174,11 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
 
         fechaCaducidad = et_anadir_anuncio3_fecha_caducidad.getText().toString();
         horaCaducidad = et_anadir_anuncio3_hora_caducidad.getText().toString();
-
+        if (fechaCaducidad.isEmpty()){
+            fechaCaducidad="Permanente";
+        }if (horaCaducidad.isEmpty()){
+            horaCaducidad="Permanente";
+        }
         creacionAnuncioFirebase();
 
     }
@@ -183,6 +187,7 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
     private void creacionAnuncioFirebase() {
         String correo = user.getCurrentUser().getEmail().toString();
         String alias = user.getCurrentUser().getDisplayName();
+
 
         reference = FirebaseDatabase.getInstance().getReference().child("comunidades");
         Anuncio2 a2 = new Anuncio2(key,correo,alias,titulo,tipo,categoria,descripcion,fechaCaducidad,horaCaducidad,piso,puerta);

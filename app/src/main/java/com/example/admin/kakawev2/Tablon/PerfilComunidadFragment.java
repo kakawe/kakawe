@@ -182,19 +182,14 @@ public class PerfilComunidadFragment extends Fragment implements View.OnClickLis
         StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesComunidad").child(comActual);
         Log.v("comActual", comActual);
         Log.v("refGuardar", refGuardar.toString());
-
         if (refGuardar.getName().isEmpty()) {
-
         } else {
-
             Log.v("Entrada", "2");
             Glide.with(getActivity()).using(new FirebaseImageLoader())
                     .load(refGuardar)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(iv_perfilCom_fotoCom);
-
-
         }
 
 

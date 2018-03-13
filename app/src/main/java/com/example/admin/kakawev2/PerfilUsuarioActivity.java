@@ -17,9 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.admin.kakawev2.Dialogs.ConfirmarSalirAppDialog;
 import com.example.admin.kakawev2.Dialogs.PerfilUsuarioDialog;
 import com.example.admin.kakawev2.Tablon.TablonActivity;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -91,14 +93,8 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                 guardarDatos();
             }
         });
+        cargarFotoPerfil();
 
-/*        bt_perfilUs_cerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConfirmarSalirAppDialog df = new ConfirmarSalirAppDialog();
-                df.show(getFragmentManager(), "Confirmar salir de la App");
-            }
-        });*/
         iv_perfilUs_atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,15 +108,27 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
         cargarPerfil();
     }
 
+    private void cargarFotoPerfil() {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        correo = user.getEmail();
+        StorageReference refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(correo);
+        Log.v("refGuardar", refGuardar.toString());
+        if (refGuardar.getName().isEmpty()) {
+        } else {
+            Log.v("Entrada", "2");
+            Glide.with(this).using(new FirebaseImageLoader())
+                    .load(refGuardar)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(iv_perfilUs_fotoUs1);
+        }
+    }
     //cargamos la imagen desde firebase
     @Override
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String correo = "adri1@mail.com";
-        Log.v("Entra", "1");
         //verificamos si obtenemos la imagen de la galeria
         if (requestCode == GALERY_INTENT && resultCode == RESULT_OK) {
-            Log.v("Entra", "2");
             //Aquí sólo se recoge la URI. No se grabará hasta que no se haya grabado el contacto
             uri = data.getData();
             subirFoto();
@@ -217,7 +225,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                         .load(descargarFoto)
                         .into(iv_perfilUs_fotoUs1);
 
-                Toast.makeText(PerfilUsuarioActivity.this, "Se subio la foto", Toast.LENGTH_LONG).show();
+                Toast.makeText(PerfilUsuarioActivity.this, "Foto actualizada", Toast.LENGTH_LONG).show();
             }
         });
     }

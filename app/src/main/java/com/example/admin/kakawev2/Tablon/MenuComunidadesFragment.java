@@ -130,7 +130,6 @@ public class MenuComunidadesFragment extends Fragment{
                 TextView comunidad = view.findViewById(R.id.tv_vistaCom_nomCom);
                 comunidadActual = comunidad.getText().toString();
                 recargarTablon();
-                Log.v("clic",comunidadActual);
             }
         });
         cargaComunidadesMenuLateral();
@@ -163,7 +162,7 @@ public class MenuComunidadesFragment extends Fragment{
     private void cargaComunidadesMenuLateral() {
         final String correo= user.getEmail();
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
-        referencia.addValueEventListener(new ValueEventListener() {
+        referencia.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -180,7 +179,6 @@ public class MenuComunidadesFragment extends Fragment{
                                 String corr=corre;
                                 if (corr.equals(correo)){
                                     comus_usuario.add(nombreComunidad);
-                                    Log.v("nombreApuntado4",String.valueOf(comus_usuario.size()));
                                     //enviar cada nombre de comunidad al pager primero
                                 }
                                 adaptador = new LVAdapter(comus_usuario,getContext());
@@ -193,7 +191,6 @@ public class MenuComunidadesFragment extends Fragment{
                         }
                     });
                 }
-                Log.v("nombreApuntado",String.valueOf(comus_usuario.size()));
             }
 
             @Override

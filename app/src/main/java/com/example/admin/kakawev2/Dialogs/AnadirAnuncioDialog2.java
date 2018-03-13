@@ -204,6 +204,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     //metodo para obtener la imagen y el texto de la catgoria
     private void obtenerCategoria() {
         AnadirAnuncioCategoriaDialog2 adc2 = new AnadirAnuncioCategoriaDialog2();
+        adc2.setTargetFragment(AnadirAnuncioDialog2.this, 0);
         Bundle datos = new Bundle();
         categoria = ed_anadir_anuncio2_categoria.getText().toString();
         datos.putString("categoria2", categoria);

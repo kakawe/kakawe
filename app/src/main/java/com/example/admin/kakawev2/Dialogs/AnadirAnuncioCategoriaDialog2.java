@@ -85,7 +85,6 @@ public class AnadirAnuncioCategoriaDialog2 extends DialogFragment {
                         claseLlamadora=(CategoriaSeleccionada)getTargetFragment();
                         claseLlamadora.seleccionada(String.valueOf(cat));
                         Log.v("categoria", cat);
-                        Toast.makeText(getActivity(), "Clicado " + cat, Toast.LENGTH_LONG).show();
                         cerrar();
                         builder.setView(vista).create();
                         return true;

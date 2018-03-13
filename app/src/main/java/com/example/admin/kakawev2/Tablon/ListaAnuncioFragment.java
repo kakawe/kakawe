@@ -118,8 +118,6 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     if (child != null && mGestureDetector.onTouchEvent(e)) {
                         int posicion = rv.getChildAdapterPosition(child);
                         selectorAnuncio(pestana, posicion);
-                        //mensaje numero card selecciona
-                        Toast.makeText(getContext(), "Clicado " + posicion, Toast.LENGTH_LONG).show();
                         return true;
                     }
 
@@ -169,7 +167,6 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     for (DataSnapshot dato : dataSnapshot.getChildren()) {
                         Anuncio2 aO = dato.getValue(Anuncio2.class);
                         anuncio_oferta.add(aO);
-                        Log.v("anuncio_oferta",aO.toString());
 
                     }
 
@@ -199,9 +196,7 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     b.putString("key",key);
                     b.putString("CorreoAnunciante",anuncianteCorreo);
 
-                    //b.putString("foto",foto);
                     detallesAnuncio.setArguments(b);
-
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");
 
                 }
@@ -220,7 +215,6 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     for (DataSnapshot dato : dataSnapshot.getChildren()) {
                         Anuncio2 aO = dato.getValue(Anuncio2.class);
                         anuncio_demanda.add(aO);
-                        Log.v("anuncio_demanda",aO.toString());
                     }
                     String titulo = anuncio_demanda.get(position).getTitulo();
                     String mensaje = anuncio_demanda.get(position).getDescripcion();
@@ -247,7 +241,7 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                     b.putString("fechaCad",fechaCad);
                     b.putString("key",key);
                     b.putString("CorreoAnunciante",anuncianteCorreo);
-                    //b.putString("foto",foto);
+
                     detallesAnuncio.setArguments(b);
                     detallesAnuncio.show(getActivity().getFragmentManager(), "Dialog");
                 }
@@ -270,7 +264,6 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
                 ArrayList<Anuncio2> anuncio_oferta = new ArrayList<>();
                 for (DataSnapshot dato : dataSnapshot.getChildren()) {
                     Anuncio2 aO = dato.getValue(Anuncio2.class);
-                    Log.v("baseDatos",String.valueOf(anuncio_oferta.size()));
                     anuncio_oferta.add(aO);
                 }
                 rvAdapter = new RVAdapter(anuncio_oferta, getActivity());
@@ -308,7 +301,6 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
     @Override
     public void seleccionada(String categoria) {
         String cat = categoria;
-        Log.v("clicado","estoy aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         AnadirAnuncioDialog2 a = (AnadirAnuncioDialog2) getActivity().getFragmentManager().findFragmentByTag("ad2");
         a.setearCategoria(categoria);
     }
