@@ -82,10 +82,12 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
             Log.v("situacion","salto en ofrecen");
             obtenerOfertas();
             bt_tablon_izquierdo.setChecked(true);
+            bt_tablon_izquierdo.setEnabled(false);
             pestana="Ofrezco";
         } else {
             obtenerDemandas();
             bt_tablon_derecho.setChecked(true);
+            bt_tablon_derecho.setEnabled(false);
             pestana="Necesito";
         }
 
@@ -94,6 +96,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
             public void onClick(View v) {
                 obtenerOfertas();
                 bt_tablon_derecho.setChecked(false);
+                bt_tablon_derecho.setEnabled(true);
+                bt_tablon_izquierdo.setEnabled(false);
                 pestana = "Ofrezco";
             }
         });
@@ -102,6 +106,8 @@ public class ListaAnuncioFragment extends Fragment implements AnadirAnuncioCateg
             public void onClick(View v) {
                 obtenerDemandas();
                 bt_tablon_izquierdo.setChecked(false);
+                bt_tablon_izquierdo.setEnabled(true);
+                bt_tablon_derecho.setEnabled(false);
                 pestana = "Necesito";
             }
         });

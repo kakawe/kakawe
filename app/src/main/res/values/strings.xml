@@ -4,6 +4,44 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="iniciandoSesion">Log in . . .</string>
+
+    <string name="nombre">Name</string>
+    <string name="Correo">Mail</string>
+    <string name="contrasena">Password</string>
+    <string name="continuar">Continue</string>
+    <string name="iniciarSesion">Do you have an account? Log in</string>
+    <string name="entrar">Enter</string>
+    <string name="contrasenaOlvidada">Forgot the password?</string>
+    <string name="nombreRequerido">Name required</string>
+    <string name="correoNoValido">Invalid mail</string>
+    <string name="contraseñaRequerida">Password required</string>
+    <string name="contraseñaCorta">Short password, minimum 6 characters</string>
+
+    <string name="ofrecen">Give</string>
+    <string name="necesitan">Require</string>
+
+    <string name="tablon">Board</string>
+    <string name="misAnuncios">My ads</string>
+    <string name="historial">Historic</string>
+
+    <string name="anadirComunidad">Add community</string>
+
+    <string name="buscar">Search</string>
+    <string name="crear">Create</string>
+    <string name="nombreComunidad">Community name</string>
+    <string name="localidad">Location</string>
+    <string name="direccion">Address</string>
+    <string name="introduceNomCom">Enter the name of the community to search</string>
+    <string name="noExisteComBuscar">No existe una comunidad con el nombre </string>
+    <string name="localidadRequerida">Localidad requerida</string>
+    <string name="direccionRequerida">Dirección requerida</string>
+    <string name="existeComunidad">Ya existe una comunidad con ese nombre</string>
+    <string name="piso">Piso</string>
+    <string name="puerta">Puerta</string>
+    <string name="pisoRequerido">Añada tu piso</string>
+    <string name="puertarequerida">Añada su puerta</string>
+    <string name="yaestasEnLaComunidad">Ya estás en la comunidad </string>
+
 </resources>

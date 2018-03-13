@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.Entidades.Vecino;
@@ -39,7 +40,8 @@ public class BuscarComunidadFragment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private ProgressDialog progreso;
 
-    Button bt_anadir_crear, bt_anadirBuscar_continuar;
+    ToggleButton bt_anadir_crear,bt_anadir_buscar;
+    Button  bt_anadirBuscar_continuar;
     EditText et_anadirBuscar_nomcom, et_anadirBuscar_localidad, et_anadirBuscar_direccion;
     String contenedor;
 
@@ -54,9 +56,12 @@ public class BuscarComunidadFragment extends Fragment {
         et_anadirBuscar_nomcom = (EditText) getView().findViewById(R.id.et_anadirBuscar_nomcom);
         et_anadirBuscar_localidad = (EditText) getView().findViewById(R.id.et_anadirBuscar_localidad);
         et_anadirBuscar_direccion = (EditText) getView().findViewById(R.id.et_anadirBuscar_direccion);
-        bt_anadir_crear = (Button) getView().findViewById(R.id.bt_anadir_crear);
+        bt_anadir_crear = (ToggleButton) getView().findViewById(R.id.bt_anadir_crear);
+        bt_anadir_buscar = (ToggleButton) getView().findViewById(R.id.bt_anadir_buscar);
         bt_anadirBuscar_continuar = (Button) getView().findViewById(R.id.bt_anadirBuscar_continuar);
 
+        bt_anadir_buscar.setChecked(true);
+        bt_anadir_buscar.setEnabled(false);
         bt_anadir_crear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +153,7 @@ public class BuscarComunidadFragment extends Fragment {
 
     private void mirarSiPertenece(final String nombreCom, final String localidad, final String direccion) {
         final String correo = user.getEmail();
+        FirebaseAuth au = FirebaseAuth.getInstance();
         referencia = FirebaseDatabase.getInstance().getReference("comunidades");
         referencia.child(nombreCom).child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -157,7 +163,7 @@ public class BuscarComunidadFragment extends Fragment {
                     String corre = aV.getMail();
                     //te deja entrar si munidad hay mucha gente, ya que tarda en comparar los correos
                     //crear un metodo boolean para ver esto
-                    if (correo.equals(correo)) {
+                    if (corre.equals(correo)) {
                         Toast.makeText(getContext(), "Ya estás en la comunidad " + nombreCom, Toast.LENGTH_LONG).show();
                         progreso.cancel();
                         return;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_vista_anuncio_titulo;
         private TextView tv_vista_anuncio_autor_nombre;
-        private ImageView iv_vista_anuncio_foto,iv_vista_anuncio_categoria;
+        private ImageView iv_vista_anuncio_foto,iv_vista_anuncio_categoria,iv_vista_anuncio_autor_foto,iv_vista_anuncio_disponibilidad;
 
         public ViewHolder(View v){
             super(v);
@@ -42,6 +43,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
             tv_vista_anuncio_autor_nombre = (TextView)v.findViewById(R.id.tv_vista_anuncio_autor_nombre);
             iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
             iv_vista_anuncio_categoria = (ImageView)v.findViewById(R.id.iv_vista_anuncio_categoria);
+            iv_vista_anuncio_autor_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_autor_foto);
+            iv_vista_anuncio_disponibilidad = (ImageView)v.findViewById(R.id.iv_vista_anuncio_disponibilidad);
 
         }
     }
@@ -60,52 +63,49 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
        // traerIamgenAnuncio();
         return viewHolder;
     }
-/*
-    private void traerIamgenAnuncio() {
-        FirebaseAuth au = FirebaseAuth.getInstance();
-        String correo = au.getCurrentUser().getEmail();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        refGuardar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(correo);
-
-    }
-*/
     @Override
     public void onBindViewHolder(RVAdapter.ViewHolder holder, int position) {
         holder.tv_vista_anuncio_titulo.setText(anuncioTablon.get(position).getTitulo());
         holder.tv_vista_anuncio_autor_nombre.setText(anuncioTablon.get(position).getNombreAnunciante());
         String cat= anuncioTablon.get(position).getCategoria();
+        Log.v("CategoriaAqui",cat);
         if (cat.equals("Bricolaje")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_bricolaje);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_bricolaje);
         }if (cat.equals("Cocina")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_cocina);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_cocina);
         }if (cat.equals("Deporte y ocio")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_deporte_y_ocio);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_deporte_y_ocio);
         }if (cat.equals("Electronica")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_electronica);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_electronica);
         }if (cat.equals("Entretenimiento")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_entretenimiento);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_entretenimiento);
         }if (cat.equals("Jardineria")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_jardineria);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_jardineria);
         }if (cat.equals("Limpieza")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_limpieza);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_limpieza);
         }if (cat.equals("Mascotas")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_mascotas);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_mascotas);
         }if (cat.equals("Mobiliario")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_mobiliario);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_mobiliario);
         }if (cat.equals("Otros")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_otros);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_otros);
         }if (cat.equals("Ropa")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_ropa);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_ropa);
         }if (cat.equals("Salud")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_salud);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_salud);
         }if (cat.equals("Servicios")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_servicios);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_servicios);
         }if (cat.equals("Social")){
-            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_social);
+            holder.iv_vista_anuncio_categoria.setImageResource(R.drawable.ic_categoria_social);
+        }
+        String caducidad = anuncioTablon.get(position).getHoraCaducidad();
+        if (caducidad.equals("Permanente")){
+            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.logo_kakawe);
+        }else{
+            holder.iv_vista_anuncio_disponibilidad.setImageResource(R.drawable.stewie);
         }
 
 
-        //holder.iv_vista_anuncio_foto.setImageURI(Uri.parse(refGuardar.toString()));
         FirebaseStorage storage=FirebaseStorage.getInstance();
         StorageReference refDescargar = storage.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesAnuncios").child(anuncioTablon.get(position).getKey());
 
@@ -114,6 +114,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(holder.iv_vista_anuncio_foto);
+        FirebaseStorage storage1=FirebaseStorage.getInstance();
+        StorageReference refDescargar1 = storage1.getReferenceFromUrl("gs://kakawe-22f82.appspot.com").child("ImagenesPerfilUsuario").child(anuncioTablon.get(position).getCorreoAnunciante());
+
+        Glide.with(a).using(new FirebaseImageLoader())
+                .load(refDescargar1)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.iv_vista_anuncio_autor_foto);
     }
 
     @Override

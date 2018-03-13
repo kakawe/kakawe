@@ -74,10 +74,10 @@ public class AnadirAnuncioDialog3 extends DialogFragment implements View.OnClick
         iv_anuncio3_cerrar = (ImageView) vista.findViewById(R.id.iv_anuncio3_cerrar);
 
         //etiqueta fecha
-        tv_anadir_anuncio3_etiquetaFC = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaFC);
+        tv_anadir_anuncio3_etiquetaFC = (TextView) vista.findViewById(R.id.et_anadir_anuncio3_fecha_caducidad);
 
         //etiqueta hora
-        tv_anadir_anuncio3_etiquetaHC = (TextView) vista.findViewById(R.id.tv_anadir_anuncio3_etiquetaHC);
+        tv_anadir_anuncio3_etiquetaHC = (TextView) vista.findViewById(R.id.et_anadir_anuncio3_hora_caducidad);
 
         //Edittext fecha
         et_anadir_anuncio3_fecha_caducidad = (EditText) vista.findViewById(R.id.et_anadir_anuncio3_fecha_caducidad);

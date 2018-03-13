@@ -110,7 +110,7 @@
                     android:layout_marginRight="60dp"
                     android:background="@drawable/bg_btn_circular"
                     android:fontFamily="@font/lato"
-                    android:text="<"
+                    android:text="Atras"
                     android:textColor="@color/blanco"
                     android:textSize="30sp" />
 
@@ -120,7 +120,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/bg_btn_circular"
                     android:fontFamily="@font/lato"
-                    android:text=">"
+                    android:text="Seguir"
                     android:textColor="@color/blanco"
                     android:textSize="30sp" />
             </LinearLayout>

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.admin.kakawev2.Entidades.Comunidad;
 import com.example.admin.kakawev2.R;
@@ -34,7 +35,8 @@ public class CrearComunidadFragment extends Fragment {
     private static DatabaseReference referencia;
     private ProgressDialog progreso;
 
-    Button bt_anadir_buscar,bt_anadirCrear_continuar;
+    ToggleButton bt_anadir_buscar,bt_anadir_crear;
+    Button bt_anadirCrear_continuar;
     EditText et_anadirCrear_nomcom,et_anadirCrear_localidad,et_anadirCrear_direccion;
 
     String contenedor;
@@ -50,9 +52,12 @@ public class CrearComunidadFragment extends Fragment {
         et_anadirCrear_nomcom = (EditText) getView().findViewById(R.id.et_anadirCrear_nomcom);
         et_anadirCrear_localidad = (EditText) getView().findViewById(R.id.et_anadirCrear_localidad);
         et_anadirCrear_direccion = (EditText) getView().findViewById(R.id.et_anadirCrear_direccion);
-        bt_anadir_buscar = (Button) getView().findViewById(R.id.bt_anadir_buscar);
+        bt_anadir_buscar = (ToggleButton) getView().findViewById(R.id.bt_anadir_buscar);
+        bt_anadir_crear = (ToggleButton) getView().findViewById(R.id.bt_anadir_crear);
         bt_anadirCrear_continuar = (Button) getView().findViewById(R.id.bt_anadirCrear_continuar);
 
+        bt_anadir_crear.setChecked(true);
+        bt_anadir_crear.setEnabled(false);
         bt_anadir_buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

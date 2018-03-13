@@ -62,11 +62,10 @@
                     android:text="Nombre"
                     android:textSize="15sp" />
 
-                <ImageView
+                <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/iv_vista_anuncio_autor_foto"
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/bg_social" />
+                    android:layout_height="25dp" />
 
             </LinearLayout>
 
@@ -77,8 +76,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/bg_social" />
+                android:layout_marginRight="5dp" />
 
             <ImageView
                 android:id="@+id/iv_vista_anuncio_categoria"
@@ -86,8 +84,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="top|start"
                 android:layout_marginTop="7dp"
-                android:layout_marginLeft="7dp"
-                android:background="@drawable/bg_social" />
+                android:layout_marginLeft="7dp" />
 
         </FrameLayout>
     </android.support.v7.widget.CardView>
