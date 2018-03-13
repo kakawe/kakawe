@@ -7,13 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.MainActivity">
 
-
-    <Button
-        android:id="@+id/bt_tablon_anadirAnuncio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="389dp"
