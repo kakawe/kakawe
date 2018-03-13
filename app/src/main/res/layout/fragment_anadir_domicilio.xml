@@ -4,41 +4,60 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
 
-    <TextView
-        android:id="@+id/tv_anadirDomicilio_crear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="crear" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginBottom="50dp">
+
+        <ImageView
+            android:id="@+id/tv_anadirDomicilio_crear"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_atras" />
 
 
-        <EditText
-            android:id="@+id/et_anadirDomicilio_piso"
-            style="@style/et_main"
-            android:hint="Piso" />
+        <TextView
+            style="@style/tv_titulo_anuncio"
+            android:layout_margin="10dp"
+            android:text="Mi domicilio"
+            android:textColor="@color/gris_medio" />
+
+    </FrameLayout>
 
 
-        <EditText
-            android:id="@+id/et_anadirDomicilio_puerta"
-            style="@style/et_main"
-            android:hint="Puerta" />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lato"
+        android:text="Define tu domicilio \n dentro de la comunidad"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
 
-        <Button
-            android:id="@+id/bt_anadirDomicilio_continuar"
-            style="@style/bt_main"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/rojo"
-            android:text="Entrar" />
+    <EditText
+        android:id="@+id/et_anadirDomicilio_piso"
+        style="@style/et_main"
+        android:hint="Piso" />
 
-    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_anadirDomicilio_puerta"
+        style="@style/et_main"
+        android:hint="Puerta" />
+
+
+    <Button
+        android:id="@+id/bt_anadirDomicilio_continuar"
+        style="@style/bt_main"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/rojo"
+        android:text="Entrar" />
 
 </LinearLayout>
