@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/gris"
     android:orientation="vertical"
-    tools:context="com.example.admin.kakawev2.Tablon.MenuPrincipalFragment">
+    tools:context="com.kakawe.admin.kakawev2.Tablon.MenuPrincipalFragment">
 
     <include
         layout="@layout/header_menu_principal"

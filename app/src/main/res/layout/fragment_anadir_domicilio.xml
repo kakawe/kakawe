@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
+    tools:context="com.kakawe.admin.kakawev2.Anadir_Comunidad.AnadirDomicilioFragment">
 
 
     <FrameLayout

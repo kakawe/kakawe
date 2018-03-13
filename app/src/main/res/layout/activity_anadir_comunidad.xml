@@ -5,6 +5,6 @@
     android:id="@+id/contenedor_anadirComunidad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity">
+    tools:context="com.kakawe.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity">
 
 </android.support.constraint.ConstraintLayout>

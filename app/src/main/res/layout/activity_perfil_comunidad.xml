@@ -8,7 +8,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.admin.kakawev2.PerfilComunidadActivity">
+    tools:context="com.kakawe.admin.kakawev2.PerfilComunidadActivity">
 
 
     <FrameLayout

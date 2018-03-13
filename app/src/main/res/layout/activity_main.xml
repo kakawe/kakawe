@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.admin.kakawev2.MainActivity">
+    tools:context="com.kakawe.admin.kakawev2.MainActivity">
 
 
     <Button

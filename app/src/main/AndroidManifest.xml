@@ -3,7 +3,7 @@
   android:versionName="1.0.0"
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.admin.kakawev2"
+    package="com.kakawe.admin.kakawev2"
     android:versionCode="1"
     android:versionName="1.0.0">
 
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.kakawe.admin.kakawev2.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,20 +22,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".RegisterActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".Tablon.TablonActivity" />
-        <activity android:name=".Anadir_Comunidad.AnadirComunidadActivity" />
+            android:name="com.kakawe.admin.kakawev2.LoginActivity"
+            android:parentActivityName="com.kakawe.admin.kakawev2.RegisterActivity" />
+        <activity android:name="com.kakawe.admin.kakawev2.RegisterActivity" />
+        <activity android:name="com.kakawe.admin.kakawev2.Tablon.TablonActivity" />
+        <activity android:name="com.kakawe.admin.kakawev2.Anadir_Comunidad.AnadirComunidadActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".PerfilUsuarioActivity"
-            android:parentActivityName=".Tablon.TablonActivity" />
-        <activity android:name=".PerfilComunidadActivity"></activity>
+            android:name="com.kakawe.admin.kakawev2.PerfilUsuarioActivity"
+            android:parentActivityName="com.kakawe.admin.kakawev2.Tablon.TablonActivity" />
+        <activity android:name="com.kakawe.admin.kakawev2.PerfilComunidadActivity"></activity>
     </application>
 
 </manifest>

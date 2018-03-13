@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.example.admin.kakawev2.RegisterActivity">
+    tools:context="com.kakawe.admin.kakawev2.RegisterActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"

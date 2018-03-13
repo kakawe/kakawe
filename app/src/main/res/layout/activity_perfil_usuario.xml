@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.example.admin.kakawev2.PerfilUsuarioActivity">
+    tools:context="com.kakawe.admin.kakawev2.PerfilUsuarioActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
