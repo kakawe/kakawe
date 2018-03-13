@@ -21,6 +21,7 @@
     <string name="correoNoValido">Invalid mail</string>
     <string name="contraseñaRequerida">Password required</string>
     <string name="contraseñaCorta">Short password, minimum 6 characters</string>
+    <string name="miDomicilio">My address</string>
 
     <string name="ofrecen">Give</string>
     <string name="necesitan">Require</string>
@@ -30,6 +31,7 @@
     <string name="historial">Historic</string>
 
     <string name="anadirComunidad">Add community</string>
+    <string name="misComunidades">My communities</string>
 
     <string name="buscar">Search</string>
     <string name="crear">Create</string>
@@ -68,6 +70,7 @@
     <string name="fechaCaducidad">Expiration date</string>
     <string name="horaCaducidad">Expiration time</string>
     <string name="publicar">Post</string>
+    <string name="actualizar">Update</string>
 
 
 </resources>

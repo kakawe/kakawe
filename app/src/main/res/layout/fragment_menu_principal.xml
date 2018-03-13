@@ -14,27 +14,27 @@
     <TextView
         style="@style/menu_subheader"
         android:paddingLeft="25dp"
-        android:text="Tablón" />
+        android:text="@string/tablon" />
 
     <Button
         android:id="@+id/btn_menu_tablon_ofrecen"
         style="@style/menu_item"
-        android:text="Ofrecen" />
+        android:text="@string/ofrecen" />
 
     <Button
         android:id="@+id/btn_menu_tablon_necesitan"
         style="@style/menu_item"
-        android:text="Necesitan" />
+        android:text="@string/necesitan" />
 
     <TextView
         style="@style/menu_subheader"
         android:layout_height="55dp"
         android:paddingLeft="25dp"
-        android:text="Mis anuncios" />
+        android:text="@string/misAnuncios" />
 
     <Button
         android:id="@+id/btn_menu_misAnuncios_historial"
         style="@style/menu_item"
-        android:text="Historial" />
+        android:text="@string/historial" />
 
 </LinearLayout>

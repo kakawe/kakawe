@@ -16,14 +16,14 @@
         <ToggleButton
             android:id="@+id/bt_tablon_izquierdo"
             style="@style/segment_left"
-            android:textOff="Ofrecen"
-            android:textOn="Ofrecen" />
+            android:textOff="@string/ofrecen"
+            android:textOn="@string/ofrecen" />
 
         <ToggleButton
             android:id="@+id/bt_tablon_derecho"
             style="@style/segment_right"
-            android:textOff="Necesitan"
-            android:textOn="Necesitan" />
+            android:textOff="@string/necesitan"
+            android:textOn="@string/necesitan" />
 
     </LinearLayout>
 

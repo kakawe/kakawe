@@ -13,7 +13,7 @@
 
     <TextView
         style="@style/menu_subheader"
-        android:text="Mis comunidades"
+        android:text="@string/misComunidades"
         android:textAlignment="center" />
 
     <Button
@@ -22,7 +22,7 @@
         android:layout_height="50dp"
         android:background="@color/gris"
         android:fontFamily="@font/lato_black"
-        android:text="Añadir"
+        android:text="@string/anadirComunidad"
         android:textAllCaps="false"
         android:textColor="@color/blanco"
         android:textSize="17sp" />
