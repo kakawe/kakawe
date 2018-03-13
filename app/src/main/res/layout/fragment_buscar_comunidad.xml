@@ -8,11 +8,19 @@
     android:orientation="vertical"
     tools:context="com.example.admin.kakawev2.Anadir_Comunidad.BuscarComunidadFragment">
 
-    <TextView
-        style="@style/tv_titulo_anuncio"
-        android:layout_margin="10dp"
-        android:text="Añadir comunidad"
-        android:textColor="@color/gris_medio" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/tv_titulo_anuncio"
+            android:layout_margin="10dp"
+            android:text="Añadir comunidad"
+            android:textColor="@color/gris_medio" />
+
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -47,8 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/lato"
-            android:text="Busca una comunidad ya creada para unirte"
-            android:textSize="15sp" />
+            android:text="Únete a una comunidad ya creada"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/et_anadirBuscar_nomcom"
@@ -60,9 +69,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/lato"
             android:text="También puedes buscar por dirección"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
 
         <EditText
