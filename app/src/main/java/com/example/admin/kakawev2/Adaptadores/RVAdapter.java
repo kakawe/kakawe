@@ -1,6 +1,7 @@
 package com.example.admin.kakawev2.Adaptadores;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,13 +34,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_vista_anuncio_titulo;
         private TextView tv_vista_anuncio_autor_nombre;
-        private ImageView iv_vista_anuncio_foto;
+        private ImageView iv_vista_anuncio_foto,iv_vista_anuncio_categoria;
 
         public ViewHolder(View v){
             super(v);
             tv_vista_anuncio_titulo = (TextView)v.findViewById(R.id.tv_vista_anuncio_titulo);
             tv_vista_anuncio_autor_nombre = (TextView)v.findViewById(R.id.tv_vista_anuncio_autor_nombre);
             iv_vista_anuncio_foto = (ImageView)v.findViewById(R.id.iv_vista_anuncio_foto);
+            iv_vista_anuncio_categoria = (ImageView)v.findViewById(R.id.iv_vista_anuncio_categoria);
 
         }
     }
@@ -71,6 +73,37 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     public void onBindViewHolder(RVAdapter.ViewHolder holder, int position) {
         holder.tv_vista_anuncio_titulo.setText(anuncioTablon.get(position).getTitulo());
         holder.tv_vista_anuncio_autor_nombre.setText(anuncioTablon.get(position).getNombreAnunciante());
+        String cat= anuncioTablon.get(position).getCategoria();
+        if (cat.equals("Bricolaje")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_bricolaje);
+        }if (cat.equals("Cocina")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_cocina);
+        }if (cat.equals("Deporte y ocio")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_deporte_y_ocio);
+        }if (cat.equals("Electronica")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_electronica);
+        }if (cat.equals("Entretenimiento")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_entretenimiento);
+        }if (cat.equals("Jardineria")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_jardineria);
+        }if (cat.equals("Limpieza")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_limpieza);
+        }if (cat.equals("Mascotas")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_mascotas);
+        }if (cat.equals("Mobiliario")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_mobiliario);
+        }if (cat.equals("Otros")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_otros);
+        }if (cat.equals("Ropa")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_ropa);
+        }if (cat.equals("Salud")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_salud);
+        }if (cat.equals("Servicios")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_servicios);
+        }if (cat.equals("Social")){
+            holder.iv_vista_anuncio_categoria.getResources().getDrawable(R.drawable.ic_categoria_social);
+        }
+
 
         //holder.iv_vista_anuncio_foto.setImageURI(Uri.parse(refGuardar.toString()));
         FirebaseStorage storage=FirebaseStorage.getInstance();
