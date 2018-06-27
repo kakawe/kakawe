@@ -29,7 +29,6 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
     private boolean isOutSideClicked;
     Fragment crear;
     PaginadorMenu paginadorMenu;
-    android.support.v7.widget.Toolbar barra_superior;
 
     private static DatabaseReference referencia;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -75,10 +74,6 @@ public class TablonActivity extends AppCompatActivity implements MenuComunidades
 
         crear = new MenuComunidadesFragment();
         menu = (DrawerLayout) findViewById(R.id.menu);
-
-        barra_superior = (android.support.v7.widget.Toolbar) findViewById(R.id.barra_superior);
-        setSupportActionBar(barra_superior);
-        barra_superior.setNavigationIcon(R.drawable.ic_menu_kakawe);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, menu, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         menu.addDrawerListener(toggle);
