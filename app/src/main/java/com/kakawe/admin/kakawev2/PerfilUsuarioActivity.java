@@ -70,7 +70,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
                 intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, GALERY_INTENT);
-
             }
         });
 
@@ -213,8 +212,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity implements Confirma
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //descargar imagen de firebase
-                Log.v("Entra", "3");
-
                 Uri descargarFoto = taskSnapshot.getDownloadUrl();
                 Glide.with(PerfilUsuarioActivity.this)
                         .load(descargarFoto)

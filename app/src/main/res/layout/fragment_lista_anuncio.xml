@@ -45,8 +45,8 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="25dp"
             android:clickable="true"
-            android:src="@android:drawable/ic_input_add"
-            app:backgroundTint="@color/rojo" />
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/marron" />
 
     </FrameLayout>
 

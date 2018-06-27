@@ -5,18 +5,18 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/barra_superior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blanco"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
             app:navigationIcon="@drawable/ic_menu_kakawe"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextAppearance="@style/app_bar" />
 
         <View

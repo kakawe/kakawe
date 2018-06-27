@@ -35,7 +35,7 @@ import com.google.firebase.storage.StorageReference;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AnadirDomicilioFragment extends Fragment {
+public class    AnadirDomicilioFragment extends Fragment {
     private static DatabaseReference referencia;
     private Intent intent;
     private StorageReference storageReference;

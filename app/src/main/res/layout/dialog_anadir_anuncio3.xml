@@ -25,7 +25,9 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -102,7 +104,8 @@
                 android:layout_marginTop="100dp"
                 android:backgroundTint="@color/marron"
                 android:elevation="10dp"
-                android:text="@string/publicar" />
+                android:text="@string/publicar"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 

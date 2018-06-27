@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
     TextView tv_anadir_anuncio2_tipo;
     EditText et_anadir_anuncio2_titulo, ed_anadir_anuncio2_descripcion, ed_anadir_anuncio2_categoria;
     ImageView iv_anadir_anuncio2_imagen, iv_anadir_anuncio2_imgen_categoria, iv_anuncio2_cerrar;
-    Button bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
+    ImageButton bt_anadir_anuncio2_atras, bt_anadir_anuncio2_adelante;
     private String tv_ruta_imagen;
     private String tipo, tipo1;
     String categoria;
@@ -75,8 +76,8 @@ public class AnadirAnuncioDialog2 extends DialogFragment implements View.OnClick
         ed_anadir_anuncio2_descripcion = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_descripcion);
         ed_anadir_anuncio2_categoria = (EditText) vista.findViewById(R.id.ed_anadir_anuncio2_categoria);
         iv_anadir_anuncio2_imagen = (ImageView) vista.findViewById(R.id.iv_anadir_anuncio2_imagen);
-        bt_anadir_anuncio2_atras = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
-        bt_anadir_anuncio2_adelante = (Button) vista.findViewById(R.id.bt_anadir_anuncio2_adelante);
+        bt_anadir_anuncio2_atras = (ImageButton) vista.findViewById(R.id.bt_anadir_anuncio2_atras);
+        bt_anadir_anuncio2_adelante = (ImageButton) vista.findViewById(R.id.bt_anadir_anuncio2_adelante);
 
         //damos valor a la etique tipo
         tv_anadir_anuncio2_tipo.setText(tipo);

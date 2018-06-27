@@ -26,7 +26,9 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -103,26 +105,31 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
 
-                <Button
+
+
+                <ImageButton
                     android:id="@+id/bt_anadir_anuncio2_atras"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="60dp"
+                    android:src="@drawable/ic_dialog_atras"
                     android:background="@drawable/bg_btn_circular"
                     android:fontFamily="@font/lato"
-                    android:text="Atras"
                     android:textColor="@color/blanco"
                     android:textSize="30sp" />
 
-                <Button
+
+
+                <ImageButton
                     android:id="@+id/bt_anadir_anuncio2_adelante"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:src="@drawable/ic_dialog_adelante"
                     android:background="@drawable/bg_btn_circular"
                     android:fontFamily="@font/lato"
-                    android:text="Seguir"
                     android:textColor="@color/blanco"
                     android:textSize="30sp" />
             </LinearLayout>
